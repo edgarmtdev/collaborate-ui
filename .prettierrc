@@ -1,0 +1,12 @@
+{
+  "endOfLine": "auto",
+  "indent": [
+    "error",
+    2
+  ],
+  "singleQuote": false,
+  "trailingComma": "none",
+  "semi": false,
+  "arrowParens": "avoid",
+  "no-console": "warn"
+}
