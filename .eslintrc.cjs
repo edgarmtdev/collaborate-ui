@@ -38,10 +38,6 @@ module.exports = {
 		],
 		"no-multiple-empty-lines": "off",
 		"no-tabs": "off",
-		"indent": [
-			"warn",
-			"tab"
-		],
 		"quotes": [
 			"warn",
 			"single"
