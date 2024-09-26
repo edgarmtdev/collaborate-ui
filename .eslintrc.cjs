@@ -37,7 +37,7 @@ module.exports = {
 			}
 		],
 		"no-multiple-empty-lines": "off",
-		"no-tabs": "off",
+		"no-tabs": "warn",
 		"quotes": [
 			"warn",
 			"single"
@@ -46,6 +46,5 @@ module.exports = {
 			"warn",
 			"prefer-single"
 		],
-		"eol-last": "off"
 	}
 }

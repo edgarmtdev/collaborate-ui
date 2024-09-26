@@ -20,10 +20,8 @@ export default function RootLayout({
   children: ReactNode
 }>) {
   return (
-		<html lang='es'>
-			<body className={ubuntu.className}>
-				{children}
-			</body>
-		</html>
+    <html lang='es'>
+      <body className={ubuntu.className}>{children}</body>
+    </html>
   )
 }
