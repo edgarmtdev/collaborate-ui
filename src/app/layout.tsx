@@ -1,7 +1,8 @@
+import { Navbar } from '@/components/global/navigation'
+import '@/styles/globals.css'
 import type { Metadata } from 'next'
 import { Ubuntu } from 'next/font/google'
-import { type ReactNode } from 'react'
-import './globals.css'
+import type { ReactNode } from 'react'
 
 const ubuntu = Ubuntu({
 	preload: true,
@@ -21,7 +22,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='es'>
-			<body className={ubuntu.className}>{children}</body>
+			<body className={ubuntu.className}>
+				<Navbar />
+				{children}</body>
 		</html>
 	)
 }
