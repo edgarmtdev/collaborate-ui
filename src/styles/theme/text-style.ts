@@ -2,13 +2,13 @@ import { defineTextStyles } from '@pandacss/dev'
 
 export const textStyles = defineTextStyles({
   header: {
-    xl: { value: { fontSize: '1.5rem', lineHeight: '2rem' } },
-    lg: { value: { fontSize: '1.25rem', lineHeight: '1.75rem' } },
-    md: { value: { fontSize: '1.125rem', lineHeight: '1.75rem' } }
+    xl: { value: { fontSize: '2xl', lineHeight: '2rem' } },
+    lg: { value: { fontSize: 'xl', lineHeight: '1.75rem' } },
+    md: { value: { fontSize: 'lg', lineHeight: '1.75rem' } }
   },
   text: {
-    1: { value: { fontSize: '1rem', lineHeight: '1.5rem' } },
-    2: { value: { fontSize: '0.875rem', lineHeight: '1.25rem' } },
-    3: { value: { fontSize: '0.75rem', lineHeight: '1rem' } }
+    sm: { value: { fontSize: 'sm', lineHeight: '1.5rem' } },
+    md: { value: { fontSize: 'md', lineHeight: '1.25rem' } },
+    lg: { value: { fontSize: 'lg', lineHeight: '1rem' } }
   }
 })
