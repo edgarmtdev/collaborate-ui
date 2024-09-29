@@ -1,4 +1,3 @@
-import { Navbar } from '@/components/global/navigation'
 import '@/styles/globals.css'
 import type { Metadata } from 'next'
 import { Ubuntu } from 'next/font/google'
@@ -23,8 +22,8 @@ export default function RootLayout({
   return (
     <html lang='es'>
       <body className={ubuntu.className}>
-        <Navbar />
-        {children}</body>
+        {children}
+      </body>
     </html>
   )
 }
