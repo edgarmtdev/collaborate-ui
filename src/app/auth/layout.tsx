@@ -1,6 +1,7 @@
-import { Background } from '@/components/auth/background'
+import { Background } from '@/components/auth'
+import Link from 'next/link'
 import type { ReactNode } from 'react'
-import { css } from '~root/styled-system/css'
+import { bodyStyles, footerStyles, headerStyles } from './layout.styled'
 
 export default function AuthLayout({
   children
@@ -9,54 +10,22 @@ export default function AuthLayout({
 }>) {
   return (
     <>
-      <header className={css({
-        p: 12,
-        position: 'absolute',
-        top: 0,
-        zIndex: '50',
-        color: 'white',
-        textStyle: 'header.lg',
-        fontWeight: 'bold'
-      })}>
-        <h1 className={css({
-          textTransform: 'uppercase'
-        })}>Collaborate</h1>
+      <header className={headerStyles}>
+        <Link href='/'>
+          <h1>Collaborate</h1>
+        </Link>
       </header>
       <Background />
       <main>
-        <section className={css({
-          position: 'absolute',
-          width: '100%',
-          lg: {
-            display: 'grid',
-            gridTemplateColumns: 2
-          },
-          minHeight: '100vh',
-          p: 24
-        })}>
-          <div className={css({
-            display: 'flex',
-            alignItems: 'center',
-            color: 'white'
-          })}>
-            <h2 className={css({
-              fontSize: '3xl',
-              fontWeight: 'medium'
-            })}>
-            Collaborate joins people with common goals...
-            </h2>
+        <section className={bodyStyles.grid}>
+          <div className={bodyStyles.labelSection}>
+            <h2>Collaborate joins people with common goals...</h2>
           </div>
           <div>
             {children}
           </div>
         </section>
-        <footer className={css({
-          position: 'absolute',
-          width: '100%',
-          p: 24,
-          bottom: 0
-        })}
-        >
+        <footer className={footerStyles} >
           Hello
         </footer>
       </main>
