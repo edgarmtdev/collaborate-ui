@@ -19,12 +19,12 @@ export const bodyStyles = {
     width: '100%',
     display: 'grid',
     alignItems: 'center',
+    minHeight: '100vh',
+    p: 24,
     lg: {
       display: 'grid',
       gridTemplateColumns: 2
-    },
-    minHeight: '100vh',
-    p: 24
+    }
   }),
   labelSection: css({
     display: 'none',
