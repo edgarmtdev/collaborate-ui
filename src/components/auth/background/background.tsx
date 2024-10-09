@@ -1,4 +1,4 @@
-import { Constant } from '@/common/const/Constant'
+import { Constant } from '@/const/Constant'
 import Image from 'next/image'
 import styled from './background.styled'
 
