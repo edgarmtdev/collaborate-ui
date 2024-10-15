@@ -3,6 +3,7 @@ import { aspectRatios } from './aspect-ratios'
 import { colors } from './colors'
 import { fontSizes, fontWeights, letterSpacings, lineHeights } from './typography'
 import { zIndex } from './z-index'
+import { shadows } from './shadows'
 
 export const tokens = defineTokens({
   colors,
@@ -11,5 +12,6 @@ export const tokens = defineTokens({
   letterSpacings,
   lineHeights,
   zIndex,
-  aspectRatios
+  aspectRatios,
+  shadows
 })

@@ -2,8 +2,11 @@ import { Navbar } from '@/components/global/navigation'
 import { validateUser } from '@/services/auth'
 
 export default async function Home() {
-  const { isLoggedIn, user } = await validateUser()
+  const { isLoggedIn } = await validateUser()
   return (
-    <Navbar isLoggedIn={isLoggedIn} user={user} />
+    <>
+      <Navbar isLoggedIn={isLoggedIn} />
+      <main>This is the home page</main>
+    </>
   )
 }

@@ -1,9 +1,9 @@
 import '@/styles/globals.css'
 import type { Metadata } from 'next'
-import { Nunito_Sans as NunitoSans } from 'next/font/google'
+import { Nunito } from 'next/font/google'
 import type { ReactNode } from 'react'
 
-const nunitoSans = NunitoSans({
+const nunitofont = Nunito({
   preload: true,
   subsets: ['latin'],
   weight: ['200', '300', '400', '500', '600', '700', '900']
@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='es'>
-      <body className={nunitoSans.className}>
+      <body className={nunitofont.className}>
         {children}
       </body>
     </html>

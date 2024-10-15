@@ -1,30 +1,36 @@
-import { css } from '~root/styled-system/css'
+import Image from 'next/image'
+import Link from 'next/link'
+import icon from '../../../../public/icon-mono.svg'
+import navbarStyled from './navbar.styled'
 
 type Props = {
   isLoggedIn: boolean,
-  user?: any
 }
 
-export function Navbar({ isLoggedIn, user }: Props) {
+export function Navbar({ isLoggedIn }: Props) {
   return (
-    <nav className={css({
-      bg: 'primary.950',
-      color: 'white',
-      py: 20,
-      display: 'grid',
-      gridTemplateColumns: '2',
-      p: 12
-    })}>
-      <div className={css({ maxWidth: 'breakpoint-2xl' })}>
-        <h1 className={css({ textStyle: 'header.lg', fontWeight: 700 })}>
-          COLLABORATE
-        </h1>
-      </div>
-      {isLoggedIn &&
-        <div className={css({ ml: 'auto' })}>
-          <h2>{user?.name}</h2>
+    <nav className={navbarStyled.navbar}>
+      <div className={navbarStyled.container}>
+        <Link href={'/'}>
+          <Image src={icon} alt='icon' height={36} />
+        </Link>
+        <div className={navbarStyled.sessionOptions}>
+          {isLoggedIn
+            ? (
+              <Link href={'/dashboard'}>
+                <h2>Go to Dashboard →</h2>
+              </Link>
+            )
+            : (
+              <ul>
+                <li>
+                  <Link href='/auth/login'>Inicia sesión</Link>
+                </li>
+              </ul>
+            )
+          }
         </div>
-      }
+      </div>
     </nav>
   )
 }
