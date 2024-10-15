@@ -23,7 +23,7 @@ const setAuthCookie = (response: Response) => {
 
   if (setCookieHeader) {
     const token = setCookieHeader.split(';')[0].split('=')[1]
-    console.log('🚀 ~ setAuthCookie ~ token:', token)
+
     cookies().set({
       name: 'Authentication',
       value: token,

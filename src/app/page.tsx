@@ -1,8 +1,9 @@
 import { Navbar } from '@/components/global/navigation'
-import { css } from '~root/styled-system/css'
+import { validateUser } from '@/services/auth'
 
-export default function Home() {
+export default async function Home() {
+  const { isLoggedIn, user } = await validateUser()
   return (
-    <Navbar />
+    <Navbar isLoggedIn={isLoggedIn} user={user} />
   )
 }
