@@ -5,7 +5,8 @@ export default {
     p: 12,
     borderBottomStyle: 'solid',
     borderBottomColor: 'coolGray.200',
-    borderBottom: '1px'
+    borderBottom: '1px',
+    color: 'coolGray.900'
   }),
   container: css({
     maxWidth: 'breakpoint-2xl',
@@ -18,6 +19,10 @@ export default {
     fontWeight: 700
   }),
   sessionOptions: css({
-    ml: 'auto'
+    ml: 'auto',
+    fontWeight: 'bold',
+    '& a:hover': {
+      textDecoration: 'underline'
+    }
   })
 }
