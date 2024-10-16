@@ -7,7 +7,16 @@ export const input = defineRecipe({
     borderStyle: 'solid',
     borderColor: 'coolGray.500',
     border: 1,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    borderRadius: 4,
+    fontWeight: 'medium',
+    px: 8,
+    _focus: {
+      outline: 'none'
+    },
+    _placeholder: {
+      color: 'coolGray.200'
+    }
   },
   variants: {
     color: {
@@ -18,21 +27,29 @@ export const input = defineRecipe({
     size: {
       sm: {
         fontSize: 'sm',
-        px: 8,
-        py: 4
+        py: 3
       },
       md: {
         fontSize: 'md',
-        px: 8,
-        py: 10
+        py: 5
       },
       lg: {
-
+        fontSize: 'lg',
+        py: 5
+      }
+    },
+    width: {
+      full: {
+        w: '100%'
+      },
+      max: {
+        w: 'max-content'
       }
     }
   },
   defaultVariants: {
     color: 'main',
-    size: 'sm'
+    size: 'md',
+    width: 'full'
   }
 })

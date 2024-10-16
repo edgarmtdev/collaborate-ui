@@ -27,9 +27,9 @@ export default function AuthLayout({
             {children}
           </div>
         </section>
-        <footer className={footerStyles} >
+        {/* <footer className={footerStyles} >
           Hello
-        </footer>
+        </footer> */}
       </main>
     </>
   )

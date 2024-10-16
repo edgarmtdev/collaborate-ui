@@ -24,7 +24,8 @@ export const fontWeights = defineTokens.fontWeights({
   medium: { value: '500' },
   semibold: { value: '600' },
   bold: { value: '700' },
-  extraBold: { value: '800' }
+  extraBold: { value: '800' },
+  black: { value: '900' }
 })
 
 export const letterSpacings = defineTokens.letterSpacings({

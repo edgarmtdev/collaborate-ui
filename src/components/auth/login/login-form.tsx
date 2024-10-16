@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { css } from '~root/styled-system/css'
 import styled from './login-form.styled'
-import { Input } from '@/components/ui/input'
+import { Input, Button } from '@/components/ui'
 
 export function LoginForm() {
   const [username, setUsername] = useState<string>('')
@@ -23,7 +23,7 @@ export function LoginForm() {
       if (response.success) {
         alert(response.message)
 
-        router.push('/')
+        router.push('/dashboard')
       } else {
         setError(response.message)
       }
@@ -34,49 +34,47 @@ export function LoginForm() {
   }
 
   return (
-    <div className={styled.root}>
-      <form
-        onSubmit={handleSubmit}
-        className={styled.form}
-      >
-        <h2>Login</h2>
-        <p className={styled.label}>
+    <form
+      onSubmit={handleSubmit}
+      className={styled.form}
+    >
+      <h2>Login</h2>
+      <p className={styled.label}>
           No account?,&nbsp;
-          <Link
-            href='/auth/register'
-            className={css({ color: 'primary.800' })}
-          >
+        <Link
+          href='/auth/register'
+          className={css({ color: 'primary.800', _hover: { textDecoration: 'underline' } })}
+        >
             Sign up
-          </Link>
-        </p>
-        <div>
-          <label htmlFor='username'>Username</label>
-          <Input
-            id='username'
-            type='text'
-            name='username'
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            color='main'
-            size='sm'
-          />
-        </div>
-        <div>
-          <label htmlFor='password'>Password</label>
-          <Input
-            id='password'
-            type='text'
-            name='password'
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            size='md'
-          />
-        </div>
-        {error && <p className={css({ color: 'red' })}>{error}</p>}
-        <button type='submit'>Sign in</button>
-      </form>
-    </div>
+        </Link>
+      </p>
+      <div>
+        <label htmlFor='username'>Username</label>
+        <Input
+          id='username'
+          type='text'
+          name='username'
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder='Enter your username...'
+          required
+        />
+      </div>
+      <div>
+        <label htmlFor='password'>Password</label>
+        <Input
+          id='password'
+          type='password'
+          name='password'
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder='Enter your password'
+        />
+      </div>
+      <Link href='/'>Forgot password?</Link>
+      {error && <p className={css({ color: 'red' })}>{error}</p>}
+      <Button type='submit'>Sign in</Button>
+    </form>
   )
 }
