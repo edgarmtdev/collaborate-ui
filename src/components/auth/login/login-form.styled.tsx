@@ -4,21 +4,21 @@ export default {
   root: css({
     maxWidth: '520px',
     mx: 'auto',
-    bg: 'coolGray.200/90',
+    bg: 'white/80',
     py: 64,
     px: 32,
-    rounded: 10
+    rounded: 4
   }),
   form: css({
     display: 'grid',
     gap: 34,
     '& h2': {
       fontSize: '4xl',
-      fontWeight: 'extraBold'
+      fontWeight: 'bold'
     }
   }),
   label: css({
-    color: 'coolGray.600',
+    color: 'coolGray.800',
     fontWeight: 'medium'
   })
 

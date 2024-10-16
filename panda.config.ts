@@ -9,7 +9,8 @@ export default defineConfig({
     './components/**/*.{js,jsx,ts,tsx}'
   ],
   exclude: [],
-  presets: [theme],
+  presets: [],
+  theme,
   outdir: 'styled-system',
   jsxFramework: 'react'
 })

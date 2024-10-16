@@ -2,6 +2,8 @@ import { Background } from '@/components/auth'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 import { bodyStyles, footerStyles, headerStyles } from './layout.styled'
+import Image from 'next/image'
+import icon from '~root/public/icon-mono.svg'
 
 export default function AuthLayout({
   children
@@ -12,7 +14,7 @@ export default function AuthLayout({
     <>
       <header className={headerStyles}>
         <Link href='/'>
-          <h1>Collaborate</h1>
+          <Image src={icon} alt='icon' height={36} />
         </Link>
       </header>
       <Background />

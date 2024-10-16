@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { css } from '~root/styled-system/css'
 import styled from './login-form.styled'
+import { Input } from '@/components/ui/input'
 
 export function LoginForm() {
   const [username, setUsername] = useState<string>('')
@@ -50,24 +51,27 @@ export function LoginForm() {
         </p>
         <div>
           <label htmlFor='username'>Username</label>
-          <input
+          <Input
             id='username'
             type='text'
             name='username'
-            required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            required
+            color='main'
+            size='sm'
           />
         </div>
         <div>
           <label htmlFor='password'>Password</label>
-          <input
+          <Input
             id='password'
             type='text'
             name='password'
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            size='md'
           />
         </div>
         {error && <p className={css({ color: 'red' })}>{error}</p>}
