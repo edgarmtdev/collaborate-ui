@@ -5,9 +5,9 @@ export const button = defineRecipe({
   description: 'The styles for Button Component',
   base: {
     borderRadius: 4,
-    fontWeight: 600,
+    fontWeight: 700,
     cursor: 'pointer',
-    boxShadow: 'xs',
+    boxShadow: 'sm',
     _hover: {
       opacity: 0.9
     },
