@@ -27,7 +27,7 @@ export const button = defineRecipe({
       },
       monocrom: {
         bg: 'white',
-        color: 'coolGray.950',
+        color: 'neutral',
         border: 1,
         borderStyle: 'solid',
         borderColor: 'coolGray.500'

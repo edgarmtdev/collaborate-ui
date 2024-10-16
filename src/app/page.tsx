@@ -17,7 +17,7 @@ export default async function Home() {
           fontSize: 36,
           fontWeight: 'extraBold',
           textAlign: 'center',
-          color: 'coolGray.950'
+          color: 'neutral'
         })}>
           Collaborate join's people with common goals
         </h1>
