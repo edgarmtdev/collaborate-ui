@@ -13,7 +13,13 @@ export function Navbar({ isLoggedIn }: Props) {
       <div className={navbarStyled.container}>
         <div>
           <Link href={'/'}>
-            <Image src={icon} alt='icon' height={36} />
+            <Image
+              src={icon}
+              alt='icon'
+              height={36}
+              loading='eager'
+              priority
+            />
           </Link>
         </div>
         <div className={navbarStyled.sessionOptions}>

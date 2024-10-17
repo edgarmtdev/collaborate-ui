@@ -14,7 +14,7 @@ export const button = defineRecipe({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 6,
+    gap: 8,
     px: 8,
     transition: 'all',
     transitionDuration: '300ms'

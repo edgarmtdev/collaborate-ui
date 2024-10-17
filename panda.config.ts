@@ -1,5 +1,5 @@
 import { defineConfig } from '@pandacss/dev'
-import { theme } from '@/styles/theme'
+import { theme } from '@/theme'
 
 export default defineConfig({
   preflight: true,

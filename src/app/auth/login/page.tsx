@@ -1,5 +1,7 @@
 import { LoginForm } from '@/components/auth'
 import { Button } from '@/components/ui'
+import { FacebookIcon } from '@/icons/facebook'
+import { GoogleIcon } from '@/icons/google'
 import { validateUser } from '@/services/auth'
 import { redirect } from 'next/navigation'
 import { css } from '~root/styled-system/css'
@@ -9,8 +11,12 @@ const container = css({
   mx: 'auto',
   bg: 'white/85',
   rounded: 4,
-  px: 48,
-  py: 32
+  px: 32,
+  py: 18,
+  md: {
+    px: 48,
+    py: 32
+  }
 })
 
 export default async function Login() {
@@ -25,10 +31,12 @@ export default async function Login() {
       <LoginForm />
       <section className={css({ display: 'grid', gap: 34, py: 34 })}>
         <Button variant='monocrom'>
-          Google
+          <GoogleIcon className={css({ fill: 'neutral' })}/>
+          Continue with Google
         </Button>
         <Button variant='monocrom'>
-          Facebook
+          <FacebookIcon className={css({ fill: 'neutral' })} />
+          Continue with Facebook
         </Button>
       </section>
     </div>

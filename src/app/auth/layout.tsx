@@ -17,8 +17,8 @@ export default function AuthLayout({
           <Image src={icon} alt='icon' height={36} />
         </Link>
       </header>
-      <Background />
       <main>
+        <Background />
         <section className={bodyStyles.grid}>
           <div className={bodyStyles.labelSection}>
             <h2>Collaborate joins people with common goals...</h2>
@@ -27,9 +27,9 @@ export default function AuthLayout({
             {children}
           </div>
         </section>
-        {/* <footer className={footerStyles} >
+        <footer className={footerStyles} >
           Hello
-        </footer> */}
+        </footer>
       </main>
     </>
   )

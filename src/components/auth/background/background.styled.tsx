@@ -3,8 +3,8 @@ import { css } from '~root/styled-system/css'
 export default {
   figure: css({
     position: 'fixed',
-    width: '100vw',
-    height: '100vh'
+    minWidth: '100vw',
+    minHeight: '100vh'
   }),
   image: css({
     objectFit: 'cover'

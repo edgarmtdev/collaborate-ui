@@ -33,8 +33,10 @@ export const bodyStyles = {
       alignItems: 'center',
       color: 'white',
       '& h2': {
-        fontSize: '3xl',
-        fontWeight: 'medium'
+        fontSize: 36,
+        fontWeight: 'extraBold',
+        textAlign: 'center',
+        color: 'white'
       }
     }
   })
