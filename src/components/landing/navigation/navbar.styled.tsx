@@ -19,10 +19,16 @@ export default {
     fontWeight: 700
   }),
   sessionOptions: css({
+    display: 'flex',
+    gap: 12,
+    alignItems: 'center',
     ml: 'auto',
     fontWeight: 'bold',
     '& a:hover': {
       textDecoration: 'underline'
+    },
+    md: {
+      gap: 24
     }
   })
 }

@@ -9,7 +9,7 @@ import { css } from '~root/styled-system/css'
 const container = css({
   maxWidth: '500px',
   mx: 'auto',
-  bg: 'white/85',
+  bg: 'white/90',
   rounded: 4,
   px: 32,
   py: 18,
@@ -30,11 +30,11 @@ export default async function Login() {
     <div className={container}>
       <LoginForm />
       <section className={css({ display: 'grid', gap: 34, py: 34 })}>
-        <Button variant='monocrom'>
+        <Button variant='monocrom' width='full'>
           <GoogleIcon className={css({ fill: 'neutral' })}/>
           Continue with Google
         </Button>
-        <Button variant='monocrom'>
+        <Button variant='monocrom' width='full'>
           <FacebookIcon className={css({ fill: 'neutral' })} />
           Continue with Facebook
         </Button>

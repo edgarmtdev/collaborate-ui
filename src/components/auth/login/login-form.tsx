@@ -74,7 +74,7 @@ export function LoginForm() {
       </div>
       <Link href='/'>Forgot password?</Link>
       {error && <p className={css({ color: 'red' })}>{error}</p>}
-      <Button type='submit'>Sign in</Button>
+      <Button type='submit' width='full'>Sign in</Button>
     </form>
   )
 }

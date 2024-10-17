@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import icon from '../../../../public/icon.svg'
 import navbarStyled from './navbar.styled'
+import { Button } from '@/components/ui'
 
 type Props = {
   isLoggedIn: boolean,
@@ -30,11 +31,12 @@ export function Navbar({ isLoggedIn }: Props) {
               </Link>
             )
             : (
-              <ul>
-                <li>
-                  <Link href='/auth/login'>Inicia sesión</Link>
-                </li>
-              </ul>
+              <>
+                <Link href='/auth/register'>Register</Link>
+                <Link href='/auth/login'>
+                  <Button>Log in</Button>
+                </Link>
+              </>
             )
           }
         </div>

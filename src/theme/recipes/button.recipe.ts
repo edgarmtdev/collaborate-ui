@@ -15,7 +15,7 @@ export const button = defineRecipe({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 8,
-    px: 8,
+    px: 16,
     transition: 'all',
     transitionDuration: '300ms'
   },
@@ -31,6 +31,10 @@ export const button = defineRecipe({
         border: 1,
         borderStyle: 'solid',
         borderColor: 'coolGray.500'
+      },
+      black: {
+        bg: 'black',
+        color: 'white'
       }
     },
     size: {
@@ -45,6 +49,11 @@ export const button = defineRecipe({
       lg: {
         fontSize: 'lg',
         py: 6
+      }
+    },
+    width: {
+      full: {
+        w: '100%'
       }
     }
   },
