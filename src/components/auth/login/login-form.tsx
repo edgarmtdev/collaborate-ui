@@ -58,6 +58,7 @@ export function LoginForm() {
           onChange={(e) => setUsername(e.target.value)}
           placeholder='Enter your username...'
           required
+          color={error ? 'error' : 'main'}
         />
       </div>
       <div>
@@ -70,10 +71,11 @@ export function LoginForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder='Enter your password'
+          color={error ? 'error' : 'main'}
         />
       </div>
-      <Link href='/'>Forgot password?</Link>
-      {error && <p className={css({ color: 'red' })}>{error}</p>}
+      <Link href='/' className={css({ w: 'max-content' })}>Forgot password?</Link>
+      {error && <p className={css({ color: 'error', fontWeight: 'semibold' })}>{error}</p>}
       <Button type='submit' width='full'>Sign in</Button>
     </form>
   )

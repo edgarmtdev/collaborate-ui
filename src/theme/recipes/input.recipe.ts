@@ -4,11 +4,9 @@ export const input = defineRecipe({
   className: 'input',
   description: 'The styles for the Input Component',
   base: {
-    borderStyle: 'solid',
-    borderColor: 'coolGray.500',
     border: 1,
-    backgroundColor: 'white',
     borderRadius: 4,
+    borderStyle: 'solid',
     fontWeight: 'medium',
     px: 8,
     _focus: {
@@ -21,7 +19,14 @@ export const input = defineRecipe({
   variants: {
     color: {
       main: {
+        borderColor: 'coolGray.500',
+        backgroundColor: 'white',
         bg: 'white'
+      },
+      error: {
+        borderStyle: 'solid',
+        borderColor: 'error',
+        backgroundColor: 'white'
       }
     },
     size: {

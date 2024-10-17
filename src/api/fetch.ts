@@ -6,11 +6,19 @@ const getHeaders = () => ({
 })
 
 export async function get(path: string) {
-  const response = await fetch(`${Constant.API_URL}${path}`, {
-    headers: { ...getHeaders() }
-  })
+  try {
+    const response = await fetch(`${Constant.API_URL}${path}`, {
+      headers: { ...getHeaders() }
+    })
 
-  return response.json()
+    return response.json()
+  } catch (error) {
+    console.log('🚀 ~ get ~ error', error === 'fetch failed')
+    if (error === 'fetch failed') {
+      throw new Error('An error ocurred', { cause: error })
+    }
+    return error
+  }
 }
 
 export async function post(path: string, data: unknown) {
