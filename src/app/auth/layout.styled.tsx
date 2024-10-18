@@ -15,12 +15,13 @@ export const headerStyles = css({
 
 export const bodyStyles = {
   grid: css({
-    position: 'absolute',
+    position: 'relative',
     width: '100%',
     display: 'grid',
     alignItems: 'center',
-    minHeight: '100vh',
-    p: 24,
+    minHeight: 'calc(100vh - 52px)',
+    px: 12,
+    py: 64,
     lg: {
       display: 'grid',
       gridTemplateColumns: 2
@@ -33,9 +34,8 @@ export const bodyStyles = {
       alignItems: 'center',
       color: 'white',
       '& h2': {
-        fontSize: 36,
+        fontSize: '3xl',
         fontWeight: 'extraBold',
-        textAlign: 'center',
         color: 'white'
       }
     }
@@ -43,8 +43,25 @@ export const bodyStyles = {
 }
 
 export const footerStyles = css({
-  position: 'absolute',
-  width: '100%',
-  p: 24,
-  bottom: 0
+  position: 'relative',
+  zIndex: 'docked',
+  p: 12,
+  mt: 10,
+  color: 'white',
+  bottom: 0,
+  display: 'grid',
+  gridTemplateColumns: 3,
+  fontSize: 'lg',
+  fontWeight: 'semibold',
+  '& section': {
+    display: 'flex',
+    fill: 'white',
+    gap: 12
+  },
+  '& section:nth-child(2)': {
+    justifyContent: 'center'
+  },
+  '& section:nth-child(3)': {
+    justifyContent: 'end'
+  }
 })

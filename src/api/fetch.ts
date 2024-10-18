@@ -13,7 +13,6 @@ export async function get(path: string) {
 
     return response.json()
   } catch (error) {
-    console.log('🚀 ~ get ~ error', error === 'fetch failed')
     if (error === 'fetch failed') {
       throw new Error('An error ocurred', { cause: error })
     }

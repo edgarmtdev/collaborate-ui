@@ -4,6 +4,8 @@ import type { ReactNode } from 'react'
 import { bodyStyles, footerStyles, headerStyles } from './layout.styled'
 import Image from 'next/image'
 import icon from '~root/public/icon-mono.svg'
+import { FacebookIcon } from '@/icons/facebook'
+import { GoogleIcon } from '@/icons/google'
 
 export default function AuthLayout({
   children
@@ -27,9 +29,18 @@ export default function AuthLayout({
             {children}
           </div>
         </section>
-        {/* <footer className={footerStyles} >
-          Hello
-        </footer> */}
+        <footer className={footerStyles}>
+          <section>
+            <FacebookIcon/>
+            <GoogleIcon />
+          </section>
+          <section>
+            <p>Collaborate App Inc.</p>
+          </section>
+          <section>
+            @2022 All rigths reserved
+          </section>
+        </footer>
       </main>
     </>
   )
