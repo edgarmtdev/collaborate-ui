@@ -1,9 +1,8 @@
 import { LoginForm } from '@/components/auth'
 import { Button } from '@/components/ui'
-import { FacebookIcon } from '@/icons/facebook'
-import { GoogleIcon } from '@/icons/google'
+import { FacebookIcon, GoogleIcon } from '@/icons'
 import { validateUser } from '@/services/auth'
-import { redirect } from 'next/navigation'
+import { permanentRedirect } from 'next/navigation'
 import { css } from '~root/styled-system/css'
 
 const container = css({
@@ -23,7 +22,7 @@ export default async function Login() {
   const { isLoggedIn } = await validateUser()
 
   if (isLoggedIn) {
-    redirect('/')
+    permanentRedirect('/')
   }
 
   return (

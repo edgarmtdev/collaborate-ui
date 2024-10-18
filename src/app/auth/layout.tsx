@@ -1,11 +1,10 @@
 import { Background } from '@/components/auth'
+import { FacebookIcon, GoogleIcon } from '@/icons'
+import Image from 'next/image'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
-import { bodyStyles, footerStyles, headerStyles } from './layout.styled'
-import Image from 'next/image'
 import icon from '~root/public/icon-mono.svg'
-import { FacebookIcon } from '@/icons/facebook'
-import { GoogleIcon } from '@/icons/google'
+import { bodyStyles, footerStyles, headerStyles } from './layout.styled'
 
 export default function AuthLayout({
   children

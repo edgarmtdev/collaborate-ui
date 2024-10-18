@@ -13,8 +13,8 @@ export async function get(path: string) {
 
     return response.json()
   } catch (error) {
-    if (error === 'fetch failed') {
-      throw new Error('An error ocurred', { cause: error })
+    if (error instanceof Error) {
+      return new Error('An error ocurred', { cause: error })
     }
     return error
   }
