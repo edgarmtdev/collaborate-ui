@@ -1,7 +1,13 @@
 {
   "compilerOptions": {
-    "types": ["node"],
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "types": [
+      "node"
+    ],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,16 +25,21 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "~root/*": ["./*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "~root/*": [
+        "./*"
+      ]
     }
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
     "styled-system"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -1,12 +1,14 @@
 'use client'
 
 import { loginAction } from '@/app/actions/authActions'
+import { Button } from '@/components/ui'
+import { InputIcon } from '@/components/ui/input'
+import { PadlockIcon, UserIcon } from '@/icons'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import { useState, type FormEvent } from 'react'
 import { css } from '~root/styled-system/css'
 import styled from './login-form.styled'
-import { Input, Button } from '@/components/ui'
 
 export function LoginForm() {
   const [username, setUsername] = useState<string>('')
@@ -15,7 +17,7 @@ export function LoginForm() {
 
   const router = useRouter()
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
     try {
       const response = await loginAction({ username, password })
@@ -27,7 +29,7 @@ export function LoginForm() {
       } else {
         setError(response.message)
       }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setError(error?.message || 'An error ocurred')
     }
@@ -40,17 +42,17 @@ export function LoginForm() {
     >
       <h2>Login</h2>
       <p className={styled.label}>
-          No account?,&nbsp;
+        No account?,&nbsp;
         <Link
           href='/auth/register'
           className={css({ color: 'primary.800', _hover: { textDecoration: 'underline' } })}
         >
-            Sign up
+          Sign up
         </Link>
       </p>
       <div>
         <label htmlFor='username'>Username</label>
-        <Input
+        <InputIcon
           id='username'
           type='text'
           name='username'
@@ -59,11 +61,12 @@ export function LoginForm() {
           placeholder='Enter your username...'
           required
           color={error ? 'error' : 'main'}
+          icon={UserIcon}
         />
       </div>
       <div>
         <label htmlFor='password'>Password</label>
-        <Input
+        <InputIcon
           id='password'
           type='password'
           name='password'
@@ -72,8 +75,10 @@ export function LoginForm() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder='Enter your password'
           color={error ? 'error' : 'main'}
+          icon={PadlockIcon}
         />
       </div>
+
       <Link href='/' className={css({ w: 'max-content' })}>Forgot password?</Link>
       {error && <p className={css({ color: 'error', fontWeight: 'semibold' })}>{error}</p>}
       <Button type='submit' width='full'>Sign in</Button>

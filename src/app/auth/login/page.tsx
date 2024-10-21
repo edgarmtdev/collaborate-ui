@@ -1,6 +1,4 @@
-import { LoginForm } from '@/components/auth'
-import { Button } from '@/components/ui'
-import { FacebookIcon, GoogleIcon } from '@/icons'
+import { AuthWithSocial, LoginForm } from '@/components/auth'
 import { validateUser } from '@/services/auth'
 import { permanentRedirect } from 'next/navigation'
 import { css } from '~root/styled-system/css'
@@ -28,16 +26,7 @@ export default async function Login() {
   return (
     <div className={container}>
       <LoginForm />
-      <section className={css({ display: 'grid', gap: 34, py: 34 })}>
-        <Button variant='monocrom' width='full'>
-          <GoogleIcon className={css({ fill: 'neutral' })}/>
-          Continue with Google
-        </Button>
-        <Button variant='monocrom' width='full'>
-          <FacebookIcon className={css({ fill: 'neutral' })} />
-          Continue with Facebook
-        </Button>
-      </section>
+      <AuthWithSocial />
     </div>
   )
 }
