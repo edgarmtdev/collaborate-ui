@@ -3,7 +3,7 @@ import { css } from '~root/styled-system/css'
 export default {
   form: css({
     display: 'grid',
-    gap: 18,
+    gap: 28,
     py: 24,
     borderBottom: 1,
     borderBottomStyle: 'solid',
@@ -14,10 +14,14 @@ export default {
     },
     md: {
       gap: 34
+    },
+    '& label': {
+      fontWeight: 'medium'
     }
   }),
-  label: css({
+  noAccount: css({
     color: 'coolGray.800',
-    fontWeight: 'medium'
+    fontWeight: 'medium',
+    textAlign: 'center'
   })
 }

@@ -19,9 +19,10 @@ export const bodyStyles = {
     width: '100%',
     display: 'grid',
     alignItems: 'center',
-    minHeight: 'calc(100vh - 52px)',
+    minHeight: 'calc(100vh - 80px)',
     px: 12,
-    py: 64,
+    pb: 64,
+    pt: 80,
     lg: {
       display: 'grid',
       gridTemplateColumns: 2
@@ -41,27 +42,3 @@ export const bodyStyles = {
     }
   })
 }
-
-export const footerStyles = css({
-  position: 'relative',
-  zIndex: 'docked',
-  p: 12,
-  mt: 10,
-  color: 'white',
-  bottom: 0,
-  display: 'grid',
-  gridTemplateColumns: 3,
-  fontSize: 'lg',
-  fontWeight: 'semibold',
-  '& section': {
-    display: 'flex',
-    fill: 'white',
-    gap: 12
-  },
-  '& section:nth-child(2)': {
-    justifyContent: 'center'
-  },
-  '& section:nth-child(3)': {
-    justifyContent: 'end'
-  }
-})

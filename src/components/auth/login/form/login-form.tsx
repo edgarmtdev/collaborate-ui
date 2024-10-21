@@ -6,14 +6,14 @@ import { InputIcon } from '@/components/ui/input'
 import { PadlockIcon, UserIcon } from '@/icons'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useState, type FormEvent } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
 import { css } from '~root/styled-system/css'
 import styled from './login-form.styled'
 
 export function LoginForm() {
   const [username, setUsername] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const [error, setError] = useState<string>('')
+  const [error, setError] = useState<string | null>('')
 
   const router = useRouter()
 
@@ -29,11 +29,14 @@ export function LoginForm() {
       } else {
         setError(response.message)
       }
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setError(error?.message || 'An error ocurred')
     }
   }
+
+  useEffect(() => {
+    setTimeout(() => setError(null), 1500)
+  }, [error])
 
   return (
     <form
@@ -41,17 +44,20 @@ export function LoginForm() {
       className={styled.form}
     >
       <h2>Login</h2>
-      <p className={styled.label}>
+      <p className={styled.noAccount}>
         No account?,&nbsp;
         <Link
           href='/auth/register'
-          className={css({ color: 'primary.800', _hover: { textDecoration: 'underline' } })}
+          className={css({
+            color: 'primary.800',
+            _hover: { textDecoration: 'underline' }
+          })}
         >
           Sign up
         </Link>
       </p>
       <div>
-        <label htmlFor='username'>Username</label>
+        <label htmlFor='username'>Username:</label>
         <InputIcon
           id='username'
           type='text'
@@ -65,7 +71,7 @@ export function LoginForm() {
         />
       </div>
       <div>
-        <label htmlFor='password'>Password</label>
+        <label htmlFor='password'>Password:</label>
         <InputIcon
           id='password'
           type='password'
@@ -78,10 +84,21 @@ export function LoginForm() {
           icon={PadlockIcon}
         />
       </div>
-
-      <Link href='/' className={css({ w: 'max-content' })}>Forgot password?</Link>
-      {error && <p className={css({ color: 'error', fontWeight: 'semibold' })}>{error}</p>}
-      <Button type='submit' width='full'>Sign in</Button>
+      <Link
+        href='/'
+        className={css({
+          w: 'max-content',
+          mx: 'auto',
+          _hover: { textDecoration: 'underline' }
+        })}
+      >
+        Forgot password?
+      </Link>
+      {error &&
+        <p className={css({ color: 'error', fontWeight: 'semibold' })}>{error}</p>}
+      <Button type='submit' width='full'>
+        Sign in
+      </Button>
     </form>
   )
 }
