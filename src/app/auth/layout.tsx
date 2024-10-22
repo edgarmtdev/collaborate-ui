@@ -1,15 +1,25 @@
-import { Background, Footer } from '@/components/auth'
+import { AuthWithSocial, Background, Footer } from '@/components/auth'
+import { validateUser } from '@/services/auth'
 import Image from 'next/image'
 import Link from 'next/link'
-import type { ReactNode } from 'react'
-import icon from '~root/public/icon-mono.svg'
+import { permanentRedirect } from 'next/navigation'
 import { bodyStyles, headerStyles } from './layout.styled'
 
-export default function AuthLayout({
+import icon from '~root/public/icon-mono.svg'
+
+import type { ReactNode } from 'react'
+
+export default async function AuthLayout({
   children
 }: Readonly<{
   children: ReactNode
 }>) {
+  const { isLoggedIn } = await validateUser()
+
+  if (isLoggedIn) {
+    permanentRedirect('/dashboard')
+  }
+
   return (
     <>
       <Background />
@@ -19,12 +29,15 @@ export default function AuthLayout({
         </Link>
       </header>
       <main className={bodyStyles.grid}>
-        <div className={bodyStyles.labelSection}>
+        <section className={bodyStyles.labelSection}>
           <h2>Collaborate joins people with common goals...</h2>
-        </div>
-        <div>
-          {children}
-        </div>
+        </section>
+        <section>
+          <div className={bodyStyles.formContainer}>
+            {children}
+            <AuthWithSocial />
+          </div>
+        </section>
       </main>
       <Footer />
     </>

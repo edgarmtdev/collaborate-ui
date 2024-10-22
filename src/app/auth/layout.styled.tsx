@@ -18,7 +18,7 @@ export const bodyStyles = {
     position: 'relative',
     width: '100%',
     display: 'grid',
-    alignItems: 'center',
+    alignItems: '',
     minHeight: 'calc(100vh - 80px)',
     px: 12,
     pb: 64,
@@ -30,15 +30,29 @@ export const bodyStyles = {
   }),
   labelSection: css({
     display: 'none',
+    mt: 120,
+    ml: 48,
     lg: {
       display: 'flex',
-      alignItems: 'center',
+      alignItems: 'start',
       color: 'white',
       '& h2': {
         fontSize: '3xl',
         fontWeight: 'extraBold',
         color: 'white'
       }
+    }
+  }),
+  formContainer: css({
+    maxW: 500,
+    mx: 'auto',
+    bg: 'white/90',
+    rounded: 4,
+    px: 32,
+    py: 18,
+    md: {
+      px: 48,
+      py: 32
     }
   })
 }

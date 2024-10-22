@@ -1,4 +1,4 @@
+export { AuthWithSocial } from './auth-social'
 export { Background } from './background'
 export { Footer } from './footer'
-export { AuthWithSocial } from './login/auth-social'
-export { LoginForm } from './login/form'
+export { LoginForm } from './login'

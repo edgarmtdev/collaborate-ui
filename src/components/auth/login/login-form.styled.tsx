@@ -22,6 +22,10 @@ export default {
   noAccount: css({
     color: 'coolGray.800',
     fontWeight: 'medium',
-    textAlign: 'center'
+    textAlign: 'center',
+    '& a': {
+      color: 'primary.800',
+      _hover: { textDecoration: 'underline' }
+    }
   })
 }

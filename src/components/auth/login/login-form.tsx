@@ -46,15 +46,7 @@ export function LoginForm() {
       <h2>Login</h2>
       <p className={styled.noAccount}>
         No account?,&nbsp;
-        <Link
-          href='/auth/register'
-          className={css({
-            color: 'primary.800',
-            _hover: { textDecoration: 'underline' }
-          })}
-        >
-          Sign up
-        </Link>
+        <Link href='/auth/register'>Sign up        </Link>
       </p>
       <div>
         <label htmlFor='username'>Username:</label>
