@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import icon from '../../../../public/icon.svg'
+import icon from '~root/public/icon.svg'
 import navbarStyled from './navbar.styled'
 import { Button } from '@/components/ui'
 
@@ -12,17 +12,15 @@ export function Navbar({ isLoggedIn }: Props) {
   return (
     <nav className={navbarStyled.navbar}>
       <div className={navbarStyled.container}>
-        <div>
-          <Link href={'/'}>
-            <Image
-              src={icon}
-              alt='icon'
-              height={36}
-              loading='eager'
-              priority
-            />
-          </Link>
-        </div>
+        <Link href={'/'}>
+          <Image
+            src={icon}
+            alt='icon'
+            height={36}
+            loading='eager'
+            priority
+          />
+        </Link>
         <div className={navbarStyled.sessionOptions}>
           {isLoggedIn
             ? (

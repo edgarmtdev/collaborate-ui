@@ -87,6 +87,7 @@ export function LoginForm() {
       <Link
         href='/'
         className={css({
+          color: 'coolGray.800',
           w: 'max-content',
           mx: 'auto',
           _hover: { textDecoration: 'underline' }

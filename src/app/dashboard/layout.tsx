@@ -1,3 +1,4 @@
+import { AppNavbar } from '@/components/global/app-navigation'
 import { ReactNode } from 'react'
 
 export default function DashboardLayout({
@@ -7,6 +8,9 @@ export default function DashboardLayout({
 }>
 ) {
   return (
-    <div>{children}</div>
+    <>
+      <AppNavbar />
+      <main>{children}</main>
+    </>
   )
 }

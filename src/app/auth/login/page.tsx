@@ -20,7 +20,7 @@ export default async function Login() {
   const { isLoggedIn } = await validateUser()
 
   if (isLoggedIn) {
-    permanentRedirect('/')
+    permanentRedirect('/dashboard')
   }
 
   return (
