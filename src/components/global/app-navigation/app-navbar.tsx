@@ -1,5 +1,4 @@
-import { Icon } from '@/components/ui'
-import { UserIcon } from '@/icons'
+import { Avatar } from '@/components/ui'
 import { validateUser } from '@/services/auth'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -9,6 +8,8 @@ import icon from '~root/public/icon.svg'
 
 export async function AppNavbar() {
   const { user } = await validateUser()
+
+  const avatarFallback = `${user.name.split('')[0]}${user.lastname.split('')[0]}`
   return (
     <header className={css({
       px: 16,
@@ -33,12 +34,12 @@ export async function AppNavbar() {
         ml: 'auto',
         fontWeight: 'bold'
       })}>
-        <ul className={css({ display: 'flex', gap: 48 })}>
+        <ul className={css({ display: 'flex', gap: 36, alignItems: 'center' })}>
           <li><Link href={'/dashboard'}>Workspaces</Link></li>
           <li><Link href={'/dashboard'}>Help</Link></li>
-          <li className={css({ display: 'flex', gap: 8 })}>
-            <Icon icon={UserIcon} color='neutral'/>
-            <p>{user.name} {user.lastname}</p>
+          <li className={css({ display: 'flex', gap: 4, alignItems: 'center' })}>
+            <Avatar fallback={avatarFallback} />
+            {/* <p>{user.username}</p> */}
           </li>
         </ul>
       </nav>
