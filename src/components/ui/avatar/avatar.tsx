@@ -1,8 +1,10 @@
 import Image from 'next/image'
-import { type HTMLAttributes } from 'react'
-import { css, cx, type RecipeVariantProps } from '~root/styled-system/css'
-import { type ColorToken } from '~root/styled-system/tokens'
+import { css, cx } from '~root/styled-system/css'
 import { avatar } from './avatar.styled'
+
+import { type HTMLAttributes } from 'react'
+import { type RecipeVariantProps } from '~root/styled-system/css'
+import { type ColorToken } from '~root/styled-system/tokens'
 
 type ElementProps = HTMLAttributes<ElementProps>
 
@@ -27,17 +29,24 @@ export function Avatar({
   bgColor,
   fallback = 'A'
 }: AvatarProps) {
+  const styled = cx(avatar({ size, radius }), css({ bgColor }))
+
   if (src) {
     return (
-      <figure>
-        <Image src={src} alt='Avatar' />
-      </figure>
+      <Component className={styled}>
+        <Image
+          fill
+          src={src}
+          alt='Avatar'
+          loading='lazy'
+        />
+      </Component>
     )
   }
 
-  const styled = cx(avatar({ size, radius }), css({ bgColor }))
-
   return (
-    <Component className={styled}>{fallback}</Component>
+    <Component className={styled}>
+      {fallback}
+    </Component>
   )
 }

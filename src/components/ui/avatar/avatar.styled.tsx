@@ -6,7 +6,12 @@ export const avatar = cva({
     display: 'grid',
     placeItems: 'center',
     fontWeight: 'bold',
-    userSelect: 'none'
+    userSelect: 'none',
+    pos: 'relative',
+    '& img': {
+      objectFit: 'cover',
+      objectPosition: 'center'
+    }
   },
   variants: {
     size: {
@@ -48,13 +53,22 @@ export const avatar = cva({
     },
     radius: {
       none: {
-        borderRadius: 0
+        borderRadius: 0,
+        '& img': {
+          borderRadius: 0
+        }
       },
       base: {
-        borderRadius: 4
+        borderRadius: 4,
+        '& img': {
+          borderRadius: 4
+        }
       },
       full: {
-        borderRadius: '999'
+        borderRadius: '999',
+        '& img': {
+          borderRadius: '999'
+        }
       }
     }
   },
