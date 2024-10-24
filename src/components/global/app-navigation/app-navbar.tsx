@@ -37,9 +37,15 @@ export async function AppNavbar() {
         <ul className={css({ display: 'flex', gap: 36, alignItems: 'center' })}>
           <li><Link href={'/dashboard'}>Workspaces</Link></li>
           <li><Link href={'/dashboard'}>Help</Link></li>
-          <li className={css({ display: 'flex', gap: 4, alignItems: 'center' })}>
-            <Avatar fallback={avatarFallback} />
-            {/* <p>{user.username}</p> */}
+          <li className={css({ display: 'flex', gap: 8, alignItems: 'center' })}>
+            <Avatar
+              as='span'
+              fallback={avatarFallback}
+              bgColor='cardinal.600'
+              size='sm'
+              radius='full'
+            />
+            <p>{user.username}</p>
           </li>
         </ul>
       </nav>
