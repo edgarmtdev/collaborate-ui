@@ -1,25 +1,16 @@
-import { Icon } from '@/components/ui'
-import { UserIcon } from '@/icons'
+import { Avatar } from '@/components/ui'
 import { validateUser } from '@/services/auth'
 import Image from 'next/image'
 import Link from 'next/link'
-import { css } from '~root/styled-system/css'
+import classes from './app-navbar.styled'
 
 import icon from '~root/public/icon.svg'
 
 export async function AppNavbar() {
   const { user } = await validateUser()
+
   return (
-    <header className={css({
-      px: 16,
-      py: 12,
-      borderBottomStyle: 'solid',
-      borderBottomColor: 'coolGray.200',
-      borderBottom: '1px',
-      color: 'coolGray.900',
-      display: 'flex',
-      alignItems: 'center'
-    })}>
+    <header className={classes.headerRoot}>
       <Link href={'/'}>
         <Image
           src={icon}
@@ -29,19 +20,26 @@ export async function AppNavbar() {
           priority
         />
       </Link>
-      <nav className={css({
-        ml: 'auto',
-        fontWeight: 'bold'
-      })}>
-        <ul className={css({ display: 'flex', gap: 48 })}>
+      <nav className={classes.navigation}>
+        <ul className={classes.listNav}>
           <li><Link href={'/dashboard'}>Workspaces</Link></li>
           <li><Link href={'/dashboard'}>Help</Link></li>
-          <li className={css({ display: 'flex', gap: 8 })}>
-            <Icon icon={UserIcon} color='neutral'/>
-            <p>{user.name} {user.lastname}</p>
+          <li className={classes.userAvatar}>
+            <Avatar
+              as='span'
+              fallback={formatAvatarFallback(user.name, user.lastname)}
+              bgColor='cardinal.600'
+              size='sm'
+              radius='full'
+            />
+            <p>{user.username}</p>
           </li>
         </ul>
       </nav>
     </header>
   )
+}
+
+function formatAvatarFallback(name: string, lastname?: string) {
+  return `${name.split('')[0]}${lastname?.split('')[0]}`
 }
