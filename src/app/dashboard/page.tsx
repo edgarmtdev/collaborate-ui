@@ -1,4 +1,4 @@
-import { WorkspaceCard } from '@/components/workspaces/workspace-card/workspace-card'
+import { WorkspaceCard } from '@/components/workspaces'
 import { validateUser } from '@/services/auth'
 import { getWorkspaces } from '@/services/workspaces'
 import { redirect } from 'next/navigation'
