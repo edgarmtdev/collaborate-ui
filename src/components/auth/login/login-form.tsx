@@ -29,6 +29,7 @@ export function LoginForm() {
       } else {
         setError(response.message)
       }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setError(error?.message || 'An error ocurred')
     }
@@ -46,7 +47,7 @@ export function LoginForm() {
       <h2>Login</h2>
       <p className={styled.noAccount}>
         No account?,&nbsp;
-        <Link href='/auth/register'>Sign up        </Link>
+        <Link href='/auth/register'>Sign up</Link>
       </p>
       <div>
         <label htmlFor='username'>Username:</label>

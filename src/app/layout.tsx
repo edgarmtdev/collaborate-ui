@@ -1,7 +1,7 @@
 import '@/styles/globals.css'
+import { LayoutProps } from '@/types/common'
 import type { Metadata } from 'next'
 import { Nunito } from 'next/font/google'
-import type { ReactNode } from 'react'
 
 const nunitofont = Nunito({
   preload: true,
@@ -16,9 +16,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children
-}: Readonly<{
-  children: ReactNode
-}>) {
+}: LayoutProps
+) {
   return (
     <html lang='es'>
       <body className={nunitofont.className}>

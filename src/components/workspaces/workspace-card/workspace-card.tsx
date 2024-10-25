@@ -9,7 +9,7 @@ type Props = {
 
 export function WorkspaceCard({ workspace }: Props) {
   return (
-    <Link href={`/dashboard/workspaces/${workspace.uuid}`}>
+    <Link href={`/dashboard/w/${workspace.uuid}`}>
       <article className={css({
         pos: 'relative',
         aspectRatio: 'video',

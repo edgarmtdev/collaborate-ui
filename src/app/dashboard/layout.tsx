@@ -1,11 +1,9 @@
 import { AppNavbar } from '@/components/global/app-navigation'
-import { ReactNode } from 'react'
+import { LayoutProps } from '@/types/common'
 
 export default function DashboardLayout({
   children
-}: Readonly<{
-  children: ReactNode
-}>
+}: LayoutProps
 ) {
   return (
     <>
