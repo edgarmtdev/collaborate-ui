@@ -3,10 +3,8 @@ import { css } from '~root/styled-system/css'
 export default {
   navbar: css({
     p: 12,
-    borderBottomStyle: 'solid',
-    borderBottomColor: 'coolGray.200',
-    borderBottom: '1px',
-    color: 'coolGray.900'
+    color: 'coolGray.900',
+    shadow: 'md'
   }),
   container: css({
     maxWidth: 'breakpoint-2xl',
@@ -24,9 +22,6 @@ export default {
     alignItems: 'center',
     ml: 'auto',
     fontWeight: 'bold',
-    '& a:hover': {
-      textDecoration: 'underline'
-    },
     md: {
       gap: 24
     }
