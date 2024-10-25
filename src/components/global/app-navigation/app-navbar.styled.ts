@@ -9,7 +9,12 @@ export default {
     borderBottom: '1px',
     color: 'coolGray.900',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    pos: 'fixed',
+    top: 0,
+    w: '100%',
+    bg: 'white',
+    zIndex: 'dropdown'
   }),
   navigation: css({
     ml: 'auto',

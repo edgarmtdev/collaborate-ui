@@ -5,6 +5,6 @@ export default function WorkspaceLayout({
 }: LayoutProps
 ) {
   return (
-    <>{children}</>
+    <main>{children}</main>
   )
 }

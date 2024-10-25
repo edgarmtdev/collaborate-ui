@@ -6,7 +6,7 @@ export default async function Dashboard() {
   const workspaces = await getWorkspaces()
 
   return (
-    <div className={css({ p: 12, display: 'grid', gridTemplateColumns: 5, gap: 16 })}>
+    <div className={css({ p: 12, display: 'grid', gridTemplateColumns: 5, gap: 16, w: '100%' })}>
       {workspaces?.map((workspace) => (
         <WorkspaceCard key={workspace.id} workspace={workspace} />
       ))}
