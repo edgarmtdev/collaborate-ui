@@ -1,7 +1,7 @@
 import { Workspace } from '@/types/workspace-types'
 import Image from 'next/image'
 import Link from 'next/link'
-import { css } from '~root/styled-system/css'
+import classes from './workspace-card.styled'
 
 type Props = {
   workspace: Workspace
@@ -10,37 +10,17 @@ type Props = {
 export function WorkspaceCard({ workspace }: Props) {
   return (
     <Link href={`/dashboard/w/${workspace.uuid}`}>
-      <article className={css({
-        pos: 'relative',
-        w: 300,
-        h: 200,
-        color: 'white',
-        fontWeight: 'semibold',
-        borderRadius: 4
-      })}>
-        <div className={css({
-          pos: 'absolute',
-          top: 0,
-          left: 0,
-          w: '100%',
-          h: '100%',
-          p: 8,
-          borderRadius: 4,
-          zIndex: 'docked',
-          background: { base: 'black/20', _hover: 'black/30' }
-        })}>
-          <h2 className={css({ fontStyle: 'xl', fontWeight: 'bold' })}>{workspace.name}</h2>
+      <article className={classes.root}>
+        <div className={classes.background}>
+          <h3>{workspace.name}</h3>
         </div>
         {workspace.backgroundUrl && (
-          <figure>
-            <Image
-              fill
-              loading='eager'
-              alt={workspace.name}
-              src={workspace.backgroundUrl}
-              className={css({ objectFit: 'cover', borderRadius: 4 })}
-            />
-          </figure>
+          <Image
+            fill
+            loading='eager'
+            alt={workspace.name}
+            src={workspace.backgroundUrl}
+          />
         )}
       </article>
     </Link>

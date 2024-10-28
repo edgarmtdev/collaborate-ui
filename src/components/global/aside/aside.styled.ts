@@ -6,7 +6,11 @@ export default {
     borderRight: '1px',
     borderRightStyle: 'solid',
     borderColor: 'coolGray.200',
-    minH: '100vh'
+    minH: '100vh',
+    display: 'none',
+    lg: {
+      display: 'block'
+    }
   }),
   container: css({
     pos: 'relative',
