@@ -1,10 +1,7 @@
 import Link from 'next/link'
 import classes from './aside.styled'
 
-type Props = {
-  userlogged: string
-}
-export function Aside({ userlogged }: Props) {
+export function Aside() {
   return (
     <aside
       className={classes.asideRoot}
@@ -15,7 +12,7 @@ export function Aside({ userlogged }: Props) {
           <nav className={classes.panelNav}>
             <ul>
               <li>
-                <Link href={`/dashboard/${userlogged}`}>Workspaces</Link>
+                <Link href={'/dashboard'}>Workspaces</Link>
               </li>
             </ul>
           </nav>

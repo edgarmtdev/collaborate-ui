@@ -12,8 +12,8 @@ export function WorkspaceCard({ workspace }: Props) {
     <Link href={`/dashboard/w/${workspace.uuid}`}>
       <article className={css({
         pos: 'relative',
-        aspectRatio: 'video',
-        w: '100%',
+        w: 300,
+        h: 200,
         color: 'white',
         fontWeight: 'semibold',
         borderRadius: 4
@@ -29,17 +29,19 @@ export function WorkspaceCard({ workspace }: Props) {
           zIndex: 'docked',
           background: { base: 'black/20', _hover: 'black/30' }
         })}>
-          <h2>{workspace.name}</h2>
+          <h2 className={css({ fontStyle: 'xl', fontWeight: 'bold' })}>{workspace.name}</h2>
         </div>
-        {workspace.backgroundUrl && <figure>
-          <Image
-            fill
-            loading='eager'
-            alt={workspace.name}
-            src={workspace.backgroundUrl}
-            className={css({ objectFit: 'cover', borderRadius: 4 })}
-          />
-        </figure>}
+        {workspace.backgroundUrl && (
+          <figure>
+            <Image
+              fill
+              loading='eager'
+              alt={workspace.name}
+              src={workspace.backgroundUrl}
+              className={css({ objectFit: 'cover', borderRadius: 4 })}
+            />
+          </figure>
+        )}
       </article>
     </Link>
   )

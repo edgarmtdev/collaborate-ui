@@ -11,7 +11,7 @@ export async function AppNavbar() {
 
   return (
     <header className={classes.headerRoot}>
-      <Link href={`/dashboard/${user.username}`}>
+      <Link href={'/dashboard'}>
         <Image
           src={icon}
           alt='icon'
@@ -22,7 +22,7 @@ export async function AppNavbar() {
       </Link>
       <nav className={classes.navigation}>
         <ul className={classes.listNav}>
-          <li><Link href={`/dashboard/${user.username}`}>Workspaces</Link></li>
+          <li><Link href={'/dashboard'}>Workspaces</Link></li>
           <li><Link href={'/dashboard'}>Help</Link></li>
           <li className={classes.userAvatar}>
             <Avatar
