@@ -2,8 +2,7 @@ import { css } from '~root/styled-system/css'
 
 export default {
   headerRoot: css({
-    px: 16,
-    py: 12,
+    p: 12,
     borderBottomStyle: 'solid',
     borderBottomColor: 'coolGray.200',
     borderBottom: '1px',
@@ -14,12 +13,43 @@ export default {
     top: 0,
     w: '100%',
     bg: 'white',
-    zIndex: 'dropdown'
+    zIndex: 'dropdown',
+    md: {
+      px: 16
+    }
+  }),
+  iconSection: css({
+    display: 'flex',
+    gap: 12
   }),
   navigation: css({
     ml: 'auto',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    display: 'flex',
+    gap: 18,
+    alignItems: 'center',
+    lg: {
+      gap: 36
+    }
   }),
-  listNav: css({ display: 'flex', gap: 36, alignItems: 'center' }),
-  userAvatar: css({ display: 'flex', gap: 8, alignItems: 'center' })
+  listNav: css({
+    display: 'none',
+    gap: 18,
+    alignItems: 'center',
+    sm: {
+      display: 'flex'
+    },
+    lg: {
+      gap: 36
+    }
+  }),
+  userAvatar: css({
+    display: 'flex',
+    gap: 8,
+    alignItems: 'center',
+    '& p': {
+      display: 'none',
+      lg: { display: 'block' }
+    }
+  })
 }

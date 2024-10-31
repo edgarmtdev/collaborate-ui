@@ -9,20 +9,21 @@ type Props = {
 
 export function WorkspaceCard({ workspace }: Props) {
   return (
-    <Link href={`/dashboard/w/${workspace.uuid}`}>
-      <article className={classes.root}>
-        <div className={classes.background}>
-          <h3>{workspace.name}</h3>
-        </div>
-        {workspace.backgroundUrl && (
-          <Image
-            fill
-            loading='eager'
-            alt={workspace.name}
-            src={workspace.backgroundUrl}
-          />
-        )}
-      </article>
+    <Link
+      href={`/dashboard/w/${workspace.uuid}`}
+      className={classes.root}
+    >
+      <div className={classes.background}>
+        <h3>{workspace.name}</h3>
+      </div>
+      {workspace.backgroundUrl && (
+        <Image
+          fill
+          loading='eager'
+          alt={workspace.name}
+          src={workspace.backgroundUrl}
+        />
+      )}
     </Link>
   )
 }

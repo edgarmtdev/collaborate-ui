@@ -10,13 +10,16 @@ export const layoutStyled = css({
 
 export const workspacesPage = {
   root: css({
-    px: 64,
-    py: 36,
+    p: 12,
     w: '100%',
     '& h2': {
       fontSize: '3xl',
       fontWeight: 'bold',
       color: 'heading'
+    },
+    lg: {
+      px: 64,
+      py: 36
     }
   }),
   separator: css({
@@ -30,7 +33,10 @@ export const workspacesPage = {
     display: 'flex',
     flexWrap: 'wrap',
     gridTemplateColumns: 5,
-    gap: 32,
-    w: '100%'
+    gap: 12,
+    w: '100%',
+    lg: {
+      gap: 24
+    }
   })
 }

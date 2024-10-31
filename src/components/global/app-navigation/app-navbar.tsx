@@ -1,40 +1,47 @@
-import { Avatar } from '@/components/ui'
-import { validateUser } from '@/services/auth'
+'use client'
+
+import { Avatar, Icon } from '@/components/ui'
+import { MenuIcon } from '@/icons'
 import Image from 'next/image'
 import Link from 'next/link'
 import classes from './app-navbar.styled'
 
 import icon from '~root/public/icon.svg'
 
-export async function AppNavbar() {
-  const { user } = await validateUser()
+import { type User } from '@/types/user-types'
 
+export function AppNavbar({ user }: { user: User }) {
   return (
     <header className={classes.headerRoot}>
-      <Link href={'/dashboard'}>
-        <Image
-          src={icon}
-          alt='icon'
-          height={36}
-          loading='eager'
-          priority
-        />
-      </Link>
+      <div className={classes.iconSection}>
+        <button onClick={() => console.log('Hello')}>
+          <Icon icon={MenuIcon} color='neutral'/>
+        </button>
+        <Link href={'/dashboard'}>
+          <Image
+            src={icon}
+            alt='icon'
+            height={36}
+            loading='eager'
+            priority
+          />
+        </Link>
+      </div>
       <nav className={classes.navigation}>
         <ul className={classes.listNav}>
           <li><Link href={'/dashboard'}>Workspaces</Link></li>
           <li><Link href={'/dashboard'}>Help</Link></li>
-          <li className={classes.userAvatar}>
-            <Avatar
-              as='span'
-              fallback={formatAvatarFallback(user.name, user.lastname)}
-              bgColor='cardinal.600'
-              size='sm'
-              radius='full'
-            />
-            <p>{user.username}</p>
-          </li>
         </ul>
+        <div className={classes.userAvatar}>
+          <Avatar
+            as='span'
+            fallback={user ? formatAvatarFallback(user.name, user.lastname) : 'A'}
+            bgColor='cardinal.600'
+            size='sm'
+            radius='full'
+          />
+          <p>{user?.username}</p>
+        </div>
       </nav>
     </header>
   )
