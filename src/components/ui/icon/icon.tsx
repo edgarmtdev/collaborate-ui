@@ -14,10 +14,6 @@ export function Icon({
   size,
   color
 }: Props) {
-  if (className) {
-    return <Icon />
-  }
-
   const styles = icon({ size, color })
   return <Icon className={cx(className, styles)} />
 }

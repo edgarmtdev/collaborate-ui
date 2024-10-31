@@ -56,6 +56,7 @@ const slotInputRecipe = sva({
       },
       error: {
         input: {
+          border: 2,
           borderStyle: 'solid',
           borderColor: 'error'
         }

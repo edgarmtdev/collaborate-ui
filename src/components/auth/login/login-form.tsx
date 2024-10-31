@@ -1,15 +1,17 @@
 'use client'
 
 import { loginAction } from '@/app/actions/authActions'
-import { Button } from '@/components/ui'
+import { Button, Icon } from '@/components/ui'
 import { InputIcon } from '@/components/ui/input'
-import { PadlockIcon, UserIcon } from '@/icons'
+import { LoaderIcon, PadlockIcon, UserIcon } from '@/icons'
+import * as Toast from '@radix-ui/react-toast'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState, type FormEvent } from 'react'
-import styled from './login-form.styled'
-import * as Toast from '@radix-ui/react-toast'
+import { useEffect, useState } from 'react'
 import { css } from '~root/styled-system/css'
+import styled from './login-form.styled'
+
+import { type FormEvent } from 'react'
 
 export function LoginForm() {
   const [username, setUsername] = useState<string>('')
@@ -48,7 +50,7 @@ export function LoginForm() {
   return (
     <>
       <Toast.Provider swipeDirection='right'>
-        <Toast.Root open >
+        <Toast.Root open className={css({ p: 4, bgColor: 'success', color: 'neutral' })}>
           <Toast.Title>
             Toast
           </Toast.Title>
@@ -113,10 +115,15 @@ export function LoginForm() {
         >
           Forgot password?
         </Link>
-        {error &&
-          <p className={styled.error}>{error}</p>}
+        {/* {error &&
+          <p className={styled.error}>{error}</p>} */}
         <Button type='submit' width='full'>
-          {isLoading ? 'Loading...' : 'Sign in'}
+          {isLoading
+            ? <Icon
+              icon={LoaderIcon}
+              className={css({ animation: 'spin 1s infinite linear alternate' })}
+            />
+            : 'Sign in'}
         </Button>
       </form>
     </>
