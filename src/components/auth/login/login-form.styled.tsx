@@ -27,5 +27,28 @@ export default {
       color: 'primary.800',
       _hover: { textDecoration: 'underline' }
     }
-  })
+  }),
+  showPassCheckbox: css({
+    pt: 10,
+    display: 'flex',
+    gap: 4,
+    alignItems: 'center',
+    cursor: 'pointer',
+    userSelect: 'none',
+    '& input': {
+      accentColor: 'secondary.950',
+      w: 16,
+      h: 16
+    },
+    '& label': {
+      cursor: 'default'
+    }
+  }),
+  forgotPassword: css({
+    color: 'coolGray.800',
+    w: 'max-content',
+    mx: 'auto',
+    _hover: { textDecoration: 'underline' }
+  }),
+  error: css({ color: 'error', fontWeight: 'semibold' })
 }
