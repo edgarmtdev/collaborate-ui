@@ -5,7 +5,7 @@ export const button = defineRecipe({
   description: 'The styles for Button Component',
   base: {
     borderRadius: 4,
-    fontWeight: 'bold',
+    fontWeight: 'semibold',
     cursor: 'pointer',
     boxShadow: 'sm',
     _hover: {
@@ -27,7 +27,7 @@ export const button = defineRecipe({
       },
       monocrom: {
         bg: 'white',
-        color: 'neutral',
+        color: 'heading',
         border: 1,
         borderStyle: 'solid',
         borderColor: 'coolGray.500'

@@ -1,37 +1,31 @@
 'use client'
 
 import { loginAction } from '@/app/actions/authActions'
-import { Button } from '@/components/ui'
-import { InputIcon } from '@/components/ui/input'
-import { PadlockIcon, UserIcon } from '@/icons'
+import { Button, Icon, InputIcon, Toast } from '@/components/ui'
+import { LoaderIcon, PadlockIcon, UserIcon } from '@/icons'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useEffect, useState, type FormEvent } from 'react'
-import styled from './login-form.styled'
-import * as Toast from '@radix-ui/react-toast'
+import { useState } from 'react'
 import { css } from '~root/styled-system/css'
+import styled from './login-form.styled'
+
+import { type Credentials } from '@/types/auth-types'
+import { type FormEvent } from 'react'
 
 export function LoginForm() {
-  const [username, setUsername] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
+  const [credentials, setCredentials] = useState<Credentials>({ username: '', password: '' })
   const [error, setError] = useState<string | null>('')
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [showPass, setShowPass] = useState<boolean>(false)
-
-  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
+  const [showPass, setShowPass] = useState(false)
+  const [showToast, setShowToast] = useState(false)
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
     setIsLoading(true)
     try {
-      const response = await loginAction({ username, password })
+      const response = await loginAction(credentials)
 
       if (response.success) {
-        alert(response.message)
-
-        router.push('/dashboard')
-      } else {
-        setError(response.message)
+        setShowToast(true)
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -41,31 +35,15 @@ export function LoginForm() {
     }
   }
 
-  useEffect(() => {
-    setTimeout(() => setError(null), 1500)
-  }, [error])
-
   return (
     <>
-      <Toast.Provider swipeDirection='right'>
-        <Toast.Root open >
-          <Toast.Title>
-            Toast
-          </Toast.Title>
-          <Toast.Description asChild>
-            Description
-          </Toast.Description>
-        </Toast.Root>
-        <Toast.Viewport
-          className={css({
-            zIndex: 'toast',
-            position: 'absolute',
-            w: 390,
-            display: 'flex',
-            flexDir: 'column'
-          })}
-        />
-      </Toast.Provider>
+      <Toast
+        title='Login successfully'
+        description='The Session has started successfully.'
+        provider={{ swipeDirection: 'right' }}
+        type='success'
+        open={showToast}
+      />
       <form
         onSubmit={handleSubmit}
         className={styled.form}
@@ -75,14 +53,16 @@ export function LoginForm() {
           No account?,&nbsp;
           <Link href='/auth/register'>Sign up</Link>
         </p>
+        {error &&
+          <div className={styled.error}>{error}</div>}
         <div>
           <label htmlFor='username'>Username:</label>
           <InputIcon
             id='username'
             type='text'
             name='username'
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={credentials.username}
+            onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
             placeholder='Enter your username...'
             required
             color={error ? 'error' : 'main'}
@@ -96,8 +76,8 @@ export function LoginForm() {
             type={showPass ? 'text' : 'password'}
             name='password'
             required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={credentials.password}
+            onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
             placeholder='Enter your password'
             color={error ? 'error' : 'main'}
             icon={PadlockIcon}
@@ -113,10 +93,13 @@ export function LoginForm() {
         >
           Forgot password?
         </Link>
-        {error &&
-          <p className={styled.error}>{error}</p>}
         <Button type='submit' width='full'>
-          {isLoading ? 'Loading...' : 'Sign in'}
+          {isLoading
+            ? <Icon
+              icon={LoaderIcon}
+              className={css({ animation: 'spin 1s infinite linear alternate' })}
+            />
+            : 'Sign in'}
         </Button>
       </form>
     </>

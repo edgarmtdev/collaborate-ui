@@ -8,6 +8,7 @@ import { bodyStyles, headerStyles } from './layout.styled'
 import icon from '~root/public/icon-mono.svg'
 
 import type { ReactNode } from 'react'
+import { sleep } from '@/helpers'
 
 export default async function AuthLayout({
   children
@@ -17,6 +18,7 @@ export default async function AuthLayout({
   const { isLoggedIn } = await validateUser()
 
   if (isLoggedIn) {
+    await sleep(2000)
     permanentRedirect('/dashboard')
   }
 
