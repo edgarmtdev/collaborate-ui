@@ -9,7 +9,7 @@ export default {
       h: 150
     },
     lg: {
-      w: '25%',
+      w: '20%',
       h: 150
     },
     pos: 'relative',

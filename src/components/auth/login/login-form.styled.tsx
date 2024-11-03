@@ -13,7 +13,7 @@ export default {
       fontWeight: 'extraBold'
     },
     md: {
-      gap: 34
+      gap: 32
     },
     '& label': {
       fontWeight: 'medium'
@@ -50,5 +50,15 @@ export default {
     mx: 'auto',
     _hover: { textDecoration: 'underline' }
   }),
-  error: css({ color: 'error', fontWeight: 'semibold' })
+  error: css({
+    color: 'error',
+    px: 12,
+    py: 5,
+    bg: 'cardinal.25',
+    border: 1,
+    borderColor: 'cardinal.200',
+    borderStyle: 'solid',
+    rounded: 4,
+    fontSize: 'sm'
+  })
 }
