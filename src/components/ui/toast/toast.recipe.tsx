@@ -7,8 +7,13 @@ export const slotToastStyled = sva({
       zIndex: 'toast',
       position: 'fixed',
       top: 50,
-      right: 80,
-      w: 325,
+      right: 8,
+      w: 300,
+      md: {
+        top: 50,
+        right: 80,
+        w: 325
+      },
       display: 'flex',
       flexDir: 'column'
     },

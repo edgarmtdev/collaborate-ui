@@ -3,7 +3,7 @@ import { css } from '~root/styled-system/css'
 export default {
   form: css({
     display: 'grid',
-    gap: 28,
+    gap: 24,
     py: 24,
     borderBottom: 1,
     borderBottomStyle: 'solid',
@@ -29,16 +29,18 @@ export default {
     }
   }),
   showPassCheckbox: css({
-    pt: 10,
+    pt: 8,
     display: 'flex',
     gap: 4,
     alignItems: 'center',
     cursor: 'pointer',
     userSelect: 'none',
+    fontSize: 'sm',
+    color: 'text',
     '& input': {
       accentColor: 'secondary.950',
-      w: 16,
-      h: 16
+      w: 15,
+      h: 15
     },
     '& label': {
       cursor: 'default'

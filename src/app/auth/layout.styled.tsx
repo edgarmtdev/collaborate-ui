@@ -22,7 +22,7 @@ export const bodyStyles = {
     minHeight: 'calc(100vh - 80px)',
     px: 12,
     pb: 64,
-    pt: 80,
+    pt: 96,
     lg: {
       display: 'grid',
       gridTemplateColumns: 2
@@ -48,8 +48,8 @@ export const bodyStyles = {
     mx: 'auto',
     bg: 'white/90',
     rounded: 4,
-    px: 32,
-    py: 18,
+    px: 28,
+    py: 12,
     md: {
       px: 48,
       py: 32
