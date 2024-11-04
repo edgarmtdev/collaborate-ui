@@ -38,6 +38,10 @@ export const button = defineRecipe({
       }
     },
     size: {
+      xs: {
+        fontSize: 'xs',
+        height: 24
+      },
       sm: {
         fontSize: 'sm',
         height: 28

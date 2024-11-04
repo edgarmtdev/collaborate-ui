@@ -13,10 +13,11 @@ import { type FormEvent } from 'react'
 
 export function LoginForm() {
   const [credentials, setCredentials] = useState<Credentials>({ username: '', password: '' })
-  const [error, setError] = useState<string | null>('')
-  const [isLoading, setIsLoading] = useState(false)
   const [showPass, setShowPass] = useState(false)
   const [showToast, setShowToast] = useState(false)
+
+  const [error, setError] = useState<string | null>('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
@@ -25,6 +26,7 @@ export function LoginForm() {
       const response = await loginAction(credentials)
 
       if (response.success) {
+        setError(null)
         setShowToast(true)
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -41,8 +43,9 @@ export function LoginForm() {
         title='Login successfully'
         description='The Session has started successfully.'
         provider={{ swipeDirection: 'right' }}
-        type='success'
         open={showToast}
+        onOpenChange={setShowToast}
+        type='success'
       />
       <form
         onSubmit={handleSubmit}

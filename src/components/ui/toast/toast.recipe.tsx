@@ -1,7 +1,7 @@
 import { sva } from '~root/styled-system/css'
 
 export const slotToastStyled = sva({
-  slots: ['viewport', 'root', 'title', 'description'],
+  slots: ['viewport', 'root', 'title', 'description', 'action'],
   base: {
     viewport: {
       zIndex: 'toast',
@@ -13,9 +13,7 @@ export const slotToastStyled = sva({
         top: 50,
         right: 80,
         w: 325
-      },
-      display: 'flex',
-      flexDir: 'column'
+      }
     },
     root: {
       p: 15,
@@ -23,35 +21,34 @@ export const slotToastStyled = sva({
       rounded: 4,
       shadow: 'md',
       display: 'grid',
-      columnGap: 15,
-      alignItems: 'center',
-      '&[data-state="open"]': {
-        animation: 'slideIn 150ms cubic-bezier(0.16, 1, 0.3, 1)'
-      }
+      gridTemplateColumns: 'repeat(5, 1fr)',
+      gridTemplateRows: 'repeat(2, 1fr)',
+      gap: 8
     },
     title: {
-      mb: 5,
       color: 'heading',
       fontWeight: 'bold',
-      fontSize: 'md'
+      fontSize: 'md',
+      gridArea: '1 / 1 / 2 / 5'
     },
     description: {
       color: 'text',
-      fontSize: 'sm'
+      fontSize: 'sm',
+      gridArea: '2 / 1 / 3 / 6'
     }
   },
   variants: {
     type: {
       success: {
         root: {
-          border: 4,
+          border: 5,
           borderTopStyle: 'solid',
           borderColor: 'primary.800'
         }
       },
       error: {
         root: {
-          border: 4,
+          border: 5,
           borderTopStyle: 'solid',
           borderColor: 'cardinal.800'
         }
