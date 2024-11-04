@@ -1,7 +1,7 @@
 'use client'
 
 import { loginAction } from '@/app/actions/authActions'
-import { Button, InputIcon, Toast } from '@/components/ui'
+import { Alert, Button, InputIcon, Toast } from '@/components/ui'
 import { PadlockIcon, UserIcon } from '@/icons'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -56,7 +56,7 @@ export function LoginForm() {
           <Link href='/auth/register'>Sign up</Link>
         </p>
         {error &&
-          <div className={styled.error}>{error}</div>}
+          <Alert size='sm' status='error' title={error} />}
         <div>
           <label htmlFor='username'>Username:</label>
           <InputIcon
@@ -95,11 +95,7 @@ export function LoginForm() {
         >
           Forgot password?
         </Link>
-        <Button
-          type='submit'
-          width='full'
-          loading={isLoading}
-        >
+        <Button type='submit' width='full' loading={isLoading}>
           Sign in
         </Button>
       </form>
