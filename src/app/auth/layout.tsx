@@ -1,4 +1,5 @@
 import { AuthWithSocial, Background, Footer } from '@/components/auth'
+import { sleep } from '@/helpers'
 import { validateUser } from '@/services/auth'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -8,7 +9,6 @@ import { bodyStyles, headerStyles } from './layout.styled'
 import icon from '~root/public/icon-mono.svg'
 
 import type { ReactNode } from 'react'
-import { sleep } from '@/helpers'
 
 export default async function AuthLayout({
   children

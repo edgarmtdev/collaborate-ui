@@ -17,7 +17,16 @@ export const button = defineRecipe({
     gap: 8,
     px: 16,
     transition: 'all',
-    transitionDuration: '300ms'
+    transitionDuration: '300ms',
+    _disabled: {
+      opacity: 0.7,
+      _hover: {
+        opacity: 0.7
+      }
+    },
+    '& .button-loader': {
+      animation: 'spin 1s infinite linear'
+    }
   },
   variants: {
     variant: {

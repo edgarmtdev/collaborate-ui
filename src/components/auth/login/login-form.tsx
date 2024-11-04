@@ -1,11 +1,10 @@
 'use client'
 
 import { loginAction } from '@/app/actions/authActions'
-import { Button, Icon, InputIcon, Toast } from '@/components/ui'
-import { LoaderIcon, PadlockIcon, UserIcon } from '@/icons'
+import { Button, InputIcon, Toast } from '@/components/ui'
+import { PadlockIcon, UserIcon } from '@/icons'
 import Link from 'next/link'
 import { useState } from 'react'
-import { css } from '~root/styled-system/css'
 import styled from './login-form.styled'
 
 import { type Credentials } from '@/types/auth-types'
@@ -96,13 +95,12 @@ export function LoginForm() {
         >
           Forgot password?
         </Link>
-        <Button type='submit' width='full'>
-          {isLoading
-            ? <Icon
-              icon={LoaderIcon}
-              className={css({ animation: 'spin 1s infinite linear alternate' })}
-            />
-            : 'Sign in'}
+        <Button
+          type='submit'
+          width='full'
+          loading={isLoading}
+        >
+          Sign in
         </Button>
       </form>
     </>

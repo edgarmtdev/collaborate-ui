@@ -1,10 +1,10 @@
 import * as RadixToast from '@radix-ui/react-toast'
 import { Dispatch, HTMLAttributes, SetStateAction } from 'react'
-import { cx, RecipeVariantProps } from '~root/styled-system/css'
+import { RecipeVariantProps } from '~root/styled-system/css'
 import { Button } from '../button'
 import { slotToastStyled } from './toast.recipe'
 
-import type { ToastActionProps, ToastProviderProps, ToastProps } from '@radix-ui/react-toast'
+import type { ToastActionProps, ToastProps, ToastProviderProps } from '@radix-ui/react-toast'
 
 type ElementProps = HTMLAttributes<HTMLElement>
 type ToastVariants = RecipeVariantProps<typeof slotToastStyled>
@@ -39,7 +39,7 @@ export const Toast = ({
       <RadixToast.Root
         open={open}
         onOpenChange={onOpenChange}
-        className={cx(classes.root, 'ToastRoot')}
+        className={classes.root}
         duration={duration}
         {...root}
       >
