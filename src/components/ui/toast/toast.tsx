@@ -1,33 +1,59 @@
 import * as RadixToast from '@radix-ui/react-toast'
-import { HTMLAttributes } from 'react'
+import { Dispatch, HTMLAttributes, SetStateAction } from 'react'
 import { cx, RecipeVariantProps } from '~root/styled-system/css'
+import { Button } from '../button'
 import { slotToastStyled } from './toast.recipe'
 
-import type { ToastActionProps, ToastProviderProps } from '@radix-ui/react-toast'
+import type { ToastActionProps, ToastProviderProps, ToastProps } from '@radix-ui/react-toast'
 
 type ElementProps = HTMLAttributes<HTMLElement>
-type RadixToastElementProps = { provider: ToastProviderProps, action?: ToastActionProps }
 type ToastVariants = RecipeVariantProps<typeof slotToastStyled>
+type BaseProps = {
+  title: string
+  description: string
+  open: boolean
+  onOpenChange: Dispatch<SetStateAction<boolean>>
+  duration?: number
+}
+type RadixToastElementProps = {
+  provider?: ToastProviderProps
+  root?: ToastProps
+  action?: ToastActionProps
+}
 
-type ToastProps = { title: string, description: string, open: boolean } & ToastVariants & RadixToastElementProps & ElementProps
+type ToastComponentProps = BaseProps & ToastVariants & RadixToastElementProps & ElementProps
 
 export const Toast = ({
   title,
   description,
   provider,
+  root,
   open,
+  onOpenChange,
+  duration,
   type
-}: ToastProps) => {
+}: ToastComponentProps) => {
   const classes = slotToastStyled({ type })
   return (
-    <RadixToast.Provider {...provider} >
-      <RadixToast.Root open={open} className={cx(classes.root, 'ToastRoot')}>
+    <RadixToast.Provider {...provider}>
+      <RadixToast.Root
+        open={open}
+        onOpenChange={onOpenChange}
+        className={cx(classes.root, 'ToastRoot')}
+        duration={duration}
+        {...root}
+      >
         <RadixToast.Title className={classes.title}>
           {title}
         </RadixToast.Title>
         <RadixToast.Description className={classes.description}>
           {description}
         </RadixToast.Description>
+        <RadixToast.Close>
+          <Button size='xs' variant='black'>
+            Close
+          </Button>
+        </RadixToast.Close>
       </RadixToast.Root>
 
       <RadixToast.Viewport className={classes.viewport} />

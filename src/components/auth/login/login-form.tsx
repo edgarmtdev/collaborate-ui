@@ -43,8 +43,9 @@ export function LoginForm() {
         title='Login successfully'
         description='The Session has started successfully.'
         provider={{ swipeDirection: 'right' }}
-        type='success'
         open={showToast}
+        onOpenChange={setShowToast}
+        type='success'
       />
       <form
         onSubmit={handleSubmit}
