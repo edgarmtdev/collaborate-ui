@@ -4,5 +4,5 @@ export type User = {
   lastname: string
   username: string
   email: string
-  avatarUrl: string
+  avatarURL: string
 }

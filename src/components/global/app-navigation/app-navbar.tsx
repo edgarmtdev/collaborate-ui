@@ -15,7 +15,7 @@ export function AppNavbar({ user }: { user: User }) {
     <header className={classes.headerRoot}>
       <div className={classes.iconSection}>
         <button onClick={() => console.log('Hello')}>
-          <Icon icon={MenuIcon} color='neutral'/>
+          <Icon icon={MenuIcon} color='neutral' />
         </button>
         <Link href={'/dashboard'}>
           <Image
@@ -35,6 +35,7 @@ export function AppNavbar({ user }: { user: User }) {
         <div className={classes.userAvatar}>
           <Avatar
             as='span'
+            src={user.avatarURL}
             fallback={user ? formatAvatarFallback(user.name, user.lastname) : 'A'}
             bgColor='cardinal.600'
             size='sm'
