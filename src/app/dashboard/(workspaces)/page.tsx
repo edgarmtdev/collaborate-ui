@@ -12,7 +12,7 @@ export default async function Dashboard() {
       <div className={workspacesPage.header}>
         <h2>Workspaces</h2>
         <div />
-        <InputIcon placeholder='Search...' icon={SearchIcon} color='fill' />
+        <InputIcon placeholder='Search...' icon={SearchIcon} variant='fill' />
       </div>
       <div className={workspacesPage.separator}>All boards</div>
       <div className={workspacesPage.flexSection}>

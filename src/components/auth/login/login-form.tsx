@@ -67,7 +67,7 @@ export function LoginForm() {
             onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
             placeholder='Enter your username...'
             required
-            color={error ? 'error' : 'main'}
+            variant={error ? 'error' : 'main'}
             icon={UserIcon}
           />
         </div>
@@ -81,7 +81,7 @@ export function LoginForm() {
             value={credentials.password}
             onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
             placeholder='Enter your password'
-            color={error ? 'error' : 'main'}
+            variant={error ? 'error' : 'main'}
             icon={PadlockIcon}
           />
           <span className={styled.showPassCheckbox}>

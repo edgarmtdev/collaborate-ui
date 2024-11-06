@@ -47,9 +47,8 @@ const slotInputRecipe = sva({
     }
   },
   variants: {
-    color: {
+    variant: {
       main: {
-        root: {},
         input: {
           borderColor: 'coolGray.500',
           _focus: {
@@ -129,7 +128,7 @@ const slotInputRecipe = sva({
     }
   },
   defaultVariants: {
-    color: 'main',
+    variant: 'main',
     size: 'md'
   }
 })
@@ -145,11 +144,11 @@ export type InputProps = {
 
 export const InputIcon = forwardRef<HTMLInputElement, InputProps>(({
   icon,
-  color,
+  variant,
   size,
   ...props
 }, ref) => {
-  const classes = slotInputRecipe({ color, size })
+  const classes = slotInputRecipe({ variant, size })
   return (
     <div className={classes.root}>
       <div className={classes.icon}>
