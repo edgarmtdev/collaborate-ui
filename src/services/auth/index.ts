@@ -5,6 +5,7 @@ import { type Credentials } from '@/types/auth-types'
 
 export async function loginService(credentials: Credentials) {
   const response = await post('/auth/login', credentials)
+
   return response
 }
 

@@ -8,16 +8,12 @@ import { cookies } from 'next/headers'
 export async function loginAction(credentials: Credentials) {
   const response = await loginService(credentials)
 
-  if (!response.ok) {
-    const errorData = await response.json()
-    throw new Error(errorData.message || 'Error al iniciar sesión')
-  }
-
   setAuthCookie(response)
 
-  return await response.json()
+  return response
 }
 
+// TODO:  Refactor set cookie in custom fetch api
 const setAuthCookie = (response: Response) => {
   const setCookieHeader = response.headers.get('Set-Cookie')
 
