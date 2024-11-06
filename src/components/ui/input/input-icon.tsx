@@ -51,13 +51,32 @@ const slotInputRecipe = sva({
       main: {
         root: {},
         input: {
-          borderColor: 'coolGray.500'
+          borderColor: 'coolGray.500',
+          _focus: {
+            borderColor: 'secondary.600',
+            shadow: 'sm'
+          }
         }
       },
       error: {
         input: {
-          borderStyle: 'solid',
-          borderColor: 'error'
+          borderColor: 'error',
+          _focus: {
+            shadow: 'sm'
+          }
+        }
+      },
+      fill: {
+        input: {
+          bgColor: 'coolGray.25',
+          borderColor: 'coolGray.200',
+          _placeholder: {
+            color: 'coolGray.600'
+          },
+          _focus: {
+            borderColor: 'secondary.600',
+            shadow: 'sm'
+          }
         }
       }
     },
@@ -134,7 +153,7 @@ export const InputIcon = forwardRef<HTMLInputElement, InputProps>(({
   return (
     <div className={classes.root}>
       <div className={classes.icon}>
-        <Icon icon={icon} />
+        <Icon icon={icon} size={'sm'} />
       </div>
       <input
         ref={ref}

@@ -4,13 +4,18 @@ export default {
   root: css({
     w: 'calc(50% - 6px)',
     h: 100,
+    sm: {
+      w: '33%'
+    },
     md: {
-      w: '33%',
       h: 150
     },
     lg: {
-      w: '20%',
+      w: '35%',
       h: 150
+    },
+    xl: {
+      w: '25%'
     },
     pos: 'relative',
     color: 'white',

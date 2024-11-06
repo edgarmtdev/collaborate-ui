@@ -12,14 +12,19 @@ export const workspacesPage = {
   root: css({
     p: 12,
     w: '100%',
+    lg: {
+      px: 64,
+      py: 36
+    }
+  }),
+  header: css({
+    display: 'grid',
+    gridTemplateColumns: 3,
+    alignItems: 'center',
     '& h2': {
       fontSize: '3xl',
       fontWeight: 'bold',
       color: 'heading'
-    },
-    lg: {
-      px: 64,
-      py: 36
     }
   }),
   separator: css({
