@@ -46,7 +46,7 @@ export async function put(path: string, data?: unknown) {
       body: JSON.stringify(data),
       method: 'PUT',
       headers: {
-        ...getHeaders
+        ...getHeaders()
       }
     })
 
@@ -62,7 +62,7 @@ export async function del(path: string, data?: unknown) {
       body: JSON.stringify(data),
       method: 'DELETE',
       headers: {
-        ...getHeaders
+        ...getHeaders()
       }
     })
     return response.json
