@@ -1,16 +1,16 @@
 'use server'
 
-import { get, post } from '@/api/fetch'
+import fetch from '@/api'
 import { type Credentials } from '@/types/auth-types'
 
 export async function loginService(credentials: Credentials) {
-  const response = await post('/auth/login', credentials)
+  const response = await fetch.post('/auth/login', credentials)
 
   return response
 }
 
 export async function validateUser() {
-  const res = await get('/auth/validate')
+  const res = await fetch.get('/auth/validate')
 
   if (!res.id) {
     return { isLoggedIn: false, message: res.message }

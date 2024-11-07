@@ -76,7 +76,7 @@ export async function del(path: string, data?: unknown) {
   }
 }
 
-const setAuthCookie = (response: Response) => {
+function setAuthCookie(response: Response) {
   const setCookieHeader = response.headers.get('Set-Cookie')
 
   if (setCookieHeader) {
