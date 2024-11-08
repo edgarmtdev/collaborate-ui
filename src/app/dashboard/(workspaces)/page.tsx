@@ -1,25 +1,44 @@
 import { InputIcon } from '@/components/ui'
-import { WorkspaceCard } from '@/components/workspaces'
+import { WorkspacesCollapsible } from '@/components/workspaces'
 import { SearchIcon } from '@/icons'
 import { getWorkspaces } from '@/services/workspaces'
-import { workspacesPage } from './dashboard.styled'
+import { css } from '~root/styled-system/css'
 
 export default async function Dashboard() {
   const workspaces = await getWorkspaces()
 
   return (
-    <section className={workspacesPage.root}>
-      <div className={workspacesPage.header}>
+    <div className={css({
+      p: 12,
+      w: '100%',
+      maxW: 1536,
+      mx: 'auto',
+      lg: {
+        px: 32,
+        py: 36
+      }
+    })}>
+      <div className={css({
+        display: 'grid',
+        gridTemplateColumns: 3,
+        alignItems: 'center',
+        '& h2': {
+          fontSize: '3xl',
+          fontWeight: 'bold',
+          color: 'heading'
+        }
+      })}>
         <h2>Workspaces</h2>
         <div />
         <InputIcon placeholder='Search...' icon={SearchIcon} variant='fill' />
       </div>
-      <div className={workspacesPage.separator}>All boards</div>
-      <div className={workspacesPage.flexSection}>
-        {workspaces?.map((workspace) => (
-          <WorkspaceCard key={workspace.id} workspace={workspace} />
-        ))}
-      </div>
-    </section>
+      <section className={css({
+        display: 'grid',
+        gap: 32
+      })}>
+        <WorkspacesCollapsible title='Recently viewed' workspaces={workspaces} />
+        <WorkspacesCollapsible title='All boards' workspaces={workspaces} defaultOpen={false} />
+      </section>
+    </div>
   )
 }
