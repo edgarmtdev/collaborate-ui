@@ -1,98 +1,104 @@
 'use client'
 
 import { loginAction } from '@/app/actions/authActions'
-import { Button } from '@/components/ui'
-import { InputIcon } from '@/components/ui/input'
+import { Alert, Button, InputIcon, Toast } from '@/components/ui'
 import { PadlockIcon, UserIcon } from '@/icons'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { useEffect, useState, type FormEvent } from 'react'
-import { css } from '~root/styled-system/css'
+import { useState } from 'react'
 import styled from './login-form.styled'
 
-export function LoginForm() {
-  const [username, setUsername] = useState<string>('')
-  const [password, setPassword] = useState<string>('')
-  const [error, setError] = useState<string | null>('')
+import { type Credentials } from '@/types/auth-types'
+import { type FormEvent } from 'react'
 
-  const router = useRouter()
+export function LoginForm() {
+  const [credentials, setCredentials] = useState<Credentials>({ username: '', password: '' })
+  const [showPass, setShowPass] = useState(false)
+  const [showToast, setShowToast] = useState(false)
+
+  const [error, setError] = useState<string | null>('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
+    setIsLoading(true)
     try {
-      const response = await loginAction({ username, password })
+      const response = await loginAction(credentials)
 
       if (response.success) {
-        alert(response.message)
-
-        router.push('/dashboard')
-      } else {
-        setError(response.message)
+        setError(null)
+        setShowToast(true)
       }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setError(error?.message || 'An error ocurred')
+    } finally {
+      setIsLoading(false)
     }
   }
 
-  useEffect(() => {
-    setTimeout(() => setError(null), 1500)
-  }, [error])
-
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={styled.form}
-    >
-      <h2>Login</h2>
-      <p className={styled.noAccount}>
-        No account?,&nbsp;
-        <Link href='/auth/register'>Sign up</Link>
-      </p>
-      <div>
-        <label htmlFor='username'>Username:</label>
-        <InputIcon
-          id='username'
-          type='text'
-          name='username'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder='Enter your username...'
-          required
-          color={error ? 'error' : 'main'}
-          icon={UserIcon}
-        />
-      </div>
-      <div>
-        <label htmlFor='password'>Password:</label>
-        <InputIcon
-          id='password'
-          type='password'
-          name='password'
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder='Enter your password'
-          color={error ? 'error' : 'main'}
-          icon={PadlockIcon}
-        />
-      </div>
-      <Link
-        href='/'
-        className={css({
-          color: 'coolGray.800',
-          w: 'max-content',
-          mx: 'auto',
-          _hover: { textDecoration: 'underline' }
-        })}
+    <>
+      <Toast
+        title='Login successfully'
+        description='The Session has started successfully.'
+        provider={{ swipeDirection: 'right' }}
+        open={showToast}
+        onOpenChange={setShowToast}
+        type='success'
+      />
+      <form
+        onSubmit={handleSubmit}
+        className={styled.form}
       >
-        Forgot password?
-      </Link>
-      {error &&
-        <p className={css({ color: 'error', fontWeight: 'semibold' })}>{error}</p>}
-      <Button type='submit' width='full'>
-        Sign in
-      </Button>
-    </form>
+        <h2>Login</h2>
+        <p className={styled.noAccount}>
+          No account?,&nbsp;
+          <Link href='/auth/register'>Sign up</Link>
+        </p>
+        {error &&
+          <Alert size='sm' status='error' title={error} />}
+        <div>
+          <label htmlFor='username'>Username:</label>
+          <InputIcon
+            id='username'
+            type='text'
+            name='username'
+            value={credentials.username}
+            onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
+            placeholder='Enter your username...'
+            required
+            variant={error ? 'error' : 'main'}
+            icon={UserIcon}
+          />
+        </div>
+        <div>
+          <label htmlFor='password'>Password:</label>
+          <InputIcon
+            id='password'
+            type={showPass ? 'text' : 'password'}
+            name='password'
+            required
+            value={credentials.password}
+            onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
+            placeholder='Enter your password'
+            variant={error ? 'error' : 'main'}
+            icon={PadlockIcon}
+          />
+          <span className={styled.showPassCheckbox}>
+            <input id='showPass' type='checkbox' onChange={(e) => setShowPass(e.target.checked)} />
+            <label htmlFor='showPass'>Show password</label>
+          </span>
+        </div>
+        <Link
+          href='/'
+          className={styled.forgotPassword}
+        >
+          Forgot password?
+        </Link>
+        <Button type='submit' width='full' loading={isLoading}>
+          Sign in
+        </Button>
+      </form>
+    </>
   )
 }

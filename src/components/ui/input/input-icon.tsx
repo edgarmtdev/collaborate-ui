@@ -47,17 +47,35 @@ const slotInputRecipe = sva({
     }
   },
   variants: {
-    color: {
+    variant: {
       main: {
-        root: {},
         input: {
-          borderColor: 'coolGray.500'
+          borderColor: 'coolGray.500',
+          _focus: {
+            borderColor: 'secondary.600',
+            shadow: 'sm'
+          }
         }
       },
       error: {
         input: {
-          borderStyle: 'solid',
-          borderColor: 'error'
+          borderColor: 'error',
+          _focus: {
+            shadow: 'sm'
+          }
+        }
+      },
+      fill: {
+        input: {
+          bgColor: 'coolGray.25',
+          borderColor: 'coolGray.200',
+          _placeholder: {
+            color: 'coolGray.600'
+          },
+          _focus: {
+            borderColor: 'secondary.600',
+            shadow: 'sm'
+          }
         }
       }
     },
@@ -110,7 +128,7 @@ const slotInputRecipe = sva({
     }
   },
   defaultVariants: {
-    color: 'main',
+    variant: 'main',
     size: 'md'
   }
 })
@@ -126,15 +144,15 @@ export type InputProps = {
 
 export const InputIcon = forwardRef<HTMLInputElement, InputProps>(({
   icon,
-  color,
+  variant,
   size,
   ...props
 }, ref) => {
-  const classes = slotInputRecipe({ color, size })
+  const classes = slotInputRecipe({ variant, size })
   return (
     <div className={classes.root}>
       <div className={classes.icon}>
-        <Icon icon={icon} />
+        <Icon icon={icon} size={'sm'} />
       </div>
       <input
         ref={ref}

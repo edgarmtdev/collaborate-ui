@@ -5,7 +5,7 @@ export const button = defineRecipe({
   description: 'The styles for Button Component',
   base: {
     borderRadius: 4,
-    fontWeight: 700,
+    fontWeight: 'semibold',
     cursor: 'pointer',
     boxShadow: 'sm',
     _hover: {
@@ -17,7 +17,17 @@ export const button = defineRecipe({
     gap: 8,
     px: 16,
     transition: 'all',
-    transitionDuration: '300ms'
+    transitionDuration: '300ms',
+    _disabled: {
+      opacity: 0.7,
+      cursor: 'progress',
+      _hover: {
+        opacity: 0.7
+      }
+    },
+    '& .button-loader': {
+      animation: 'spin 1s infinite linear'
+    }
   },
   variants: {
     variant: {
@@ -27,7 +37,7 @@ export const button = defineRecipe({
       },
       monocrom: {
         bg: 'white',
-        color: 'neutral',
+        color: 'heading',
         border: 1,
         borderStyle: 'solid',
         borderColor: 'coolGray.500'
@@ -38,17 +48,21 @@ export const button = defineRecipe({
       }
     },
     size: {
+      xs: {
+        fontSize: 'xs',
+        height: 24
+      },
       sm: {
         fontSize: 'sm',
-        py: 3
+        height: 28
       },
       md: {
         fontSize: 'md',
-        py: 6
+        height: 36
       },
       lg: {
         fontSize: 'lg',
-        py: 6
+        height: 40
       }
     },
     width: {

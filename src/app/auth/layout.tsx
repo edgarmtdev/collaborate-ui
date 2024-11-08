@@ -1,4 +1,5 @@
 import { AuthWithSocial, Background, Footer } from '@/components/auth'
+import { sleep } from '@/helpers'
 import { validateUser } from '@/services/auth'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -17,6 +18,7 @@ export default async function AuthLayout({
   const { isLoggedIn } = await validateUser()
 
   if (isLoggedIn) {
+    await sleep(2000)
     permanentRedirect('/dashboard')
   }
 

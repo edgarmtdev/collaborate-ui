@@ -1,8 +1,7 @@
 import { css } from '~root/styled-system/css'
 
 export const layoutStyled = css({
-  display:
-  'flex',
+  display: 'flex',
   flexDir: 'row',
   flex: '1 1 0%',
   mt: 61
@@ -10,9 +9,17 @@ export const layoutStyled = css({
 
 export const workspacesPage = {
   root: css({
-    px: 64,
-    py: 36,
+    p: 12,
     w: '100%',
+    lg: {
+      px: 64,
+      py: 36
+    }
+  }),
+  header: css({
+    display: 'grid',
+    gridTemplateColumns: 3,
+    alignItems: 'center',
     '& h2': {
       fontSize: '3xl',
       fontWeight: 'bold',
@@ -30,7 +37,10 @@ export const workspacesPage = {
     display: 'flex',
     flexWrap: 'wrap',
     gridTemplateColumns: 5,
-    gap: 32,
-    w: '100%'
+    gap: 12,
+    w: '100%',
+    lg: {
+      gap: 24
+    }
   })
 }

@@ -7,14 +7,15 @@ export default async function DashboardLayout({
   children
 }: LayoutProps
 ) {
-  const { isLoggedIn } = await validateUser()
+  const { isLoggedIn, user } = await validateUser()
 
   if (!isLoggedIn) {
     redirect('/auth/login')
   }
   return (
     <>
-      <AppNavbar />
+      {/* Set a React context for state management of an Aside component */}
+      <AppNavbar user={user} />
       {children}
     </>
   )

@@ -1,4 +1,6 @@
+import { InputIcon } from '@/components/ui'
 import { WorkspaceCard } from '@/components/workspaces'
+import { SearchIcon } from '@/icons'
 import { getWorkspaces } from '@/services/workspaces'
 import { workspacesPage } from './dashboard.styled'
 
@@ -7,7 +9,11 @@ export default async function Dashboard() {
 
   return (
     <section className={workspacesPage.root}>
-      <h2>Workspaces</h2>
+      <div className={workspacesPage.header}>
+        <h2>Workspaces</h2>
+        <div />
+        <InputIcon placeholder='Search...' icon={SearchIcon} variant='fill' />
+      </div>
       <div className={workspacesPage.separator}>All boards</div>
       <div className={workspacesPage.flexSection}>
         {workspaces?.map((workspace) => (

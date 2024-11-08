@@ -37,9 +37,10 @@ export function Avatar({
         <Image
           fill
           src={src}
-          alt='Avatar'
+          alt={fallback}
           loading='lazy'
         />
+        {fallback}
       </Component>
     )
   }

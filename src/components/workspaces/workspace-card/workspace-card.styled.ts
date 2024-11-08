@@ -2,11 +2,23 @@ import { css } from '~root/styled-system/css'
 
 export default {
   root: css({
+    w: 'calc(50% - 6px)',
+    h: 100,
+    sm: {
+      w: '33%'
+    },
+    md: {
+      h: 150
+    },
+    lg: {
+      w: '35%',
+      h: 150
+    },
+    xl: {
+      w: '25%'
+    },
     pos: 'relative',
-    w: 300,
-    h: 200,
     color: 'white',
-    fontWeight: 'semibold',
     borderRadius: 4,
     '& img': {
       objectFit: 'cover',
@@ -23,9 +35,13 @@ export default {
     borderRadius: 4,
     zIndex: 'docked',
     background: { base: 'black/20', _hover: 'black/30' },
-    '& h2': {
-      fontStyle: 'xl',
-      fontWeight: 'bold'
+    '& h3': {
+      fontSize: 'sm',
+      fontWeight: 'semibold',
+      lg: {
+        fontSize: 'lg',
+        fontWeight: 'bold'
+      }
     }
   })
 }

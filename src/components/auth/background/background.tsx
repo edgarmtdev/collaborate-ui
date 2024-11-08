@@ -13,7 +13,7 @@ export function Background() {
         loading='eager'
         priority
       />
-      <div className={styled.bgOpacity}/>
+      <div className={styled.bgOpacity} />
     </figure>
   )
 }
