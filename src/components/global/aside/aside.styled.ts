@@ -25,9 +25,14 @@ export default {
     bottom: 0,
     left: 0,
     w: '100%',
-    minH: '100%'
+    minH: '100%',
+    mt: 48
   }),
   panelNav: css({
-    h: '100%'
+    h: '100%',
+    p: 12,
+    fontSize: 'lg',
+    fontWeight: 'semibold',
+    color: 'heading'
   })
 }
