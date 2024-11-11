@@ -11,7 +11,7 @@ import { type Workspace } from '@/types/workspace-types'
 
 type Props = {
   title: string
-  workspaces: Workspace[]
+  workspaces: string
   defaultOpen?: boolean
 }
 
@@ -72,7 +72,7 @@ export function WorkspacesCollapsible({
       </div>
       <Collapsible.Content>
         <div className={classes.flexSection}>
-          {workspaces?.map((workspace) => (
+          {JSON.parse(workspaces)?.map((workspace: Workspace) => (
             <WorkspaceCard key={workspace.id} workspace={workspace} />
           ))}
         </div>

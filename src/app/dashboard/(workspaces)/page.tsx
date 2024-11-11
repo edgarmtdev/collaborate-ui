@@ -39,8 +39,8 @@ export default async function Dashboard() {
         display: 'grid',
         gap: 32
       })}>
-        <WorkspacesCollapsible title='Recently viewed' workspaces={workspaces} />
-        <WorkspacesCollapsible title='All boards' workspaces={workspaces} defaultOpen={false} />
+        <WorkspacesCollapsible title='Recently viewed' workspaces={JSON.stringify(workspaces)} />
+        <WorkspacesCollapsible title='All boards' workspaces={JSON.stringify(workspaces)} defaultOpen={false} />
       </section>
     </div>
   )
