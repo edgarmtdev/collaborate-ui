@@ -20,7 +20,17 @@ export default {
   }),
   iconSection: css({
     display: 'flex',
-    gap: 12
+    gap: 32,
+    '& button': {
+      color: 'heading',
+      fontWeight: 'semibold',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      lg: {
+        display: 'none'
+      }
+    }
   }),
   navigation: css({
     ml: 'auto',

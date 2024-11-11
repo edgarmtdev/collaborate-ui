@@ -31,8 +31,7 @@ export default {
   panelNav: css({
     h: '100%',
     p: 12,
-    fontSize: 'lg',
-    fontWeight: 'semibold',
     color: 'heading'
-  })
+  }),
+  menuCollapContent: css({})
 }

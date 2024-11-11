@@ -11,11 +11,12 @@ export default {
       h: 150
     },
     lg: {
-      w: '35%',
+      w: '33%',
       h: 150
     },
     xl: {
-      w: '25%'
+      w: '20%',
+      h: 170
     },
     pos: 'relative',
     color: 'white',

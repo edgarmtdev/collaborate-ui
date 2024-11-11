@@ -1,7 +1,7 @@
 'use client'
 
 import { Avatar, Icon } from '@/components/ui'
-import { MenuIcon } from '@/icons'
+import { Chevron } from '@/icons'
 import Image from 'next/image'
 import Link from 'next/link'
 import classes from './app-navbar.styled'
@@ -14,9 +14,6 @@ export function AppNavbar({ user }: { user: User }) {
   return (
     <header className={classes.headerRoot}>
       <div className={classes.iconSection}>
-        <button onClick={() => console.log('Hello')}>
-          <Icon icon={MenuIcon} color='neutral' />
-        </button>
         <Link href={'/dashboard'}>
           <Image
             src={icon}
@@ -26,6 +23,10 @@ export function AppNavbar({ user }: { user: User }) {
             priority
           />
         </Link>
+        <button onClick={() => ''}>
+          <span>More</span>
+          <Icon icon={Chevron} color='neutral' />
+        </button>
       </div>
       <nav className={classes.navigation}>
         <ul className={classes.listNav}>
