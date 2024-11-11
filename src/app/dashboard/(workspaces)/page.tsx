@@ -20,12 +20,15 @@ export default async function Dashboard() {
     })}>
       <div className={css({
         display: 'grid',
-        gridTemplateColumns: 3,
+        gridTemplateRows: 3,
         alignItems: 'center',
         '& h2': {
           fontSize: '3xl',
           fontWeight: 'bold',
           color: 'heading'
+        },
+        md: {
+          gridTemplateColumns: 3
         }
       })}>
         <h2>Workspaces</h2>
