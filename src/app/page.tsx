@@ -22,6 +22,7 @@ export default async function Home() {
       <main className={classes.root}>
         <Hero />
         {JSON.stringify(appInfo)}
+        {JSON.stringify(appInfo)}
       </main>
     </>
   )
