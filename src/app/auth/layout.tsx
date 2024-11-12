@@ -1,3 +1,5 @@
+'use client'
+
 import { AuthWithSocial, Background, Footer } from '@/components/auth'
 import { sleep } from '@/helpers'
 import { validateUser } from '@/services/auth'
