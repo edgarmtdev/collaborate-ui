@@ -15,6 +15,7 @@ export default async function Home() {
   const { isLoggedIn } = await validateUser()
   const appInfo = await fetch.get('/')
   console.log('🚀 ~ Home ~ appInfo:', appInfo)
+    console.log('🚀 ~ Home ~ appInfo ~ url:', Constant.API_URL)
   return (
     <>
       <Navbar isLoggedIn={isLoggedIn} />
