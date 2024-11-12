@@ -49,7 +49,7 @@ export function WorkspacesCollapsible({
     >
       <div className={classes.separator}>
         <Collapsible.Trigger asChild>
-          <button className={css({
+          <div className={css({
             display: 'flex',
             alignItems: 'center',
             cursor: 'pointer',
@@ -67,7 +67,7 @@ export function WorkspacesCollapsible({
               })}
             />
             <span>{title}</span>
-          </button>
+          </div>
         </Collapsible.Trigger>
       </div>
       <Collapsible.Content>

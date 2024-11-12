@@ -49,7 +49,7 @@ export const Toast = ({
         <RadixToast.Description className={classes.description}>
           {description}
         </RadixToast.Description>
-        <RadixToast.Close>
+        <RadixToast.Close asChild>
           <Button size='xs' variant='black'>
             Close
           </Button>

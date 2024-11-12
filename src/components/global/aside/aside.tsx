@@ -22,7 +22,15 @@ export function Aside() {
               open={open}
               onOpenChange={setOpen}
             >
-              <Collapsible.Trigger className={css({ w: '100%', display: 'flex', justifyContent: 'start', mb: 6 })}>
+              <Collapsible.Trigger
+                className={css({
+                  w: '100%',
+                  display: 'flex',
+                  justifyContent: 'start',
+                  mb: 6
+                })}
+                asChild
+              >
                 <div className={css({
                   py: 8,
                   px: 18,
