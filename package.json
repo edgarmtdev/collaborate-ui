@@ -6,7 +6,7 @@
     "prepare": "panda codegen",
     "dev": "next dev -p 4000",
     "build": "next build",
-    "start": "rm -r .next & next start",
+    "start": "rm -r .next & next start -p 4000",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "format": "next lint --fix && prettier '**/*.{json,yaml}' --write --ignore-path .gitignore",

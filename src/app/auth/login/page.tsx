@@ -1,6 +1,8 @@
+'use client'
+
 import { LoginForm } from '@/components/auth'
 
-export default async function Login() {
+export default function Login() {
   return (
     <LoginForm />
   )
