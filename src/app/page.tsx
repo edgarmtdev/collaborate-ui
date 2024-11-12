@@ -1,5 +1,6 @@
 import fetch from '@/api'
 import { Hero, Navbar } from '@/components/landing'
+import { Constant } from '@/const/Constant'
 import { validateUser } from '@/services/auth'
 import { css } from '~root/styled-system/css'
 
