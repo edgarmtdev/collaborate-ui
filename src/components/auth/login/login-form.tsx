@@ -1,5 +1,6 @@
 'use client'
 
+import { loginAction } from '@/app/actions/authActions'
 import { Alert, Button, InputIcon, Toast } from '@/components/ui'
 import { PadlockIcon, UserIcon } from '@/icons'
 import Link from 'next/link'
@@ -8,7 +9,6 @@ import styled from './login-form.styled'
 
 import { type Credentials } from '@/types/auth-types'
 import { type FormEvent } from 'react'
-import { loginService } from '@/services/auth'
 
 export function LoginForm() {
   const [credentials, setCredentials] = useState<Credentials>({ username: '', password: '' })
@@ -22,9 +22,11 @@ export function LoginForm() {
     event.preventDefault()
     setIsLoading(true)
     try {
-      const response = await loginService(credentials)
+      const response = await loginAction(credentials)
+      // PARSED
+      const parsedResponse = JSON.parse(JSON.stringify(response))
 
-      if (response.success) {
+      if (parsedResponse.success) {
         setError(null)
         setShowToast(true)
       }

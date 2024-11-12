@@ -6,5 +6,5 @@ import type { Credentials } from '@/types/auth-types.d'
 export async function loginAction(credentials: Credentials) {
   const response = await loginService(credentials)
 
-  return response
+  return JSON.parse(JSON.stringify(response))
 }
