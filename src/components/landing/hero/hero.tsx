@@ -1,5 +1,8 @@
 import { Button } from '@/components/ui'
 import { classes } from './hero.styled'
+import Image from 'next/image'
+
+import imgHero from '~root/public/mockup-landing.png'
 
 export function Hero() {
   return (
@@ -10,6 +13,9 @@ export function Hero() {
       <Button variant='black' size='lg'>
         Go for it
       </Button>
+      <figure className={classes.figure}>
+        <Image src={imgHero} fill alt='Hero image' />
+      </figure>
     </section>
   )
 }
