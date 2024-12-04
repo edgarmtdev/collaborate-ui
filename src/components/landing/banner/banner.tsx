@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import img from '~root/public/creative-landing.png'
+import img from '~root/public/dashboard-customize.png'
 import classes from './banner.styled'
 
 export function Banner() {

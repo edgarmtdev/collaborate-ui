@@ -3,5 +3,6 @@ export const aspectRatios = {
   landscape: { value: '4 / 3' },
   portrait: { value: '3 / 4' },
   video: { value: '16 / 9' },
-  ultrawide: { value: '18 / 5' }
+  ultrawide: { value: '18 / 5' },
+  mockMac: { value: '756 / 491' }
 }
