@@ -1,2 +1,5 @@
 export { Navbar } from './navigation'
 export { Hero } from './hero'
+export { Banner } from './banner'
+export { CallToAction } from './call-to-action'
+export { FamiliarTools } from './familiar-tools'

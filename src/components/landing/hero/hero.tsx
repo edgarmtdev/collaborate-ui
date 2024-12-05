@@ -2,7 +2,7 @@ import { Button } from '@/components/ui'
 import { classes } from './hero.styled'
 import Image from 'next/image'
 
-import imgHero from '~root/public/mockup-landing.png'
+import imgHero from '~root/public/main-mock.png'
 
 export function Hero() {
   return (
