@@ -6,7 +6,7 @@ export function Banner() {
   return (
     <section className={classes.container}>
       <figure className={classes.figure}>
-        <Image src={img} fill alt='Hero image' />
+        <Image src={img} fill alt='Hero image' loading='eager' priority />
       </figure>
       <div className={classes.paragraph}>
         <h2>Imagine the possibilities</h2>

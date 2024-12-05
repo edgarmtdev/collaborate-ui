@@ -11,7 +11,7 @@ export const classes = {
     backgroundImage: 'url("/background.svg")',
     backgroundPosition: 'bottom',
     backgroundRepeat: 'no-repeat',
-    zoom: '120%',
+    backgroundSize: '130vw',
     lg: {
       py: 48
     }
@@ -30,10 +30,16 @@ export const classes = {
   figure: css({
     pos: 'relative',
     w: '100%',
-    aspectRatio: 'landscape',
+    aspectRatio: '756 / 473',
+    shadow: 'lg',
     filter: 'dropShadow(5px 5px 10px #000000)',
+    rounded: 10,
+    '& img': {
+      objectFit: 'cover',
+      rounded: 10
+    },
     lg: {
-      w: '1/3'
+      w: '1/2'
     }
   })
 }
