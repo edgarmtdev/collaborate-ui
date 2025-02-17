@@ -18,3 +18,7 @@ export async function validateUser() {
 
   return { isLoggedIn: true, user: res }
 }
+
+export async function logoutService() {
+  await fetch.post('/auth/logout')
+}
