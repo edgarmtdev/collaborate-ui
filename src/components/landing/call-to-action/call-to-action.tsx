@@ -26,19 +26,26 @@ export function CallToAction() {
 }
 
 const classes = {
-  bgRoot: css({ backgroundColor: '#151515', color: 'white' }),
+  bgRoot: css({ backgroundColor: '#151515', color: 'white', px: 12 }),
   container: css({
     maxWidth: 'breakpoint-2xl',
     mx: 'auto',
     py: 64,
+    display: 'flex',
+    flexDir: 'column',
+    gap: 48,
     '& h2': {
-      fontSize: '4xl',
+      fontSize: '2xl',
       fontWeight: 'extraBold',
       mb: 32
     },
     '& p': {
-      fontSize: 'xl',
+      fontSize: 'lg',
       mb: 32
+    },
+    lg: {
+      '& h2': { fontSize: '4xl' },
+      '& p': { fontSize: 'xl' }
     }
   }),
   figure: css({
