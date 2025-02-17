@@ -6,23 +6,23 @@ export const classes = {
     flexDir: 'column',
     gap: 48,
     py: 64,
-    px: 24,
+    px: 12,
     alignItems: 'center',
-    backgroundImage: 'url("/background.svg")',
-    backgroundPosition: 'bottom',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: '130vw',
-    lg: {
+    md: {
+      backgroundImage: 'url("/background.svg")',
+      backgroundPosition: 'bottom',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: '130vw',
       py: 48
     }
   }),
 
   h1: css({
-    fontSize: '2xl',
+    fontSize: '3xl',
     fontWeight: 'extraBold',
     textAlign: 'center',
-    color: 'white',
     md: {
+      color: 'white',
       fontSize: '5xl'
     }
   }),
