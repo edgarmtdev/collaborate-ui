@@ -61,5 +61,35 @@ export default {
       display: 'none',
       lg: { display: 'block' }
     }
+  }),
+  userButton: css({
+    display: 'flex',
+    gap: 8,
+    alignItems: 'center',
+    color: 'heading',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    '& p': {
+      display: 'none',
+      lg: { display: 'block' }
+    }
+  }),
+  dropdownContent: css({
+    minWidth: 200,
+    py: 12,
+    px: 16,
+    bg: 'white',
+    border: '1px',
+    borderColor: 'coolGray.200',
+    rounded: 8,
+    shadow: 'md',
+    zIndex: 'dropdown'
+  }),
+  dropdownItem: css({
+    py: 8,
+    px: 6,
+    color: 'coolGray.900',
+    fontWeight: 'bold',
+    cursor: 'pointer'
   })
 }

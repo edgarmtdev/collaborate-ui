@@ -5,23 +5,19 @@ import { Chevron } from '@/icons'
 import Image from 'next/image'
 import Link from 'next/link'
 import classes from './app-navbar.styled'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
 import icon from '~root/public/icon.svg'
 
 import { type User } from '@/types/user-types'
+import { logoutService } from '@/services/auth'
 
 export function AppNavbar({ user }: { user: User }) {
   return (
     <header className={classes.headerRoot}>
       <div className={classes.iconSection}>
         <Link href={'/dashboard'}>
-          <Image
-            src={icon}
-            alt='icon'
-            height={36}
-            loading='eager'
-            priority
-          />
+          <Image src={icon} alt='icon' height={36} loading='eager' priority />
         </Link>
         <button onClick={() => ''}>
           <span>More</span>
@@ -30,19 +26,48 @@ export function AppNavbar({ user }: { user: User }) {
       </div>
       <nav className={classes.navigation}>
         <ul className={classes.listNav}>
-          <li><Link href={'/dashboard'}>Workspaces</Link></li>
-          <li><Link href={'/dashboard'}>Help</Link></li>
+          <li>
+            <Link href={'/dashboard'}>Workspaces</Link>
+          </li>
+          <li>
+            <Link href={'/dashboard'}>Help</Link>
+          </li>
         </ul>
         <div className={classes.userAvatar}>
-          <Avatar
-            as='span'
-            src={user.avatarURL}
-            fallback={user ? formatAvatarFallback(user.name, user.lastname) : 'A'}
-            bgColor='cardinal.600'
-            size='sm'
-            radius='full'
-          />
-          <p>{user?.username}</p>
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger asChild>
+              <button className={classes.userButton}>
+                <Avatar
+                  as='span'
+                  src={user.avatarURL}
+                  fallback={
+                    user ? formatAvatarFallback(user.name, user.lastname) : 'A'
+                  }
+                  bgColor='cardinal.600'
+                  size='sm'
+                  radius='full'
+                />
+                <p>{user?.username}</p>
+              </button>
+            </DropdownMenu.Trigger>
+
+            <DropdownMenu.Portal>
+              <DropdownMenu.Content sideOffset={5} className={classes.dropdownContent}>
+                <DropdownMenu.Group>
+                  <DropdownMenu.Item onSelect={() => ''} className={classes.dropdownItem}>Profile</DropdownMenu.Item>
+                  <DropdownMenu.Item onSelect={() => ''} className={classes.dropdownItem}>Settings</DropdownMenu.Item>
+                  <DropdownMenu.Item
+                    onSelect={() => {
+                      logoutService()
+                    }}
+                    className={classes.dropdownItem}
+                  >
+                    Sign out
+                  </DropdownMenu.Item>
+                </DropdownMenu.Group>
+              </DropdownMenu.Content>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Root>
         </div>
       </nav>
     </header>

@@ -34,7 +34,6 @@ export async function post(path: string, data?: unknown) {
         ...getHeaders()
       }
     })
-    console.log('🚀 ~ post ~ response:', response)
 
     if (response.ok && response.headers.get('Set-Cookie')) {
       setAuthCookie(response)
@@ -42,7 +41,6 @@ export async function post(path: string, data?: unknown) {
 
     return response.json()
   } catch (error) {
-    console.log('🚀 ~ post ~ error:', error)
     return error
   }
 }
