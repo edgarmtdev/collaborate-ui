@@ -32,7 +32,8 @@ export async function post(path: string, data?: unknown) {
       method: 'POST',
       headers: {
         ...getHeaders()
-      }
+      },
+      credentials: 'include'
     })
 
     if (response.ok && response.headers.get('Set-Cookie')) {

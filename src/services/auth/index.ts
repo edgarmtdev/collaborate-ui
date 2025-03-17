@@ -20,5 +20,6 @@ export async function validateUser() {
 }
 
 export async function logoutService() {
-  await fetch.post('/auth/logout')
+  const res = await fetch.post('/auth/logout')
+  return res
 }
