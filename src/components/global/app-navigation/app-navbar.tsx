@@ -10,7 +10,7 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import icon from '~root/public/icon.svg'
 
 import { type User } from '@/types/user-types'
-import { logoutService } from '@/services/auth'
+import { logoutAction } from '@/app/actions/authActions'
 
 export function AppNavbar({ user }: { user: User }) {
   return (
@@ -19,7 +19,7 @@ export function AppNavbar({ user }: { user: User }) {
         <Link href={'/dashboard'}>
           <Image src={icon} alt='icon' height={36} loading='eager' priority />
         </Link>
-        <button onClick={() => ''}>
+        <button>
           <span>More</span>
           <Icon icon={Chevron} color='neutral' />
         </button>
@@ -57,8 +57,9 @@ export function AppNavbar({ user }: { user: User }) {
                   <DropdownMenu.Item onSelect={() => ''} className={classes.dropdownItem}>Profile</DropdownMenu.Item>
                   <DropdownMenu.Item onSelect={() => ''} className={classes.dropdownItem}>Settings</DropdownMenu.Item>
                   <DropdownMenu.Item
-                    onSelect={() => {
-                      logoutService()
+                    onSelect={async () => {
+                      const response = await logoutAction()
+                      console.log(response)
                     }}
                     className={classes.dropdownItem}
                   >
