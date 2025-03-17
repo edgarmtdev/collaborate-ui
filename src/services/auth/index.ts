@@ -13,10 +13,10 @@ export async function validateUser() {
   const res = await fetch.get('/auth/validate')
 
   if (!res.id) {
-    return { isLoggedIn: false, message: res.message }
+    return JSON.parse(JSON.stringify({ isLoggedIn: false, message: res.message }))
   }
 
-  return { isLoggedIn: true, user: res }
+  return JSON.parse(JSON.stringify({ isLoggedIn: true, message: res.message }))
 }
 
 export async function logoutService() {
