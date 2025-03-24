@@ -16,34 +16,35 @@ export async function get(path: string) {
       }
     })
 
+    if (!response.ok) {
+      throw new Error(JSON.stringify(response))
+    }
+
     return response.json()
   } catch (error) {
-    if (error instanceof Error) {
-      return new Error('An error ocurred', { cause: error })
-    }
     return error
   }
 }
 
 export async function post(path: string, data?: unknown) {
-  try {
-    const response = await fetch(`${Constant.API_URL}${path}`, {
-      body: JSON.stringify(data),
-      method: 'POST',
-      headers: {
-        ...getHeaders()
-      },
-      credentials: 'include'
-    })
+  const response = await fetch(`${Constant.API_URL}${path}`, {
+    body: JSON.stringify(data),
+    method: 'POST',
+    headers: {
+      ...getHeaders()
+    },
+    credentials: 'include'
+  })
 
-    if (response.ok && response.headers.get('Set-Cookie')) {
-      setAuthCookie(response)
-    }
-
-    return response.json()
-  } catch (error) {
-    return error
+  if (!response.ok) {
+    throw new Error(JSON.stringify(await response.json()))
   }
+
+  if (response.headers.get('Set-Cookie')) {
+    setAuthCookie(response)
+  }
+
+  return response.json()
 }
 
 export async function put(path: string, data?: unknown) {

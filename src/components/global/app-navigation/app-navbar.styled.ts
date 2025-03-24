@@ -75,21 +75,30 @@ export default {
     }
   }),
   dropdownContent: css({
-    minWidth: 200,
-    py: 12,
-    px: 16,
+    p: 4,
+    minWidth: 220,
     bg: 'white',
     border: '1px',
-    borderColor: 'coolGray.200',
-    rounded: 8,
-    shadow: 'md',
+    borderColor: 'coolGray.25',
+    borderStyle: 'solid',
+    rounded: 4,
+    shadow: 'xl',
     zIndex: 'dropdown'
   }),
   dropdownItem: css({
-    py: 8,
-    px: 6,
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+    py: 10,
+    px: 16,
     color: 'coolGray.900',
     fontWeight: 'bold',
-    cursor: 'pointer'
+    fontSize: 'sm',
+    cursor: 'pointer',
+    '&:hover': {
+      bg: 'secondary.50'
+    },
+    rounded: 4
+
   })
 }

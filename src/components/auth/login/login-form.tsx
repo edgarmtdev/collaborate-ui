@@ -32,7 +32,21 @@ export function LoginForm() {
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      setError(error?.message || 'An error ocurred')
+      let errorMessage = 'An error occurred'
+
+      // Si el error es un objeto con un mensaje, extraemos ese mensaje
+      if (error && error.message) {
+        try {
+          // Si el mensaje tiene formato JSON, lo parseamos
+          const errorResponse = JSON.parse(error.message)
+          errorMessage = errorResponse?.message || 'An error occurred'
+        } catch (jsonError) {
+          // Si el JSON no es válido, solo usamos el mensaje original
+          errorMessage = error.message
+        }
+      }
+
+      setError(errorMessage)
     } finally {
       setIsLoading(false)
     }
