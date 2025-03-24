@@ -16,7 +16,7 @@ export async function validateUser() {
     return JSON.parse(JSON.stringify({ isLoggedIn: false, message: res.message }))
   }
 
-  return JSON.parse(JSON.stringify({ isLoggedIn: true, message: res.message }))
+  return JSON.parse(JSON.stringify({ isLoggedIn: true, user: res }))
 }
 
 export async function logoutService() {

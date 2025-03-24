@@ -1,7 +1,7 @@
 'use client'
 
 import { Avatar, Icon } from '@/components/ui'
-import { Chevron } from '@/icons'
+import { Chevron, Settings, UserIcon } from '@/icons'
 import Image from 'next/image'
 import Link from 'next/link'
 import classes from './app-navbar.styled'
@@ -11,6 +11,7 @@ import icon from '~root/public/icon.svg'
 
 import { type User } from '@/types/user-types'
 import { logoutAction } from '@/app/actions/authActions'
+import { LogoutIcon } from '@/icons/logout'
 
 export function AppNavbar({ user }: { user: User }) {
   return (
@@ -39,7 +40,7 @@ export function AppNavbar({ user }: { user: User }) {
               <button className={classes.userButton}>
                 <Avatar
                   as='span'
-                  src={user.avatarURL}
+                  src={user?.avatarURL}
                   fallback={
                     user ? formatAvatarFallback(user.name, user.lastname) : 'A'
                   }
@@ -52,10 +53,16 @@ export function AppNavbar({ user }: { user: User }) {
             </DropdownMenu.Trigger>
 
             <DropdownMenu.Portal>
-              <DropdownMenu.Content sideOffset={5} className={classes.dropdownContent}>
+              <DropdownMenu.Content sideOffset={5} className={classes.dropdownContent} align='end'>
                 <DropdownMenu.Group>
-                  <DropdownMenu.Item onSelect={() => ''} className={classes.dropdownItem}>Profile</DropdownMenu.Item>
-                  <DropdownMenu.Item onSelect={() => ''} className={classes.dropdownItem}>Settings</DropdownMenu.Item>
+                  <DropdownMenu.Item onSelect={() => ''} className={classes.dropdownItem}>
+                    <Icon icon={UserIcon} color='neutral' />
+                    Profile
+                  </DropdownMenu.Item>
+                  <DropdownMenu.Item onSelect={() => ''} className={classes.dropdownItem}>
+                    <Icon icon={Settings} color='neutral' />
+                    Settings
+                  </DropdownMenu.Item>
                   <DropdownMenu.Item
                     onSelect={async () => {
                       const response = await logoutAction()
@@ -63,6 +70,7 @@ export function AppNavbar({ user }: { user: User }) {
                     }}
                     className={classes.dropdownItem}
                   >
+                    <Icon icon={LogoutIcon} color='neutral' />
                     Sign out
                   </DropdownMenu.Item>
                 </DropdownMenu.Group>
