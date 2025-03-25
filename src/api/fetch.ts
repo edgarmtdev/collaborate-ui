@@ -26,7 +26,7 @@ export async function get(path: string) {
   }
 }
 
-export async function post(path: string, data?: unknown) {
+export async function post<T>(path: string, data?: unknown): Promise<T> {
   const response = await fetch(`${Constant.API_URL}${path}`, {
     body: JSON.stringify(data),
     method: 'POST',
@@ -40,7 +40,8 @@ export async function post(path: string, data?: unknown) {
     throw new Error(JSON.stringify(await response.json()))
   }
 
-  if (response.headers.get('Set-Cookie')) {
+  // Solo guardar la cookie si NO es un logout
+  if (!path.includes('/logout') && response.headers.get('Set-Cookie')) {
     setAuthCookie(response)
   }
 
