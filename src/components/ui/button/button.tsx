@@ -11,10 +11,14 @@ export type RecipeButtonProps = RecipeVariantProps<typeof button>
 export type ButtonProps = { loading?: boolean } & RecipeButtonProps &
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof RecipeButtonProps>
 
-export const Button = ({ variant, size, loading, className, children }: ButtonProps) => {
+export const Button = ({ variant, size, loading, className, children, ...rest }: ButtonProps) => {
   const styles = button({ variant, size })
   return (
-    <button className={cx(styles, className)} disabled={loading}>
+    <button
+      className={cx(styles, className)}
+      disabled={loading || rest.disabled}
+      {...rest}
+    >
       {loading
         ? <Icon icon={LoaderIcon} className='button-loader' />
         : children
