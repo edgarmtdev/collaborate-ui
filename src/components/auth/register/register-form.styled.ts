@@ -17,9 +17,6 @@ export default {
     },
     '& label': {
       fontWeight: 'medium'
-    },
-    '& .email-input': {
-      mb: 64
     }
   }),
   backToLogin: css({

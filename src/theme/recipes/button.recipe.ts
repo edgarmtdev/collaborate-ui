@@ -9,7 +9,7 @@ export const button = defineRecipe({
     cursor: 'pointer',
     boxShadow: 'sm',
     _hover: {
-      opacity: 0.9
+      opacity: 0.8
     },
     display: 'flex',
     alignItems: 'center',
@@ -33,6 +33,10 @@ export const button = defineRecipe({
     variant: {
       primary: {
         bg: 'secondary.950',
+        color: 'white'
+      },
+      secondary: {
+        backgroundColor: 'coolGray.700',
         color: 'white'
       },
       monocrom: {

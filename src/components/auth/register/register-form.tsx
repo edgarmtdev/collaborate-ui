@@ -1,7 +1,7 @@
 'use client'
 
-import { Button, InputIcon } from '@/components/ui'
-import { UserIcon } from '@/icons'
+import { Button, Input, InputIcon } from '@/components/ui'
+import { PadlockIcon, UserIcon } from '@/icons'
 import Link from 'next/link'
 import { useRegisterContext } from './context/register-ctx'
 import styled from './register-form.styled'
@@ -12,6 +12,8 @@ export function RegisterForm() {
   const {
     handleSubmit,
     handleChange,
+    registerData,
+    error,
     currentStep,
     handleNextStep,
     handlePrevStep
@@ -34,6 +36,9 @@ export function RegisterForm() {
             placeholder='Write your email'
             icon={UserIcon}
             onChange={handleChange}
+            value={registerData.email}
+            required
+            variant={error ? 'error' : 'main'}
           />
         </div>
       )}
@@ -41,22 +46,24 @@ export function RegisterForm() {
         <>
           <div>
             <label htmlFor='username'>Name:</label>
-            <InputIcon
+            <Input
               type='text'
               name='name'
               placeholder='What is your name?'
-              icon={UserIcon}
               onChange={handleChange}
+              value={registerData.name}
+              color={error ? 'error' : 'main'}
             />
           </div>
           <div>
             <label htmlFor='username'>Username:</label>
-            <InputIcon
+            <Input
               type='text'
               name='username'
               placeholder='What is your username?'
-              icon={UserIcon}
               onChange={handleChange}
+              value={registerData.username}
+              color={error ? 'error' : 'main'}
             />
           </div>
         </>
@@ -69,8 +76,10 @@ export function RegisterForm() {
               type='password'
               name='password'
               placeholder='Write your password'
-              icon={UserIcon}
+              icon={PadlockIcon}
               onChange={handleChange}
+              value={registerData.password}
+              variant={error ? 'error' : 'main'}
             />
           </div>
           <div>
@@ -79,8 +88,10 @@ export function RegisterForm() {
               type='password'
               name='confirmPassword'
               placeholder='Confirm your password'
-              icon={UserIcon}
+              icon={PadlockIcon}
               onChange={handleChange}
+              value={registerData.confirmPassword}
+              variant={error ? 'error' : 'main'}
             />
           </div>
         </>
@@ -90,7 +101,7 @@ export function RegisterForm() {
           currentStep > 1
             ? styled.buttonContainer
             : css({ display: 'grid', gridTemplateColumns: '1fr' }),
-          css({ mt: 24 })
+          css({ mt: 48 })
         )}
       >
         {currentStep > 1 && (
@@ -98,7 +109,7 @@ export function RegisterForm() {
             type='button'
             width='full'
             onClick={handlePrevStep}
-            variant='black'
+            variant='secondary'
           >
             Back
           </Button>
@@ -109,9 +120,11 @@ export function RegisterForm() {
               type='button'
               width='full'
               variant='primary'
-              onClick={(e) => handleSubmit(e as unknown as FormEvent<HTMLFormElement>)}
+              onClick={(e) =>
+                handleSubmit(e as unknown as FormEvent<HTMLFormElement>)
+              }
             >
-              Register
+            Register
             </Button>
           )
           : (
@@ -121,7 +134,7 @@ export function RegisterForm() {
               onClick={handleNextStep}
               variant='primary'
             >
-              Next
+            Next
             </Button>
           )}
       </div>

@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react'
+import React, { createContext, use, useContext, useEffect, useState } from 'react'
 
 type RegisterData = {
   email: string
@@ -13,6 +13,8 @@ export type RegisterContextType = {
   setRegisterData: React.Dispatch<React.SetStateAction<RegisterData>>,
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  error: string | null
+  loading: boolean
   currentStep: number
   handleNextStep: () => void
   handlePrevStep: () => void
@@ -22,7 +24,7 @@ export type RegisterContextType = {
 export const RegisterContext = createContext<RegisterContextType | null>(null)
 
 export const RegisterProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [registerData, setRegisterData] = React.useState({
+  const [registerData, setRegisterData] = useState({
     email: '',
     name: '',
     username: '',
@@ -30,16 +32,19 @@ export const RegisterProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     confirmPassword: ''
   })
 
-  const [currentStep, setCurrentStep] = React.useState(1)
+  const [currentStep, setCurrentStep] = useState(1)
   const totalSteps = 3
+
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
 
   const handleNextStep = () => {
     if (currentStep === 1 && !registerData.email) {
-      alert('Por favor, introduce tu correo electrónico.')
+      setError('Please, enter your email.')
       return
     }
     if (currentStep === 2 && (!registerData.name || !registerData.username)) {
-      alert('Por favor, introduce tu nombre y nombre de usuario.')
+      setError('Please, enter your name and username.')
       return
     }
 
@@ -47,6 +52,14 @@ export const RegisterProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       setCurrentStep((prev) => prev + 1)
     }
   }
+
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => {
+        setError(null)
+      }, 1500)
+    }
+  }, [error])
 
   const handlePrevStep = () => {
     if (currentStep > 1) {
@@ -76,6 +89,8 @@ export const RegisterProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     setRegisterData,
     handleSubmit,
     handleChange,
+    error,
+    loading,
     currentStep,
     handleNextStep,
     handlePrevStep,
