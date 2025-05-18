@@ -1,4 +1,4 @@
-export interface Board {
+export interface BoardType {
   id: number
   uuid: string
   name: string

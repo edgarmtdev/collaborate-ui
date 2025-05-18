@@ -1,3 +1,5 @@
+import { BoardType } from "./board-types"
+
 export type Workspace = {
   id: number
   uuid: string
@@ -5,4 +7,5 @@ export type Workspace = {
   createdAt: Date | string
   ownerId?: string
   backgroundUrl?: string
+  boards: BoardType[]
 }

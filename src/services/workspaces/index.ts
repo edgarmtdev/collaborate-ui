@@ -5,6 +5,7 @@ export async function getWorkspaces(): Promise<Workspace[]> {
   return await get('/workspaces')
 }
 
-export async function getWorkspaceByUuid(uuid: string): Promise<Workspace> {
-  return await get(`/workspaces/${uuid}`)
+export async function getWorkspaceByUuid(uuid: string) {
+  const workspace = await get(`/workspaces/${uuid}`)
+  return JSON.parse(JSON.stringify(workspace));
 }
