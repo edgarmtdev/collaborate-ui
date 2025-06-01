@@ -1,5 +1,9 @@
+import { Board } from '@/components/boards'
 import { getWorkspaceByUuid } from '@/services/workspaces'
+import { Workspace } from '@/types/workspace-types'
+import Image from 'next/image'
 import { css } from '~root/styled-system/css'
+import { WorkspaceHeader } from './components'
 
 type Props = {
   params: { uuid: string }
@@ -8,9 +12,22 @@ type Props = {
 export default async function WorkspacePage({ params }: Props) {
   const { uuid } = params
 
-  const workspace = await getWorkspaceByUuid(uuid)
+  const workspace: Workspace = await getWorkspaceByUuid(uuid)
 
   return (
-    <div className={css({ mt: 80 })}>{workspace.name}</div>
+    <div className={css({ mt: 64 })}>
+      {workspace?.backgroundUrl &&
+        <div className={css({ width: '100%', minHeight: '100vh', position: 'absolute', top: 0 })}>
+          <Image fill alt={workspace?.name} src={workspace.backgroundUrl} objectFit='cover' objectPosition='center' />
+          <div className={css({ width: '100%', minH: '100vh', backgroundColor: 'coolGray.900/80', position: 'absolute' })} />
+        </div>
+      }
+      <WorkspaceHeader workspace={workspace} />
+      <div className={css({ position: 'relative', display: 'flex', gap: 32, p: 32 })}>
+        {workspace.boards.map((board) => (
+          <Board key={board.id} board={board} />
+        ))}
+      </div>
+    </div>
   )
 }
