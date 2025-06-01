@@ -1,9 +1,9 @@
 import { Board } from '@/components/boards'
 import { getWorkspaceByUuid } from '@/services/workspaces'
-import { BoardType } from '@/types/board-types'
 import { Workspace } from '@/types/workspace-types'
 import Image from 'next/image'
 import { css } from '~root/styled-system/css'
+import { WorkspaceHeader } from './components'
 
 type Props = {
   params: { uuid: string }
@@ -22,9 +22,7 @@ export default async function WorkspacePage({ params }: Props) {
           <div className={css({ width: "100%", minH: "100vh", backgroundColor: "coolGray.900/80", position: "absolute" })} />
         </div>
       }
-      <div className={css({ color: "white", position: "relative", backgroundColor: "coolGray.900/80", p: 16, fontSize: "lg", fontWeight: "semibold" })}>
-        <h3>{workspace?.name}</h3>
-      </div>
+      <WorkspaceHeader workspace={workspace} />
       <div className={css({ position: "relative", display: "flex", gap: 32, p: 32 })}>
         {workspace.boards.map((board) => (
           <Board key={board.id} board={board} />
