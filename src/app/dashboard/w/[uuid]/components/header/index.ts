@@ -1,1 +1,1 @@
-export { WorkspaceHeader } from "./workspace-header"
+export { WorkspaceHeader } from './workspace-header'

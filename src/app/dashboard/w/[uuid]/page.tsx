@@ -17,13 +17,13 @@ export default async function WorkspacePage({ params }: Props) {
   return (
     <div className={css({ mt: 64 })}>
       {workspace?.backgroundUrl &&
-        <div className={css({ width: "100%", minHeight: "100vh", position: "absolute", top: 0 })}>
+        <div className={css({ width: '100%', minHeight: '100vh', position: 'absolute', top: 0 })}>
           <Image fill alt={workspace?.name} src={workspace.backgroundUrl} objectFit='cover' objectPosition='center' />
-          <div className={css({ width: "100%", minH: "100vh", backgroundColor: "coolGray.900/80", position: "absolute" })} />
+          <div className={css({ width: '100%', minH: '100vh', backgroundColor: 'coolGray.900/80', position: 'absolute' })} />
         </div>
       }
       <WorkspaceHeader workspace={workspace} />
-      <div className={css({ position: "relative", display: "flex", gap: 32, p: 32 })}>
+      <div className={css({ position: 'relative', display: 'flex', gap: 32, p: 32 })}>
         {workspace.boards.map((board) => (
           <Board key={board.id} board={board} />
         ))}

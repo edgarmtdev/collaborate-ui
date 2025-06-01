@@ -1,4 +1,4 @@
-import { BoardType } from "./board-types"
+import { BoardType } from './board-types'
 
 export type Workspace = {
   id: number
