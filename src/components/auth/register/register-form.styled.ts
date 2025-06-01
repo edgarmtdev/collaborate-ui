@@ -17,9 +17,6 @@ export default {
     },
     '& label': {
       fontWeight: 'medium'
-    },
-    '& .email-input': {
-      mb: 64
     }
   }),
   backToLogin: css({
@@ -30,5 +27,11 @@ export default {
       color: 'primary.800',
       _hover: { textDecoration: 'underline' }
     }
+  }),
+  buttonContainer: css({
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: 16,
+    alignItems: 'center'
   })
 }
