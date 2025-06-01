@@ -16,7 +16,11 @@ export const Button = forwardRef<
   ButtonProps
 >(({ className, loading, children, ...props }, ref) => {
   return (
-    <button className={cx(styles, className)} disabled={loading}>
+    <button
+      ref={ref}
+      className={cx(button({ ...props }), className)}
+      {...props}
+    >
       {loading
         ? (
           <Icon icon={LoaderIcon} className='animate-spin' />
