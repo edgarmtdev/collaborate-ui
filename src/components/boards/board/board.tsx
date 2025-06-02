@@ -1,14 +1,23 @@
-import { BoardType } from '@/types/board-types'
-import { css } from '~root/styled-system/css'
+import { Button } from '@/components/ui'
+import styles from './styles'
+
+import { type BoardType } from '@/types/board-types'
 
 export function Board({ board }: { board: BoardType }) {
   return (
-    <div className={css({ backgroundColor: 'white', width: 272, maxH: '100%', borderRadius: 10, boxShadow: 'md' })}>
-      <section className={css({ backgroundColor: 'primary.700/90', blur: 10, p: 14, borderTopLeftRadius: 10, borderTopRightRadius: 8, color: 'white' })}>
-        <h2 className={css({ fontWeight: 'semibold', fontSize: 'lg' })}>{board.name}</h2>
+    <div className={styles.board}>
+      <section className={styles.header}>
+        <h2 className={styles.title}>{board.name}</h2>
       </section>
-      <section className={css({ p: 14 })}>
-        <p className='text-sm text-gray-500'>Created at: {new Date(board.createdAt).toLocaleDateString()}</p>
+      <section className={styles.content}>
+        <div>
+          <p>Created at: {new Date(board.createdAt).toLocaleDateString()}</p>
+        </div>
+        {/* <div>
+          <Button variant="monocrom">
+            Add Task
+          </Button>
+        </div> */}
       </section>
     </div>
   )

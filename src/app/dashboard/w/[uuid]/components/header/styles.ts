@@ -4,7 +4,7 @@ export default {
   root: css({
     color: 'white',
     position: 'relative',
-    backgroundColor: 'coolGray.900/80',
+    backgroundColor: 'black/80',
     p: 16,
     fontSize: 'lg',
     fontWeight: 'semibold',

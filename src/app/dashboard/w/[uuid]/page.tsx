@@ -15,19 +15,38 @@ export default async function WorkspacePage({ params }: Props) {
   const workspace: Workspace = await getWorkspaceByUuid(uuid)
 
   return (
-    <div className={css({ mt: 64 })}>
+    <>
       {workspace?.backgroundUrl &&
-        <div className={css({ width: '100%', minHeight: '100vh', position: 'absolute', top: 0 })}>
+        <div className={css({ width: '100vw', minHeight: '100vh', position: 'fixed', top: 0 })}>
           <Image fill alt={workspace?.name} src={workspace.backgroundUrl} objectFit='cover' objectPosition='center' />
-          <div className={css({ width: '100%', minH: '100vh', backgroundColor: 'coolGray.900/80', position: 'absolute' })} />
+          <div className={css({ width: '100vw', minH: '100vh', backgroundColor: 'black/50', position: 'absolute' })} />
         </div>
       }
-      <WorkspaceHeader workspace={workspace} />
-      <div className={css({ position: 'relative', display: 'flex', gap: 32, p: 32 })}>
-        {workspace.boards.map((board) => (
-          <Board key={board.id} board={board} />
-        ))}
-      </div>
-    </div>
+      <section className={css({
+        display: 'flex',
+        flexDirection: 'column',
+        position: 'relative',
+        w: '100%',
+        height: '100%',
+        mt: 62
+      })}>
+        <WorkspaceHeader workspace={workspace} />
+        <div className={css({ height: '100%', display: 'flex', flexDirection: 'column', overflowX: 'auto' })}>
+          <ol className={css({ position: 'relative', p: 32, height: '100%', display: 'flex', flexDirection: 'row' })}>
+            {workspace.boards.map((board) => (
+              <li className={css({
+                display: 'block',
+                alignSelf: 'flex-start',
+                height: '100%',
+                whiteSpace: 'nowrap',
+                paddingX: 10
+              })}>
+                <Board key={board.id} board={board} />
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    </>
   )
 }

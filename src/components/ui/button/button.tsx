@@ -1,6 +1,6 @@
 import { LoaderIcon } from '@/icons'
 import { ButtonHTMLAttributes, forwardRef } from 'react'
-import { cx } from '~root/styled-system/css'
+import { css, cx } from '~root/styled-system/css'
 import { button } from '~root/styled-system/recipes'
 import { Icon } from '../icon'
 
@@ -23,7 +23,7 @@ export const Button = forwardRef<
     >
       {loading
         ? (
-          <Icon icon={LoaderIcon} className='animate-spin' />
+          <Icon icon={LoaderIcon} className={css({ animation: 'spin 1s linear infinite' })} />
         )
         : (
           children
