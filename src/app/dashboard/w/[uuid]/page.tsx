@@ -32,7 +32,7 @@ export default async function WorkspacePage({ params }: Props) {
       })}>
         <WorkspaceHeader workspace={workspace} />
         <div className={css({ height: '100%', display: 'flex', flexDirection: 'column', overflowX: 'auto' })}>
-          <ol className={css({ position: 'relative', p: 32, height: "100%", display: 'flex', flexDirection: 'row' })}>
+          <ol className={css({ position: 'relative', p: 32, height: '100%', display: 'flex', flexDirection: 'row' })}>
             {workspace.boards.map((board) => (
               <li className={css({
                 display: 'block',
