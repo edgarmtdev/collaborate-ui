@@ -42,44 +42,46 @@ export function AppNavbar({ user, pendingInvitations }: AppNavbarProps) {
                 <button
                   className={css({
                     pos: 'relative',
-                    cursor: 'pointer',
+                    cursor: 'pointer'
                   })}
                 >
                   <Icon icon={BellIcon} color='neutral' />
-                  {(pendingInvitations && pendingInvitations.length > 0) ?
-                    <span className={classes.bulletNotification} />
+                  {(pendingInvitations && pendingInvitations.length > 0)
+                    ? <span className={classes.bulletNotification} />
                     : null}
                 </button>
               </DropdownMenu.Trigger>
               <DropdownMenu.Portal>
                 <DropdownMenu.Content sideOffset={5} className={classes.dropdownContent} align='end'>
-                  {pendingInvitations && pendingInvitations.length > 0 ? (
-                    pendingInvitations.map((invitation) => (
-                      <DropdownMenu.Item key={invitation.id} onSelect={() => ''} className={classes.dropdownItem}>
-                        <Avatar
-                          as='span'
-                          src={invitation.workspace.owner.avatarURL}
-                          fallback={formatAvatarFallback(invitation.workspace.owner.name, invitation.workspace.owner.lastname)}
-                          bgColor='primary.700'
-                          size='md'
-                          radius='full'
-                        />
-                        <div>
-                          <p className={classes.dropdownTitle}>
-                            {invitation.workspace.owner.name} {invitation.workspace.owner.lastname}
-                          </p>
-                          <p className={classes.dropdownSubtitle}>
+                  {pendingInvitations && pendingInvitations.length > 0
+                    ? (
+                      pendingInvitations.map((invitation) => (
+                        <DropdownMenu.Item key={invitation.id} onSelect={() => ''} className={classes.dropdownItem}>
+                          <Avatar
+                            as='span'
+                            src={invitation.workspace.owner.avatarURL}
+                            fallback={formatAvatarFallback(invitation.workspace.owner.name, invitation.workspace.owner.lastname)}
+                            bgColor='primary.700'
+                            size='md'
+                            radius='full'
+                          />
+                          <div>
+                            <p className={classes.dropdownTitle}>
+                              {invitation.workspace.owner.name} {invitation.workspace.owner.lastname}
+                            </p>
+                            <p className={classes.dropdownSubtitle}>
                             New invitation to join workspace <strong>{invitation.workspace.name}</strong>
-                          </p>
-                        </div>
-                      </DropdownMenu.Item>
-                    ))
-                  ) : (
-                    <DropdownMenu.Item onSelect={() => ''} className={classes.dropdownItem}>
-                      <Icon icon={BellIcon} color='neutral' />
+                            </p>
+                          </div>
+                        </DropdownMenu.Item>
+                      ))
+                    )
+                    : (
+                      <DropdownMenu.Item onSelect={() => ''} className={classes.dropdownItem}>
+                        <Icon icon={BellIcon} color='neutral' />
                       No new notifications
-                    </DropdownMenu.Item>
-                  )}
+                      </DropdownMenu.Item>
+                    )}
                 </DropdownMenu.Content>
               </DropdownMenu.Portal>
             </DropdownMenu.Root>

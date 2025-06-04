@@ -12,6 +12,6 @@ export async function sendInvitation(data: SendInvitationWorkspace) {
 }
 
 export async function acceptInvitation(token: string) {
-  const response = await patch(`/invitations/accept-invitation`, { token })
+  const response = await patch('/invitations/accept-invitation', { token })
   return response
 }

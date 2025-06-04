@@ -1,8 +1,15 @@
-import { User } from "./user-types";
+import { User } from './user-types'
 
 export interface SendInvitationWorkspace {
   email: string;
   workspaceUuid: string;
+}
+
+export interface WorkspaceInvitation {
+  owner: User
+  id: number
+  name: string
+  uuid: string
 }
 export interface InvitationWorkspace {
   id: number
@@ -13,12 +20,3 @@ export interface InvitationWorkspace {
   status: string
   workspace: WorkspaceInvitation
 }
-
-export interface WorkspaceInvitation {
-  owner: User
-  id: number
-  name: string
-  uuid: string
-}
-
-

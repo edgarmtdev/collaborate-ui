@@ -13,7 +13,7 @@ export default async function WorkspacePage({ params }: Props) {
   const { uuid } = params
 
   const workspace: Workspace = await getWorkspaceByUuid(uuid)
-  console.log("🚀 ~ WorkspacePage ~ workspace:", workspace)
+  console.log('🚀 ~ WorkspacePage ~ workspace:', workspace)
 
   return (
     <>

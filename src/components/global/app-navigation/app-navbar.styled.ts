@@ -56,7 +56,7 @@ export default {
     '& li': {
       display: 'flex',
       alignItems: 'center',
-      fontSize: 'sm',
+      fontSize: 'sm'
     }
   }),
   bulletNotification: css({
@@ -74,20 +74,20 @@ export default {
     h: 10,
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   }),
   dropdownTitle: css({
     fontWeight: 'bold',
     color: 'coolGray.900',
     fontSize: 'sm',
     mb: 2,
-    display: 'block',
+    display: 'block'
   }),
   dropdownSubtitle: css({
     fontWeight: 'medium',
     color: 'coolGray.900',
     fontSize: 'xs',
-    display: 'block',
+    display: 'block'
   }),
   userAvatar: css({
     display: 'flex',
