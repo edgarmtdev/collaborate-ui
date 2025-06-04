@@ -36,22 +36,58 @@ export default {
     ml: 'auto',
     fontWeight: 'bold',
     display: 'flex',
-    gap: 18,
+    gap: 8,
     alignItems: 'center',
     lg: {
-      gap: 36
+      gap: 16
     }
   }),
   listNav: css({
     display: 'none',
-    gap: 18,
-    alignItems: 'center',
+    gap: 8,
     sm: {
       display: 'flex'
     },
     lg: {
-      gap: 36
+      gap: 16
+    },
+    justifyContent: 'center',
+    alignItems: 'center',
+    '& li': {
+      display: 'flex',
+      alignItems: 'center',
+      fontSize: 'sm',
     }
+  }),
+  bulletNotification: css({
+    pos: 'absolute',
+    zIndex: 10,
+    top: 0,
+    right: 0,
+    bg: 'cardinal.700',
+    color: 'white',
+    fontSize: 10,
+    px: 1,
+    py: 0.5,
+    borderRadius: 999,
+    w: 10,
+    h: 10,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }),
+  dropdownTitle: css({
+    fontWeight: 'bold',
+    color: 'coolGray.900',
+    fontSize: 'sm',
+    mb: 2,
+    display: 'block',
+  }),
+  dropdownSubtitle: css({
+    fontWeight: 'medium',
+    color: 'coolGray.900',
+    fontSize: 'xs',
+    display: 'block',
   }),
   userAvatar: css({
     display: 'flex',
@@ -66,7 +102,6 @@ export default {
     display: 'flex',
     gap: 8,
     alignItems: 'center',
-    color: 'heading',
     fontWeight: 'bold',
     cursor: 'pointer',
     '& p': {
@@ -99,6 +134,5 @@ export default {
       bg: 'secondary.50'
     },
     rounded: 4
-
   })
 }

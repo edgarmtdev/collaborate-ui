@@ -8,3 +8,4 @@ export { SearchIcon } from './search'
 export { Chevron } from './chevron'
 export { Settings } from './settings'
 export { LogoutIcon } from './logout'
+export { BellIcon } from "./bell"
