@@ -57,29 +57,31 @@ export function AppNavbar({ user, pendingInvitations }: AppNavbarProps) {
                     ? (
                       pendingInvitations.map((invitation) => (
                         <DropdownMenu.Item key={invitation.id} onSelect={() => ''} className={classes.dropdownItem}>
-                          <Avatar
-                            as='span'
-                            src={invitation.workspace.owner.avatarURL}
-                            fallback={formatAvatarFallback(invitation.workspace.owner.name, invitation.workspace.owner.lastname)}
-                            bgColor='primary.700'
-                            size='md'
-                            radius='full'
-                          />
-                          <div>
-                            <p className={classes.dropdownTitle}>
-                              {invitation.workspace.owner.name} {invitation.workspace.owner.lastname}
-                            </p>
-                            <p className={classes.dropdownSubtitle}>
-                            New invitation to join workspace <strong>{invitation.workspace.name}</strong>
-                            </p>
-                          </div>
+                          <Link href={`/accept-invitation?token=${invitation.token}`}>
+                            <Avatar
+                              as='span'
+                              src={invitation.workspace.owner.avatarURL}
+                              fallback={formatAvatarFallback(invitation.workspace.owner.name, invitation.workspace.owner.lastname)}
+                              bgColor='primary.700'
+                              size='md'
+                              radius='full'
+                            />
+                            <div>
+                              <p className={classes.dropdownTitle}>
+                                {invitation.workspace.owner.name} {invitation.workspace.owner.lastname}
+                              </p>
+                              <p className={classes.dropdownSubtitle}>
+                                New invitation to join workspace <strong>{invitation.workspace.name}</strong>
+                              </p>
+                            </div>
+                          </Link>
                         </DropdownMenu.Item>
                       ))
                     )
                     : (
                       <DropdownMenu.Item onSelect={() => ''} className={classes.dropdownItem}>
                         <Icon icon={BellIcon} color='neutral' />
-                      No new notifications
+                        No new notifications
                       </DropdownMenu.Item>
                     )}
                 </DropdownMenu.Content>

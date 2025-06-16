@@ -6,6 +6,11 @@ export async function getPendingInvitations() {
   return response
 }
 
+export async function getInvitationByToken(token: string) {
+  const response = await get(`/invitations/get-invitation-by-token/${token}`)
+  return response
+}
+
 export async function sendInvitation(data: SendInvitationWorkspace) {
   const response = await post('/invitations/send-invitation', data)
   return response

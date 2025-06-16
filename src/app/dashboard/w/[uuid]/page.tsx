@@ -13,13 +13,12 @@ export default async function WorkspacePage({ params }: Props) {
   const { uuid } = params
 
   const workspace: Workspace = await getWorkspaceByUuid(uuid)
-  console.log('🚀 ~ WorkspacePage ~ workspace:', workspace)
 
   return (
     <>
       {workspace?.backgroundUrl &&
         <div className={css({ width: '100vw', minHeight: '100vh', position: 'fixed', top: 0 })}>
-          <Image fill alt={workspace?.name} src={workspace.backgroundUrl} objectFit='cover' objectPosition='center' />
+          <Image fill alt={workspace?.name} src={workspace.backgroundUrl} objectFit='cover' />
           <div className={css({ width: '100vw', minH: '100vh', backgroundColor: 'black/50', position: 'absolute' })} />
         </div>
       }
@@ -35,7 +34,7 @@ export default async function WorkspacePage({ params }: Props) {
         <div className={css({ height: '100%', display: 'flex', flexDirection: 'column', overflowX: 'auto' })}>
           <ol className={css({ position: 'relative', p: 32, height: '100%', display: 'flex', flexDirection: 'row' })}>
             {workspace.boards.map((board) => (
-              <li className={css({
+              <li key={board.uuid} className={css({
                 display: 'block',
                 alignSelf: 'flex-start',
                 height: '100%',

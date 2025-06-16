@@ -13,6 +13,7 @@ export interface WorkspaceInvitation {
 }
 export interface InvitationWorkspace {
   id: number
+  token: string
   userId: number
   workSpaceId: number
   assignedAt: string
