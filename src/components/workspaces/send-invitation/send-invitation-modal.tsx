@@ -38,7 +38,7 @@ export function SendInvitationModal({ workspace }: { workspace: Workspace }) {
     <div>
       <Toast
         type={error ? 'error' : 'success'}
-        title={error ? 'Error' : 'Success'}
+        title={error ? 'An error ocurred' : 'Success'}
         description={error || 'The invitation has been sent successfully.'}
         provider={{ swipeDirection: 'right' }}
         onOpenChange={setOpenToast}

@@ -64,6 +64,21 @@ export async function put(path: string, data?: unknown) {
   }
 }
 
+export async function patch(path: string, data?: unknown) {
+  try {
+    const response = await fetch(`${Constant.API_URL}${path}`, {
+      body: JSON.stringify(data),
+      method: 'PATCH',
+      headers: {
+        ...getHeaders()
+      }
+    })
+    return response.json()
+  } catch (error) {
+    return error
+  }
+}
+
 export async function del(path: string, data?: unknown) {
   try {
     const response = await fetch(`${Constant.API_URL}${path}`, {
