@@ -57,7 +57,7 @@ export function AppNavbar({ user, pendingInvitations }: AppNavbarProps) {
                     ? (
                       pendingInvitations.map((invitation) => (
                         <DropdownMenu.Item key={invitation.id} onSelect={() => ''} className={classes.dropdownItem}>
-                          <Link href={`/accept-invitation?token=${invitation.token}`}>
+                          <Link href={`/accept-invitation?token=${invitation.token}`} className={classes.dropdownLink}>
                             <Avatar
                               as='span'
                               src={invitation.workspace.owner.avatarURL}

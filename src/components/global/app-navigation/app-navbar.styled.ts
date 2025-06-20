@@ -134,5 +134,11 @@ export default {
       bg: 'secondary.50'
     },
     rounded: 4
+  }),
+  dropdownLink: css({
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
   })
 }
