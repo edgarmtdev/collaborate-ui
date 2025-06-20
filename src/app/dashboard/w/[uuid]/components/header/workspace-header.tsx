@@ -1,12 +1,12 @@
 'use client'
 
-import { SendInvitationModal } from '@/components/workspaces/send-invitation/send-invitation-modal'
-import { Workspace } from '@/types/workspace-types'
-import styles from './styles'
-import { css } from '~root/styled-system/css'
 import { Avatar } from '@/components/ui'
+import { SendInvitationModal } from '@/components/workspaces/send-invitation/send-invitation-modal'
 import { formatAvatarFallback } from '@/helpers'
 import { User } from '@/types/user-types'
+import { Workspace } from '@/types/workspace-types'
+import { css } from '~root/styled-system/css'
+import styles from './styles'
 
 export function WorkspaceHeader({ workspace, userLogged }: { workspace: Workspace, userLogged: User }) {
   const isOwner = workspace.owner.email === userLogged.email

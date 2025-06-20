@@ -1,4 +1,5 @@
 import { BoardType } from './board-types'
+import { User } from './user-types'
 
 export type Workspace = {
   id: number
@@ -8,16 +9,6 @@ export type Workspace = {
   ownerId?: string
   backgroundUrl?: string
   boards: BoardType[]
-  members: Member[]
-  owner: Member
-}
-
-export interface Member {
-  id: string
-  name: string
-  lastname: string
-  email: string
-  username: string
-  password: string
-  avatarURL: any
+  owner: User
+  members: User[]
 }
