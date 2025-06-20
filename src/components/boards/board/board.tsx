@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui'
 import styles from './styles'
 
 import { type BoardType } from '@/types/board-types'

@@ -1,19 +1,25 @@
 'use client'
 
+import { logoutAction } from '@/app/actions/authActions'
 import { Avatar, Icon } from '@/components/ui'
-import { Chevron, Settings, UserIcon } from '@/icons'
+import { BellIcon, Chevron, Settings, UserIcon } from '@/icons'
+import { LogoutIcon } from '@/icons/logout'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import Image from 'next/image'
 import Link from 'next/link'
-import classes from './app-navbar.styled'
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
-
 import icon from '~root/public/icon.svg'
+import { css } from '~root/styled-system/css'
+import classes from './app-navbar.styled'
 
+import { type InvitationWorkspace } from '@/types/invitations-workspace'
 import { type User } from '@/types/user-types'
-import { logoutAction } from '@/app/actions/authActions'
-import { LogoutIcon } from '@/icons/logout'
 
-export function AppNavbar({ user }: { user: User }) {
+interface AppNavbarProps {
+  user: User
+  pendingInvitations?: InvitationWorkspace[]
+}
+
+export function AppNavbar({ user, pendingInvitations }: AppNavbarProps) {
   return (
     <header className={classes.headerRoot}>
       <div className={classes.iconSection}>
@@ -31,7 +37,56 @@ export function AppNavbar({ user }: { user: User }) {
             <Link href={'/dashboard'}>Workspaces</Link>
           </li>
           <li>
-            <Link href={'/dashboard'}>Help</Link>
+            <DropdownMenu.Root>
+              <DropdownMenu.Trigger asChild>
+                <button
+                  className={css({
+                    pos: 'relative',
+                    cursor: 'pointer'
+                  })}
+                >
+                  <Icon icon={BellIcon} color='neutral' />
+                  {(pendingInvitations && pendingInvitations.length > 0)
+                    ? <span className={classes.bulletNotification} />
+                    : null}
+                </button>
+              </DropdownMenu.Trigger>
+              <DropdownMenu.Portal>
+                <DropdownMenu.Content sideOffset={5} className={classes.dropdownContent} align='end'>
+                  {pendingInvitations && pendingInvitations.length > 0
+                    ? (
+                      pendingInvitations.map((invitation) => (
+                        <DropdownMenu.Item key={invitation.id} onSelect={() => ''} className={classes.dropdownItem}>
+                          <Link href={`/accept-invitation?token=${invitation.token}`} className={classes.dropdownLink}>
+                            <Avatar
+                              as='span'
+                              src={invitation.workspace.owner.avatarURL}
+                              fallback={formatAvatarFallback(invitation.workspace.owner.name, invitation.workspace.owner.lastname)}
+                              bgColor='primary.700'
+                              size='md'
+                              radius='full'
+                            />
+                            <div>
+                              <p className={classes.dropdownTitle}>
+                                {invitation.workspace.owner.name} {invitation.workspace.owner.lastname}
+                              </p>
+                              <p className={classes.dropdownSubtitle}>
+                                New invitation to join workspace <strong>{invitation.workspace.name}</strong>
+                              </p>
+                            </div>
+                          </Link>
+                        </DropdownMenu.Item>
+                      ))
+                    )
+                    : (
+                      <DropdownMenu.Item onSelect={() => ''} className={classes.dropdownItem}>
+                        <Icon icon={BellIcon} color='neutral' />
+                        No new notifications
+                      </DropdownMenu.Item>
+                    )}
+                </DropdownMenu.Content>
+              </DropdownMenu.Portal>
+            </DropdownMenu.Root>
           </li>
         </ul>
         <div className={classes.userAvatar}>
@@ -44,11 +99,11 @@ export function AppNavbar({ user }: { user: User }) {
                   fallback={
                     user ? formatAvatarFallback(user.name, user.lastname) : 'A'
                   }
-                  bgColor='cardinal.600'
+                  bgColor='primary.700'
                   size='sm'
                   radius='full'
                 />
-                <p>{user?.username}</p>
+                {/* <p>{user?.username}</p> */}
               </button>
             </DropdownMenu.Trigger>
 
@@ -65,8 +120,7 @@ export function AppNavbar({ user }: { user: User }) {
                   </DropdownMenu.Item>
                   <DropdownMenu.Item
                     onSelect={async () => {
-                      const response = await logoutAction()
-                      console.log(response)
+                      await logoutAction()
                     }}
                     className={classes.dropdownItem}
                   >
