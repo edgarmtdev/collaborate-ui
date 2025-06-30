@@ -9,7 +9,11 @@ import { type FormEvent, useState } from 'react'
 import { css } from '~root/styled-system/css'
 import styles from './styles'
 
-export function SendInvitationModal({ workspace }: { workspace: Workspace }) {
+type SendInvitationModalProps = {
+  workspace: Workspace
+}
+
+export function SendInvitationModal({ workspace }: SendInvitationModalProps) {
   const [open, setOpen] = useState(false)
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
@@ -18,20 +22,29 @@ export function SendInvitationModal({ workspace }: { workspace: Workspace }) {
   const [openToast, setOpenToast] = useState(false)
 
   const handleInviteSubmit = async (e: FormEvent) => {
+    setLoading(true)
     e.preventDefault()
     const data: SendInvitationWorkspace = {
       email,
       workspaceUuid: workspace.uuid
     }
-    const invitation = await sendInvitationAction(data)
 
-    if (!invitation.success) {
+    try {
+      const invitation = await sendInvitationAction(data)
+
+      if (!invitation.success) {
+        setOpenToast(true)
+        setSuccess(true)
+        setError(invitation.error.message || 'Failed to send invitation')
+        return
+      }
+    } catch (err) {
       setOpenToast(true)
-      setError(invitation.error.message || 'Failed to send invitation')
-      return
+      setError(null)
+    } finally {
+      setLoading(false)
+      setEmail('')
     }
-    setError(null)
-    setOpenToast(true)
   }
 
   return (
@@ -40,7 +53,7 @@ export function SendInvitationModal({ workspace }: { workspace: Workspace }) {
         type={error ? 'error' : 'success'}
         title={error ? 'An error ocurred' : 'Success'}
         description={error || 'The invitation has been sent successfully.'}
-        provider={{ swipeDirection: 'right' }}
+        provider={{ swipeDirection: 'right', duration: 1000 }}
         onOpenChange={setOpenToast}
         open={openToast}
       />
