@@ -36,7 +36,6 @@ export function SendInvitationModal({ workspace }: SendInvitationModalProps) {
         setOpenToast(true)
         setSuccess(true)
         setError(invitation.error.message || 'Failed to send invitation')
-        return
       }
     } catch (err) {
       setOpenToast(true)

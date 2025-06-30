@@ -5,7 +5,7 @@ export const layoutStyled = css({
   flexDir: 'row',
   flex: '1 1 0%',
   mt: 61,
-  minH: '100vh',
+  minH: '100vh'
 })
 
 export const dashboardStyled = {

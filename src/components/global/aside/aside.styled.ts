@@ -11,7 +11,7 @@ export default {
     position: 'fixed',
     lg: {
       display: 'block'
-    },
+    }
   }),
   container: css({
     pos: 'relative',
