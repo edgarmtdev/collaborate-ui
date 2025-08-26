@@ -15,8 +15,8 @@ export default {
       h: 150
     },
     xl: {
-      w: '20%',
-      h: 170
+      w: '18%',
+      h: 150
     },
     pos: 'relative',
     color: 'white',
@@ -40,8 +40,7 @@ export default {
       fontSize: 'sm',
       fontWeight: 'semibold',
       lg: {
-        fontSize: 'lg',
-        fontWeight: 'bold'
+        fontSize: 'md'
       }
     }
   })

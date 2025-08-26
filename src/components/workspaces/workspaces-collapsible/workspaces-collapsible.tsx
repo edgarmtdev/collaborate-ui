@@ -1,13 +1,15 @@
 'use client'
 
+import { createWorkspaceAction } from '@/app/actions/workspace'
 import { Icon } from '@/components/ui'
 import { Chevron } from '@/icons'
 import * as Collapsible from '@radix-ui/react-collapsible'
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { css } from '~root/styled-system/css'
 import { WorkspaceCard } from '../workspace-card'
 
 import { type Workspace } from '@/types/workspace-types'
+import { CreateWorkspaceModal } from '../create-workspace-modal'
 
 type Props = {
   title: string
@@ -41,42 +43,46 @@ export function WorkspacesCollapsible({
   defaultOpen = true
 }: Props) {
   const [open, setOpen] = useState(defaultOpen)
+  const [workspacesList, setWorkspacesList] = useState<Workspace[]>(JSON.parse(workspaces))
 
   return (
-    <Collapsible.Root
-      open={open}
-      onOpenChange={setOpen}
-    >
-      <div className={classes.separator}>
-        <Collapsible.Trigger asChild>
-          <div className={css({
-            display: 'flex',
-            alignItems: 'center',
-            cursor: 'pointer',
-            _hover: {
-              color: 'heading'
-            }
-          })}>
-            <Icon
-              icon={Chevron}
-              color='neutral'
-              size='sm'
-              className={css({
-                rotate: open ? '0deg' : '-90deg',
-                transition: 'all 200ms ease-in'
-              })}
-            />
-            <span>{title}</span>
-          </div>
-        </Collapsible.Trigger>
-      </div>
-      <Collapsible.Content>
-        <div className={classes.flexSection}>
-          {JSON.parse(workspaces)?.map((workspace: Workspace) => (
-            <WorkspaceCard key={workspace.id} workspace={workspace} />
-          ))}
+    <>
+      <Collapsible.Root
+        open={open}
+        onOpenChange={setOpen}
+      >
+        <div className={classes.separator}>
+          <Collapsible.Trigger asChild>
+            <div className={css({
+              display: 'flex',
+              alignItems: 'center',
+              cursor: 'pointer',
+              _hover: {
+                color: 'heading'
+              }
+            })}>
+              <Icon
+                icon={Chevron}
+                color='neutral'
+                size='sm'
+                className={css({
+                  rotate: open ? '0deg' : '-90deg',
+                  transition: 'all 200ms ease-in'
+                })}
+              />
+              <span>{title}</span>
+            </div>
+          </Collapsible.Trigger>
         </div>
-      </Collapsible.Content>
-    </Collapsible.Root>
+        <Collapsible.Content>
+          <div className={classes.flexSection}>
+            {workspacesList.map((workspace: Workspace) => (
+              <WorkspaceCard key={workspace.id} workspace={workspace} />
+            ))}
+          </div>
+        </Collapsible.Content>
+      </Collapsible.Root>
+      {title === 'My workspaces' && <CreateWorkspaceModal />}
+    </>
   )
 }
