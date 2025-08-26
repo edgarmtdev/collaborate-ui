@@ -94,9 +94,9 @@ export function CreateWorkspaceModal() {
           display: 'flex',
           flexDirection: 'column',
           gap: '20px',
-          zIndex: 'modal',
+          zIndex: 'modal'
         })}>
-          <Dialog.Title style={{ fontWeight: 700, fontSize: "22px" }}>Create a new workspace</Dialog.Title>
+          <Dialog.Title style={{ fontWeight: 700, fontSize: '22px' }}>Create a new workspace</Dialog.Title>
           <div className={css({
             display: 'flex',
             flexDirection: 'column',
@@ -122,7 +122,7 @@ export function CreateWorkspaceModal() {
                 onChange={handleInputChange}
               />
             </label>
-            <div style={{ display: 'flex', gap: "12px", flexDirection: 'column', marginTop: 40 }}>
+            <div style={{ display: 'flex', gap: '12px', flexDirection: 'column', marginTop: 40 }}>
               <Button variant='primary' onClick={handleCreateWorkspace} loading={loading}>Create</Button>
               {/* <Button variant='black' onClick={handleCloseModal}>Cancel</Button> */}
             </div>

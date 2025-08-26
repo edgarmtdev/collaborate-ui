@@ -1,1 +1,1 @@
-export { CreateWorkspaceModal } from "./create-workspace-modal"
+export { CreateWorkspaceModal } from './create-workspace-modal'
