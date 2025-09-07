@@ -13,7 +13,7 @@ import { CreateWorkspaceModal } from '../create-workspace-modal'
 
 type Props = {
   title: string
-  workspaces: string
+  workspaces: Workspace[]
   defaultOpen?: boolean
 }
 
@@ -43,7 +43,7 @@ export function WorkspacesCollapsible({
   defaultOpen = true
 }: Props) {
   const [open, setOpen] = useState(defaultOpen)
-  const [workspacesList, setWorkspacesList] = useState<Workspace[]>(JSON.parse(workspaces))
+  const [workspacesList, setWorkspacesList] = useState<Workspace[]>(workspaces)
 
   return (
     <>
@@ -79,10 +79,10 @@ export function WorkspacesCollapsible({
             {workspacesList.map((workspace: Workspace) => (
               <WorkspaceCard key={workspace.id} workspace={workspace} />
             ))}
+            {title === 'My workspaces' && <CreateWorkspaceModal />}
           </div>
         </Collapsible.Content>
       </Collapsible.Root>
-      {title === 'My workspaces' && <CreateWorkspaceModal />}
     </>
   )
 }
