@@ -18,14 +18,13 @@ export default async function Dashboard() {
         <InputIcon placeholder='Search...' icon={SearchIcon} variant='fill' />
       </div>
       <section className={dashboardStyled.dashboardContent}>
-        <WorkspacesCollapsible
+        {/* <WorkspacesCollapsible
           title='My workspaces'
           workspaces={workspaces?.filter((item) => item.owner?.email === user.email) ?? []}
-        />
+        /> */}
         <WorkspacesCollapsible
           title='All boards'
           workspaces={workspaces ?? []}
-          defaultOpen={false}
         />
       </section>
     </div>
