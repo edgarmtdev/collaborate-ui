@@ -26,15 +26,22 @@ export async function get(path: string) {
   }
 }
 
-export async function post<T>(path: string, data?: unknown): Promise<T> {
-  const response = await fetch(`${Constant.API_URL}${path}`, {
-    body: JSON.stringify(data),
+export async function post<T>(path: string, data?: unknown, options?: RequestInit): Promise<T> {
+  const isFormData = typeof FormData !== 'undefined' && data instanceof FormData
+
+  const fetchOptions: RequestInit = {
     method: 'POST',
     headers: {
-      ...getHeaders()
-    },
-    credentials: 'include'
-  })
+      ...options?.headers,
+      ...(isFormData ? { Cookie: cookies().toString() } : getHeaders()) // Only set Cookie for FormData, not Content-Type
+    }
+  }
+
+  if (typeof data !== 'undefined') {
+    fetchOptions.body = isFormData ? data as BodyInit : JSON.stringify(data)
+  }
+
+  const response = await fetch(`${Constant.API_URL}${path}`, fetchOptions)
 
   if (!response.ok) {
     throw new Error(JSON.stringify(await response.json()))

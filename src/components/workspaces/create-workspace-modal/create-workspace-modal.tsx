@@ -1,22 +1,31 @@
 'use client'
 
 import { createWorkspaceAction } from '@/app/actions/workspace'
-import { Button, Input } from '@/components/ui'
+import { Button, FileSelector, Input } from '@/components/ui'
 import * as Dialog from '@radix-ui/react-dialog'
 import { ChangeEvent, useState } from 'react'
 import { css } from '~root/styled-system/css'
 
 export function CreateWorkspaceModal() {
-  const [newWorkspace, setNewWorkspace] = useState({
+  const [newWorkspace, setNewWorkspace] = useState<{
+    name: string
+    backgroundImage: File | null
+  }>({
     name: '',
-    backgroundUrl: ''
+    backgroundImage: null
   })
   const [loading, setLoading] = useState(false)
 
   const handleCreateWorkspace = async () => {
     setLoading(true)
     try {
-      const data = await createWorkspaceAction(newWorkspace)
+      const formData = new FormData()
+
+      formData.append('name', newWorkspace.name)
+      formData.append('backgroundImage', newWorkspace.backgroundImage || '')
+
+      const data = await createWorkspaceAction(formData)
+      console.log("🚀 ~ handleCreateWorkspace ~ data:", data)
       if (data) {
         // handleCloseModal()
         // setWorkspacesList((prev) => [...prev, data])
@@ -102,16 +111,6 @@ export function CreateWorkspaceModal() {
             flexDirection: 'column',
             gap: '16px'
           })}>
-            <label htmlFor='backgroundUrl'>
-              Background:
-              <Input
-                type='text'
-                placeholder='Enter url of the background image'
-                name='backgroundUrl'
-                value={newWorkspace.backgroundUrl}
-                onChange={handleInputChange}
-              />
-            </label>
             <label htmlFor='name'>
               Workspace Name:
               <Input
@@ -122,8 +121,25 @@ export function CreateWorkspaceModal() {
                 onChange={handleInputChange}
               />
             </label>
+            <div>
+              <label htmlFor='backgroundImage'>
+                Workspace Background:
+              </label>
+              <FileSelector
+                name='backgroundImage'
+                onChangeFile={(file) => {
+                  setNewWorkspace((prev) => ({ ...prev, backgroundImage: file }))
+                }}
+              />
+            </div>
             <div style={{ display: 'flex', gap: '12px', flexDirection: 'column', marginTop: 40 }}>
-              <Button variant='primary' onClick={handleCreateWorkspace} loading={loading}>Create</Button>
+              <Button
+                variant='primary'
+                onClick={handleCreateWorkspace}
+                loading={loading}
+                disabled={loading || !newWorkspace.name.trim() || !newWorkspace.backgroundImage}
+              >
+                Create</Button>
               {/* <Button variant='black' onClick={handleCloseModal}>Cancel</Button> */}
             </div>
           </div>
