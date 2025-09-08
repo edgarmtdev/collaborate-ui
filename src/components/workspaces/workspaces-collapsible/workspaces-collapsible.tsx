@@ -79,7 +79,7 @@ export function WorkspacesCollapsible({
             {workspacesList.map((workspace: Workspace) => (
               <WorkspaceCard key={workspace.id} workspace={workspace} />
             ))}
-            {title === 'My workspaces' && <CreateWorkspaceModal />}
+            <CreateWorkspaceModal />
           </div>
         </Collapsible.Content>
       </Collapsible.Root>

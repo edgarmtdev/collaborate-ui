@@ -3,14 +3,14 @@ import { WorkspacesCollapsible } from '@/components/workspaces'
 import { SearchIcon } from '@/icons'
 import { validateUser } from '@/services/auth'
 import { getWorkspaces } from '@/services/workspaces'
-import { User } from '@/types/user-types'
 import { dashboardStyled } from './dashboard.styled'
+
+import type { User } from '@/types/user-types'
 
 export default async function Dashboard() {
   const workspaces = await getWorkspaces()
   const { user }: { user: User } = await validateUser()
 
-  // Sanitize workspaces to plain objects
   const plainWorkspaces = JSON.parse(JSON.stringify(workspaces))
 
   return (
@@ -21,12 +21,8 @@ export default async function Dashboard() {
         <InputIcon placeholder='Search...' icon={SearchIcon} variant='fill' />
       </div>
       <section className={dashboardStyled.dashboardContent}>
-        {/* <WorkspacesCollapsible
-          title='My workspaces'
-          workspaces={plainWorkspaces?.filter((item) => item.owner?.email === user.email) ?? []}
-        /> */}
         <WorkspacesCollapsible
-          title='All boards'
+          title='My Workspaces'
           workspaces={plainWorkspaces ?? []}
         />
       </section>

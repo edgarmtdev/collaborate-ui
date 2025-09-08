@@ -17,8 +17,11 @@ export const fileSelector = defineRecipe({
     backgroundColor: 'white',
     boxShadow: 'sm',
     minH: '150px',
+    cursor: 'pointer',
+    transition: 'all 100ms ease-in',
+    w: '100%',
     '&:hover': {
-      backgroundColor: 'gray.50'
+      backgroundColor: 'coolGray.25'
     }
   }
 })
