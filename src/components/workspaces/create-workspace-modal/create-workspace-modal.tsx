@@ -47,7 +47,7 @@ export function CreateWorkspaceModal() {
         <div className={css({
           w: 'calc(50% - 6px)',
           h: 100,
-          backgroundColor: 'coolGray.200',
+          border: '1px dashed',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -66,17 +66,16 @@ export function CreateWorkspaceModal() {
             h: 150
           },
           pos: 'relative',
-          color: 'white',
           borderRadius: 4,
           '& img': {
             objectFit: 'cover',
             borderRadius: 4
           },
           '&:hover': {
-            backgroundColor: 'coolGray.300'
+            backgroundColor: 'coolGray.25'
           },
           cursor: 'pointer',
-          transition: 'background-color 200ms ease-in'
+          transition: 'background-color 100ms ease-in'
         })}>Create new workspace</div>
       </Dialog.Trigger>
       <Dialog.Portal>
