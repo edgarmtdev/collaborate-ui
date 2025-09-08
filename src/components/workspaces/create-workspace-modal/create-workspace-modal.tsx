@@ -25,7 +25,7 @@ export function CreateWorkspaceModal() {
       formData.append('backgroundImage', newWorkspace.backgroundImage || '')
 
       const data = await createWorkspaceAction(formData)
-      console.log("🚀 ~ handleCreateWorkspace ~ data:", data)
+      console.log('🚀 ~ handleCreateWorkspace ~ data:', data)
       if (data) {
         // handleCloseModal()
         // setWorkspacesList((prev) => [...prev, data])

@@ -1,5 +1,6 @@
 import { Constant } from '@/const/Constant'
 import { jwtDecode } from 'jwt-decode'
+import { RequestInit } from 'next/dist/server/web/spec-extension/request'
 import { cookies } from 'next/headers'
 
 const getHeaders = () => ({
@@ -33,12 +34,12 @@ export async function post<T>(path: string, data?: unknown, options?: RequestIni
     method: 'POST',
     headers: {
       ...options?.headers,
-      ...(isFormData ? { Cookie: cookies().toString() } : getHeaders()) // Only set Cookie for FormData, not Content-Type
+      ...(isFormData ? { Cookie: cookies().toString() } : getHeaders())
     }
   }
 
   if (typeof data !== 'undefined') {
-    fetchOptions.body = isFormData ? data as BodyInit : JSON.stringify(data)
+    fetchOptions.body = isFormData ? data : JSON.stringify(data)
   }
 
   const response = await fetch(`${Constant.API_URL}${path}`, fetchOptions)
