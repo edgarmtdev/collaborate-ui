@@ -10,6 +10,9 @@ export default async function Dashboard() {
   const workspaces = await getWorkspaces()
   const { user }: { user: User } = await validateUser()
 
+  // Sanitize workspaces to plain objects
+  const plainWorkspaces = JSON.parse(JSON.stringify(workspaces))
+
   return (
     <div className={dashboardStyled.root}>
       <div className={dashboardStyled.header}>
@@ -20,11 +23,11 @@ export default async function Dashboard() {
       <section className={dashboardStyled.dashboardContent}>
         {/* <WorkspacesCollapsible
           title='My workspaces'
-          workspaces={workspaces?.filter((item) => item.owner?.email === user.email) ?? []}
+          workspaces={plainWorkspaces?.filter((item) => item.owner?.email === user.email) ?? []}
         /> */}
         <WorkspacesCollapsible
           title='All boards'
-          workspaces={workspaces ?? []}
+          workspaces={plainWorkspaces ?? []}
         />
       </section>
     </div>
