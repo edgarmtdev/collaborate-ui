@@ -12,3 +12,8 @@ export type Workspace = {
   owner: User
   members: User[]
 }
+
+export type CreateWorkspace = {
+  name: string
+  backgroundUrl?: string
+}

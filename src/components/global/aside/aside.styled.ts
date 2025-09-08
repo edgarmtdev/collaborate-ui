@@ -8,6 +8,7 @@ export default {
     borderColor: 'coolGray.200',
     minH: '100vh',
     display: 'none',
+    position: 'fixed',
     lg: {
       display: 'block'
     }

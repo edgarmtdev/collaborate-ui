@@ -1,5 +1,6 @@
 import { Constant } from '@/const/Constant'
 import { jwtDecode } from 'jwt-decode'
+import { RequestInit } from 'next/dist/server/web/spec-extension/request'
 import { cookies } from 'next/headers'
 
 const getHeaders = () => ({
@@ -26,15 +27,22 @@ export async function get(path: string) {
   }
 }
 
-export async function post<T>(path: string, data?: unknown): Promise<T> {
-  const response = await fetch(`${Constant.API_URL}${path}`, {
-    body: JSON.stringify(data),
+export async function post<T>(path: string, data?: unknown, options?: RequestInit): Promise<T> {
+  const isFormData = typeof FormData !== 'undefined' && data instanceof FormData
+
+  const fetchOptions: RequestInit = {
     method: 'POST',
     headers: {
-      ...getHeaders()
-    },
-    credentials: 'include'
-  })
+      ...options?.headers,
+      ...(isFormData ? { Cookie: cookies().toString() } : getHeaders())
+    }
+  }
+
+  if (typeof data !== 'undefined') {
+    fetchOptions.body = isFormData ? data : JSON.stringify(data)
+  }
+
+  const response = await fetch(`${Constant.API_URL}${path}`, fetchOptions)
 
   if (!response.ok) {
     throw new Error(JSON.stringify(await response.json()))
