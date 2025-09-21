@@ -35,7 +35,7 @@ export const zIndex = defineTokens.zIndex({
     value: 1600
   },
   toast: {
-    value: 1700
+    value: 2147483647
   },
   tooltip: {
     value: 1800

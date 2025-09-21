@@ -17,6 +17,7 @@
     "sourceType": "module"
   },
   "rules": {
+    "no-undef": "off",
     "indent": [
       "error",
       2

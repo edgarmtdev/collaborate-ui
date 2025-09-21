@@ -1,15 +1,12 @@
 import { InputIcon } from '@/components/ui'
 import { WorkspacesCollapsible } from '@/components/workspaces'
 import { SearchIcon } from '@/icons'
-import { validateUser } from '@/services/auth'
 import { getWorkspaces } from '@/services/workspaces'
 import { dashboardStyled } from './dashboard.styled'
 
-import type { User } from '@/types/user-types'
-
 export default async function Dashboard() {
   const workspaces = await getWorkspaces()
-  const { user }: { user: User } = await validateUser()
+  // const { user }: { user: User } = await validateUser()
 
   const plainWorkspaces = JSON.parse(JSON.stringify(workspaces))
 

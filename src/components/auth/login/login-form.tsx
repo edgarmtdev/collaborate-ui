@@ -54,14 +54,16 @@ export function LoginForm() {
 
   return (
     <>
-      <Toast
-        title='Login successfully'
-        description='The Session has started successfully.'
-        provider={{ swipeDirection: 'right' }}
-        open={showToast}
-        onOpenChange={setShowToast}
-        type='success'
-      />
+      <Toast.Provider>
+        <Toast.Root
+          title='Login successfully'
+          description='The Session has started successfully.'
+          provider={{ swipeDirection: 'right' }}
+          open={showToast}
+          onOpenChange={setShowToast}
+          type='success'
+        />
+      </Toast.Provider>
       <form
         onSubmit={handleSubmit}
         className={styled.form}

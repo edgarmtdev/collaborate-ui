@@ -1,5 +1,6 @@
 import { AppNavbar } from '@/components/global/app-navigation'
 import { NavbarContext } from '@/context'
+import { ToastQueueProvider } from '@/context/toast-queue/Provider'
 import { validateUser } from '@/services/auth'
 import { getPendingInvitations } from '@/services/invitations'
 import { LayoutProps } from '@/types/common'
@@ -17,9 +18,10 @@ export default async function DashboardLayout({
   }
   return (
     <NavbarContext>
-      {/* Set a React context for state management of an Aside component */}
-      <AppNavbar user={user} pendingInvitations={pendingInvitations} />
-      {children}
+      <ToastQueueProvider>
+        <AppNavbar user={user} pendingInvitations={pendingInvitations} />
+        {children}
+      </ToastQueueProvider>
     </NavbarContext>
   )
 }
