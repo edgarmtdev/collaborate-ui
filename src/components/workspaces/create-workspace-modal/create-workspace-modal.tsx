@@ -84,7 +84,7 @@ export function CreateWorkspaceModal({ setWorkspacesList }: CreateWorkspaceModal
                 variant='primary'
                 onClick={handleCreateWorkspace}
                 loading={loading}
-                // disabled={loading || !newWorkspace.name.trim() || !newWorkspace.backgroundImage}
+                disabled={loading || !newWorkspace.name.trim() || !newWorkspace.backgroundImage}
               >
                 Create</Button>
               <Button variant='black' onClick={() => setOpen(false)}>Cancel</Button>
