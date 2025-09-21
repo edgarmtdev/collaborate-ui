@@ -14,7 +14,7 @@ export default async function WorkspacePage({ params }: Props) {
   const { uuid } = params
 
   const workspace: Workspace = await getWorkspaceByUuid(uuid)
-  const { isLoggedIn, user } = await validateUser()
+  const { user } = await validateUser()
 
   return (
     <>

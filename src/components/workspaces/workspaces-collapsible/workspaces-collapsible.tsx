@@ -1,10 +1,9 @@
 'use client'
 
-import { createWorkspaceAction } from '@/app/actions/workspace'
 import { Icon } from '@/components/ui'
 import { Chevron } from '@/icons'
 import * as Collapsible from '@radix-ui/react-collapsible'
-import { ChangeEvent, useState } from 'react'
+import { useState } from 'react'
 import { css } from '~root/styled-system/css'
 import { WorkspaceCard } from '../workspace-card'
 
@@ -79,7 +78,7 @@ export function WorkspacesCollapsible({
             {workspacesList.map((workspace: Workspace) => (
               <WorkspaceCard key={workspace.id} workspace={workspace} />
             ))}
-            <CreateWorkspaceModal />
+            <CreateWorkspaceModal setWorkspacesList={setWorkspacesList} />
           </div>
         </Collapsible.Content>
       </Collapsible.Root>

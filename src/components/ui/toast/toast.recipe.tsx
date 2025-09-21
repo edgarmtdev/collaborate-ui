@@ -12,7 +12,7 @@ export const slotToastStyled = sva({
       md: {
         top: 50,
         right: 80,
-        w: 325
+        minW: 375
       }
     },
     root: {
@@ -21,9 +21,10 @@ export const slotToastStyled = sva({
       rounded: 4,
       shadow: 'md',
       display: 'grid',
-      gridTemplateColumns: 'repeat(5, 1fr)',
-      gridTemplateRows: 'repeat(2, 1fr)',
+      // gridTemplateColumns: 'repeat(5, 1fr)',
+      // gridTemplateRows: 'repeat(2, 1fr)',
       gap: 8,
+      minW: 325,
       '&[data-state=open]': {
         animation: 'slideIn 180ms cubic-bezier(0.16, 1, 0.3, 1)'
       },
