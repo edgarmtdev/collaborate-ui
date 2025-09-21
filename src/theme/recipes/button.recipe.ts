@@ -66,7 +66,7 @@ export const button = defineRecipe({
         _hover: {
           opacity: 0.8
         }
-      },
+      }
     },
     size: {
       xs: {
