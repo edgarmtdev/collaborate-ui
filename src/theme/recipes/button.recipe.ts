@@ -49,6 +49,23 @@ export const button = defineRecipe({
       black: {
         bg: 'black',
         color: 'white'
+      },
+      danger: {
+        bg: 'cardinal.600',
+        color: 'white',
+        _hover: {
+          bg: 'cardinal.700'
+        }
+      },
+      dangerBorder: {
+        bg: 'cardinal.10',
+        color: 'cardinal.900',
+        border: 1,
+        borderStyle: 'solid',
+        borderColor: 'cardinal.900',
+        _hover: {
+          opacity: 0.8
+        }
       }
     },
     size: {

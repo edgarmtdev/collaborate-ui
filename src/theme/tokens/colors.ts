@@ -46,6 +46,7 @@ export const colors = defineTokens.colors({
     950: { value: '#3B383E' }
   },
   cardinal: {
+    10: { value: '#F9E7EA' },
     25: { value: '#F5DCE0' },
     50: { value: '#F5D0D7' },
     100: { value: '#F0B9C3' },

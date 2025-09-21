@@ -2,10 +2,10 @@
 
 import { createWorkspaceAction } from '@/app/actions/workspace'
 import { Button, FileSelector, Input } from '@/components/ui'
+import { useToastQueue } from '@/context/toast-queue/Provider'
 import * as Dialog from '@radix-ui/react-dialog'
 import { ChangeEvent, useState } from 'react'
 import styles from './create-workspace-modal.styled'
-import { useToastQueue } from '@/context/toast-queue/Provider'
 
 interface CreateWorkspaceModalProps {
   setWorkspacesList: React.Dispatch<React.SetStateAction<any[]>>
@@ -86,8 +86,9 @@ export function CreateWorkspaceModal({ setWorkspacesList }: CreateWorkspaceModal
                 loading={loading}
                 disabled={loading || !newWorkspace.name.trim() || !newWorkspace.backgroundImage}
               >
-                Create</Button>
-              <Button variant='black' onClick={() => setOpen(false)}>Cancel</Button>
+                Create workspace
+              </Button>
+              <Button variant='dangerBorder' onClick={() => setOpen(false)}>Cancel</Button>
             </div>
           </div>
         </Dialog.Content>
