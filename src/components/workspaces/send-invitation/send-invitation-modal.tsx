@@ -48,14 +48,16 @@ export function SendInvitationModal({ workspace }: SendInvitationModalProps) {
 
   return (
     <div>
-      <Toast
-        type={error ? 'error' : 'success'}
-        title={error ? 'An error ocurred' : 'Success'}
-        description={error || 'The invitation has been sent successfully.'}
-        provider={{ swipeDirection: 'right', duration: 1000 }}
-        onOpenChange={setOpenToast}
-        open={openToast}
-      />
+      <Toast.Provider>
+        <Toast.Root
+          type={error ? 'error' : 'success'}
+          title={error ? 'An error ocurred' : 'Success'}
+          description={error || 'The invitation has been sent successfully.'}
+          provider={{ swipeDirection: 'right', duration: 1000 }}
+          onOpenChange={setOpenToast}
+          open={openToast}
+        />
+      </Toast.Provider>
       <Dialog.Root open={open} onOpenChange={setOpen}>
         <Dialog.Trigger asChild>
           <Button>
