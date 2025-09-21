@@ -22,6 +22,8 @@ export const FileSelector = forwardRef<
   { className, name, value, onChangeFile, ...props },
   ref
 ) => {
+  const fileSelectorClasses = fileSelector({ ...props })
+
   const inputRef = useRef<HTMLInputElement>(null)
   const [fileName, setFileName] = useState<string>('No selected file')
   const [preview, setPreview] = useState<string | StaticImport>()
@@ -30,7 +32,7 @@ export const FileSelector = forwardRef<
       <div
         ref={ref}
         onClick={() => { inputRef && (inputRef as RefObject<HTMLInputElement>).current?.click() }}
-        className={fileSelector({ ...props })}
+        className={fileSelectorClasses.root}
       >
         <input
           ref={inputRef}
@@ -46,37 +48,18 @@ export const FileSelector = forwardRef<
             }
           }}
         />
-        <section style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: 8,
-          color: '#6B7280'
-        }}
-        >
+        <section className={fileSelectorClasses.dragContainer}>
           <Icon icon={CloudUpIcon} size='lg' />
           <h4>Click to upload</h4>
         </section>
       </div>
-      <div style={{ marginTop: 20, display: 'flex', alignItems: 'center', gap: 12 }}>
+      <div className={fileSelectorClasses.thumbnailList}>
         {preview &&
-          <figure style={{
-            width: 200,
-            height: 120,
-            borderRadius: 8,
-            overflow: 'hidden',
-            backgroundColor: '#F3F4F6',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            position: 'relative'
-          }}
-          >
-            <Image src={preview} alt={fileName} fill style={{ objectFit: 'cover' }} />
+          <figure className={fileSelectorClasses.thumbnail}>
+            <Image src={preview} alt={fileName} fill objectFit='cover' />
           </figure>
         }
-        <div style={{ fontSize: 14, color: '#6B7280' }}>{fileName}</div>
+        <div className={fileSelectorClasses.fileName}>{fileName}</div>
       </div>
     </div>
   )
