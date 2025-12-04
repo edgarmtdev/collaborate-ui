@@ -7,7 +7,7 @@ export const input = defineRecipe({
     border: 1,
     borderRadius: 4,
     borderStyle: 'solid',
-    fontWeight: 'medium',
+    fontWeight: 'normal',
     px: 8,
     _focus: {
       outline: 'none'

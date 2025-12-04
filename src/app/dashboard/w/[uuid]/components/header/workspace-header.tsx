@@ -18,7 +18,7 @@ export function WorkspaceHeader({ workspace, userLogged }: { workspace: Workspac
           <div className={css({ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 4 })}>
             {workspace.members.slice(0, 10).map((member) => (
               <Avatar
-                key={member.id}
+                key={member.id + member.email}
                 src={member.avatarURL}
                 size='xs'
                 bgColor='primary.700'

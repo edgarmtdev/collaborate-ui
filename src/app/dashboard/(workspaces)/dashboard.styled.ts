@@ -16,7 +16,7 @@ export const dashboardStyled = {
     lg: {
       w: 'calc(100% - 300px)',
       left: 300,
-      px: 32,
+      px: 72,
       py: 36
     }
   }),
