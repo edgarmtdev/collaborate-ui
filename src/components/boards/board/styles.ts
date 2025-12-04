@@ -17,5 +17,5 @@ export default {
   }),
   title: css({ fontSize: 'md', fontWeight: 'semibold' }),
   content: css({ flexGrow: 1, p: 14 }),
-  footer: css({ marginTop: '16px', textAlign: 'right' }),
+  footer: css({ marginTop: '16px', textAlign: 'right' })
 }
