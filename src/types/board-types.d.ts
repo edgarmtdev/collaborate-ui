@@ -5,5 +5,5 @@ export interface BoardType {
   createdAt: string
   ownerId: number
   workSpaceId: number
-  // tasks: TaskType[]
+  tasks: TaskType[]
 }

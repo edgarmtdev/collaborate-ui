@@ -12,8 +12,9 @@ type Props = {
 
 export default async function WorkspacePage({ params }: Props) {
   const { uuid } = params
-  const workspace: Workspace = await getWorkspaceByUuid(uuid)
   const { user } = await validateUser()
+
+  const workspace: Workspace = await getWorkspaceByUuid(uuid)
 
   return (
     <>
@@ -37,7 +38,7 @@ export default async function WorkspacePage({ params }: Props) {
                 key={board.uuid}
                 className={styles.boardCard}
               >
-                <Board board={board} />
+                <Board board={board} workspaceUuid={uuid} />
               </li>
             ))}
           </ol>
