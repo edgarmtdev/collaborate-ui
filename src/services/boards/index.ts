@@ -1,6 +1,6 @@
-import { log } from "console"
+import { post } from "@/api/fetch"
 
 export async function createBoard(workspaceUuid: string, boardName: string) {
-  // Implementation for creating a board
-  log(`Creating board "${boardName}" in workspace "${workspaceUuid}"`)
+  const response = await post('/boards/create', { workspaceUuid, boardName })
+  return response
 }
