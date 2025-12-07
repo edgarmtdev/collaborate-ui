@@ -9,10 +9,10 @@ export async function createTaskAction(formData: FormData) {
   const workspaceUuid = formData.get('workspaceUuid') as string
 
   const response = await createBoardTask({ boardUuid, taskTitle })
-  
+
   if (workspaceUuid) {
     revalidatePath(`/dashboard/w/${workspaceUuid}`)
   }
-  
+
   return response
 }

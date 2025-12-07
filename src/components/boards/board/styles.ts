@@ -52,5 +52,5 @@ export default {
   footer: css({
     marginTop: '16px',
     textAlign: 'right'
-  }),
+  })
 }
