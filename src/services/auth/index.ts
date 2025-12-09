@@ -1,11 +1,16 @@
 'use server'
 
 import fetch from '@/api'
-import { type Credentials } from '@/types/auth-types'
+import type { RegisterData, Credentials } from '@/types/auth-types'
 
 export async function loginService(credentials: Credentials) {
   const response = await fetch.post('/auth/login', credentials)
 
+  return response
+}
+
+export async function registerService(credentials: RegisterData) {
+  const response = await fetch.post('/auth/register', credentials)
   return response
 }
 

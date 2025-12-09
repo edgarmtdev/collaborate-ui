@@ -1,8 +1,11 @@
+import { registerService } from '@/services/auth'
+import { useRouter } from 'next/router'
 import React, { createContext, useContext, useEffect, useState } from 'react'
 
 type RegisterData = {
   email: string
   name: string
+  lastname: string
   username: string
   password: string
   confirmPassword: string
@@ -27,6 +30,7 @@ export const RegisterProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [registerData, setRegisterData] = useState({
     email: '',
     name: '',
+    lastname: '',
     username: '',
     password: '',
     confirmPassword: ''
@@ -38,6 +42,8 @@ export const RegisterProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
+  const router = useRouter()
+
   const handleNextStep = () => {
     if (currentStep === 1 && !registerData.email) {
       setError('Please, enter your email.')
@@ -45,6 +51,11 @@ export const RegisterProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
     if (currentStep === 2 && (!registerData.name || !registerData.username)) {
       setError('Please, enter your name and username.')
+      return
+    }
+
+    if (currentStep === 3 && (!registerData.password || !registerData.confirmPassword || registerData.password !== registerData.confirmPassword)) {
+      setError('Please, enter your password and confirm it correctly.')
       return
     }
 
@@ -67,16 +78,49 @@ export const RegisterProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('🚀 handleSubmit ejecutado en el paso:', currentStep)
 
     if (currentStep < totalSteps) {
-      console.log('⛔ Bloqueando envío, aún no estamos en el último paso.')
       return
     }
 
-    console.log('✅ Formulario enviado:', registerData)
+    if (currentStep === 3 && (registerData.password !== registerData.confirmPassword)) {
+      setError('Passwords do not match.')
+      return
+    }
+
+    setLoading(true)
+
+    try {
+      const signUpData = {
+        email: registerData.email,
+        name: registerData.name,
+        lastname: registerData.lastname,
+        username: registerData.username,
+        password: registerData.password
+      }
+
+      const response = await registerService(signUpData)
+      
+      if (response) {
+        setLoading(false)
+        router.push('/auth/login?registered=true')
+        return
+      }
+
+      setLoading(false)
+
+    } catch (error) {
+      const errorMessage = error instanceof Error ? JSON.parse(error.message) : null
+      if (errorMessage && errorMessage.message) {
+        setError(errorMessage.message)
+      } else {
+        setError('Registration failed. Please try again later.')
+      }
+    } finally {
+      setLoading(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

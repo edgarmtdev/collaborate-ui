@@ -20,7 +20,7 @@ export const button = defineRecipe({
     transitionDuration: '300ms',
     _disabled: {
       opacity: 0.7,
-      cursor: 'progress',
+      cursor: 'not-allowed',
       _hover: {
         opacity: 0.7
       }

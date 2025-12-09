@@ -33,5 +33,9 @@ export default {
     gridTemplateColumns: '1fr 1fr',
     gap: 16,
     alignItems: 'center'
+  }),
+  errorMessage: css({
+    color: 'cardinal.600',
+    minH: 20,
   })
 }

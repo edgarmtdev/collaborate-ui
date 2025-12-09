@@ -56,11 +56,22 @@ export function RegisterForm() {
             />
           </div>
           <div>
+            <label htmlFor='lastname'>Last Name:</label>
+            <Input
+              type='text'
+              name='lastname'
+              placeholder='What is your last name?'
+              onChange={handleChange}
+              value={registerData.lastname}
+              color={error ? 'error' : 'main'}
+            />
+          </div>
+          <div>
             <label htmlFor='username'>Username:</label>
             <Input
               type='text'
               name='username'
-              placeholder='What is your username?'
+              placeholder='Write an username'
               onChange={handleChange}
               value={registerData.username}
               color={error ? 'error' : 'main'}
@@ -96,12 +107,15 @@ export function RegisterForm() {
           </div>
         </>
       )}
+      <div className={styled.errorMessage}>
+        {error && <p>{error}</p>}
+      </div>
       <div
         className={cx(
           currentStep > 1
             ? styled.buttonContainer
             : css({ display: 'grid', gridTemplateColumns: '1fr' }),
-          css({ mt: 48 })
+          css({ mt: 10 })
         )}
       >
         {currentStep > 1 && (
@@ -124,7 +138,7 @@ export function RegisterForm() {
                 handleSubmit(e as unknown as FormEvent<HTMLFormElement>)
               }
             >
-            Register
+              Register
             </Button>
           )
           : (
@@ -134,7 +148,7 @@ export function RegisterForm() {
               onClick={handleNextStep}
               variant='primary'
             >
-            Next
+              Next
             </Button>
           )}
       </div>
