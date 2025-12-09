@@ -102,15 +102,11 @@ export const RegisterProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       }
 
       const response = await registerService(signUpData)
-      
+
       if (response) {
         setLoading(false)
         router.push('/auth/login?registered=true')
-        return
       }
-
-      setLoading(false)
-
     } catch (error) {
       const errorMessage = error instanceof Error ? JSON.parse(error.message) : null
       if (errorMessage && errorMessage.message) {

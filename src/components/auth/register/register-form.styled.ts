@@ -36,6 +36,6 @@ export default {
   }),
   errorMessage: css({
     color: 'cardinal.600',
-    minH: 20,
+    minH: 20
   })
 }
