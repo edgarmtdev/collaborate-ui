@@ -42,8 +42,6 @@ export const RegisterProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
-  const router = useRouter()
-
   const handleNextStep = () => {
     if (currentStep === 1 && !registerData.email) {
       setError('Please, enter your email.')
@@ -105,8 +103,9 @@ export const RegisterProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
       if (response) {
         setLoading(false)
-        router.push('/auth/login?registered=true')
       }
+
+      // TODO: Redirect to a success page or login
     } catch (error) {
       const errorMessage = error instanceof Error ? JSON.parse(error.message) : null
       if (errorMessage && errorMessage.message) {

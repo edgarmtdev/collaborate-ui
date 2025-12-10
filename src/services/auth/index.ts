@@ -28,3 +28,8 @@ export async function logoutService() {
   const res = await fetch.post('/auth/logout')
   return res
 }
+
+export async function verifyEmailByToken(token: string) {
+  const res = await fetch.get(`/auth/verify-email?token=${token}`)
+  return res
+}
