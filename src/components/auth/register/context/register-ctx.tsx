@@ -18,6 +18,8 @@ export type RegisterContextType = {
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   error: string | null
   loading: boolean
+  success?: boolean
+  message?: string | null
   currentStep: number
   handleNextStep: () => void
   handlePrevStep: () => void
@@ -40,6 +42,8 @@ export const RegisterProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const totalSteps = 3
 
   const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState<boolean>(false)
+  const [message, setMessage] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
   const handleNextStep = () => {
@@ -100,12 +104,16 @@ export const RegisterProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       }
 
       const response = await registerService(signUpData)
+      console.log("🚀 ~ handleSubmit ~ response:", response)
 
-      if (response) {
+      if (!response.success) {
+        setError(response.message || 'Registration failed. Please try again.')
         setLoading(false)
+        return
       }
 
-      // TODO: Redirect to a success page or login
+      setSuccess(true)
+      setMessage(response.message || 'Registration successful! Please check your email to verify your account.')
     } catch (error) {
       const errorMessage = error instanceof Error ? JSON.parse(error.message) : null
       if (errorMessage && errorMessage.message) {
@@ -129,6 +137,8 @@ export const RegisterProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     handleSubmit,
     handleChange,
     error,
+    success,
+    message,
     loading,
     currentStep,
     handleNextStep,

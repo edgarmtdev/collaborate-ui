@@ -37,5 +37,12 @@ export default {
   errorMessage: css({
     color: 'cardinal.600',
     minH: 20
+  }),
+  successMessage: css({
+    color: 'primary.600',
+    minH: "30vh",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center'
   })
 }
