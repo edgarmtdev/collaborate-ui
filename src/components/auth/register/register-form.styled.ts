@@ -43,7 +43,7 @@ export default {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    gap: 12,
+    gap: 12
   }),
   successMessageTitle: css({
     fontSize: '2xl',
@@ -52,6 +52,6 @@ export default {
   }),
   successMessage: css({
     fontSize: 'large',
-    fontWeight: 'normal',
+    fontWeight: 'normal'
   })
 }
