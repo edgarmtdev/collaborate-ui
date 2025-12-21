@@ -38,11 +38,20 @@ export default {
     color: 'cardinal.600',
     minH: 20
   }),
-  successMessage: css({
-    color: 'primary.600',
+  successMessageContainer: css({
     minH: "30vh",
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    gap: 12
+  }),
+  successMessageTitle: css({
+    fontSize: '2xl',
+    fontWeight: 'bold',
+    mb: 4
+  }),
+  successMessage: css({
+    fontSize: 'large',
+    fontWeight: 'normal'
   })
 }
