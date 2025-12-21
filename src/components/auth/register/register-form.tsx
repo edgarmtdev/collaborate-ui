@@ -26,8 +26,9 @@ export function RegisterForm() {
     <>
       {success
         ? (
-          <div className={styled.successMessage}>
-            {message}
+          <div className={styled.successMessageContainer}>
+            <h1 className={styled.successMessageTitle}>Registration Successful!</h1>
+            <p className={styled.successMessage}>{message}</p>
           </div>
         )
         : (
