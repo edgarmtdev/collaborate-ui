@@ -1,4 +1,4 @@
-"use server"
+'use server'
 
 import { createBoardTask } from '@/services/tasks'
 import { revalidatePath } from 'next/cache'

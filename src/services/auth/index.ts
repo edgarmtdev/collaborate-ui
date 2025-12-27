@@ -1,4 +1,4 @@
-"use server"
+'use server'
 
 import fetch from '@/api'
 import type { Credentials, RegisterData, RegisterResponse } from '@/types/auth-types'
@@ -14,7 +14,6 @@ export async function registerService(credentials: RegisterData): Promise<Regist
   const response = await fetch.post('/auth/register', credentials)
   return response as RegisterResponse
 }
-
 
 export const validateUser = cache(async () => {
   const res = await fetch.get('/auth/validate', {

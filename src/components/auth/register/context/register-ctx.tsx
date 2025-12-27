@@ -104,7 +104,7 @@ export const RegisterProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       }
 
       const response = await registerService(signUpData)
-      console.log("🚀 ~ handleSubmit ~ response:", response)
+      console.log('🚀 ~ handleSubmit ~ response:', response)
 
       if (!response.success) {
         setError(response.message || 'Registration failed. Please try again.')

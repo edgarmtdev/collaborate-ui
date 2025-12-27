@@ -20,7 +20,7 @@ export default async function VerifyEmailPage({
         ? (
           <div>
             <p>{response.message}</p>
-            <Link href="/auth/login">Go to Login</Link>
+            <Link href='/auth/login'>Go to Login</Link>
           </div>
         )
         : (

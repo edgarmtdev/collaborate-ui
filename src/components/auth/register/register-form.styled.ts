@@ -39,7 +39,7 @@ export default {
     minH: 20
   }),
   successMessageContainer: css({
-    minH: "30vh",
+    minH: '30vh',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
