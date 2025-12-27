@@ -1,7 +1,8 @@
 'use server'
 
 import fetch from '@/api'
-import type { RegisterData, RegisterResponse, Credentials } from '@/types/auth-types'
+import type { Credentials, RegisterData, RegisterResponse } from '@/types/auth-types'
+import { cache } from 'react'
 
 export async function loginService(credentials: Credentials) {
   const response = await fetch.post('/auth/login', credentials)
@@ -11,19 +12,21 @@ export async function loginService(credentials: Credentials) {
 
 export async function registerService(credentials: RegisterData): Promise<RegisterResponse> {
   const response = await fetch.post('/auth/register', credentials)
-  console.log("🚀 ~ registerService ~ response:", response)
   return response as RegisterResponse
 }
 
-export async function validateUser() {
-  const res = await fetch.get('/auth/validate')
+export const validateUser = cache(async () => {
+  const res = await fetch.get('/auth/validate', {
+    credentials: 'include',
+    cache: 'no-store'
+  })
 
-  if (!res.id) {
-    return JSON.parse(JSON.stringify({ isLoggedIn: false, message: res.message }))
+  if (!res.ok) {
+    return { isLoggedIn: false }
   }
 
-  return JSON.parse(JSON.stringify({ isLoggedIn: true, user: res }))
-}
+  return { isLoggedIn: true, user: res }
+})
 
 export async function logoutService() {
   const res = await fetch.post('/auth/logout')

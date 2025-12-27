@@ -8,23 +8,32 @@ const getHeaders = () => ({
   Cookie: cookies().toString()
 })
 
-export async function get(path: string) {
+export async function get(path: string, options?: RequestInit) {
+  const response = await fetch(`${Constant.API_URL}${path}`, {
+    method: 'GET',
+    credentials: 'include',
+    headers: {
+      ...getHeaders()
+    },
+    next: options?.next
+  })
+
+  let data = null
   try {
-    const response = await fetch(`${Constant.API_URL}${path}`, {
-      method: 'GET',
-      headers: {
-        ...getHeaders()
-      }
-    })
-
-    if (!response.ok) {
-      throw new Error(JSON.stringify(response))
-    }
-
-    return response.json()
-  } catch (error) {
-    return error
+    data = await response.json()
+  } catch {
+    data = null
   }
+
+  if (!response.ok) {
+    return {
+      __error: true,
+      status: response.status,
+      data
+    }
+  }
+
+  return data
 }
 
 export async function post<T>(path: string, data?: unknown, options?: RequestInit): Promise<T> {
