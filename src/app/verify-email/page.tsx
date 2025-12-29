@@ -1,6 +1,9 @@
+import { Button } from '@/components/ui'
 import { verifyEmailByToken } from '@/services/auth'
 import Link from 'next/link'
-import React from 'react'
+import classes from './verify-email.styled'
+import Image from 'next/image'
+import { Navbar } from '@/components/landing'
 
 export default async function VerifyEmailPage({
   searchParams
@@ -15,17 +18,27 @@ export default async function VerifyEmailPage({
 
   return (
     <>
-      <h1>Verify Email Page</h1>
-      {response.success
-        ? (
-          <div>
-            <p>{response.message}</p>
-            <Link href='/auth/login'>Go to Login</Link>
-          </div>
-        )
-        : (
-          <p>An error occurred during verification. Try again later.</p>
-        )}
+      <Navbar isLoggedIn={false} />
+      <main className={classes.root}>
+        <Image src='/icon-mono.svg' alt='Email verified' width={320} height={320} />
+        <div className={classes.container}>
+          <h1 className={classes.title}>Verify Email Page</h1>
+          {response.success
+            ? (
+              <div className={classes.successBox}>
+                <p>{response.message || 'Email verified successfully!, you can now login'}</p>
+                <Link href='/auth/login'>
+                  <Button variant='primary'>
+                    Go to Login
+                  </Button>
+                </Link>
+              </div>
+            )
+            : (
+              <p>An error occurred during verification. Try again later.</p>
+            )}
+        </div>
+      </main>
     </>
   )
 }
