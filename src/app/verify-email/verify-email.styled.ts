@@ -1,4 +1,4 @@
-import { css } from "~root/styled-system/css";
+import { css } from '~root/styled-system/css'
 
 export default {
   root: css({
@@ -19,7 +19,7 @@ export default {
       backgroundSize: '130vw',
       py: 48,
       bgColor: 'white'
-    },
+    }
   }),
   container: css({
     display: 'flex',
