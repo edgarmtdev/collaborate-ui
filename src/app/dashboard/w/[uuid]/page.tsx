@@ -1,4 +1,4 @@
-import { Board } from '@/components/boards'
+import { Board, CreateBoard } from '@/components/boards'
 import { validateUser } from '@/services/auth'
 import { getWorkspaceByUuid } from '@/services/workspaces'
 import { Workspace } from '@/types/workspace-types'
@@ -41,6 +41,9 @@ export default async function WorkspacePage({ params }: Props) {
                 <Board board={board} workspaceUuid={uuid} />
               </li>
             ))}
+            <li className={styles.boardCard}>
+              <CreateBoard />
+            </li>
           </ol>
         </div>
       </section>
