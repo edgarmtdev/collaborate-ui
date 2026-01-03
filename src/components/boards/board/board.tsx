@@ -33,18 +33,16 @@ export function Board({ board, workspaceUuid }: BoardProps) {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
     const taskTitle = formData.get('taskTitle') as string
-
-    addOptimisticTask({
-      uuid: `temp-${Date.now()}`,
-      title: taskTitle
-    })
+    setShowForm(false)
 
     startTransition(async () => {
       try {
+        const tempTask = { uuid: `temp-${Date.now()}`, title: taskTitle }
+        addOptimisticTask(tempTask)
+
         const response = await createTaskAction(formData)
         if ((response as { success?: boolean })?.success) {
           e.currentTarget.reset()
-          setShowForm(false)
           router.refresh()
         }
       } catch (error) {

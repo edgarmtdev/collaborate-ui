@@ -4,26 +4,44 @@ import { createNewBoardAction } from '@/app/actions/boards'
 import { Button, Input } from '@/components/ui'
 import { useClickOutside } from '@/hooks'
 import { useRouter } from 'next/navigation'
-import { useRef, useState } from 'react'
+import { startTransition, useRef, useState } from 'react'
 import styles from './create-board.styled'
 
 interface CreateBoardProps {
   workSpaceUuid: string;
+  onOptimisticCreate?: (board: { uuid: string; name: string; tasks?: any[] } | null) => void
 }
 
-export function CreateBoard({ workSpaceUuid }: CreateBoardProps) {
+export function CreateBoard({ workSpaceUuid, onOptimisticCreate }: CreateBoardProps) {
   const [showForm, setShowForm] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
-  const router = useRouter()
   useClickOutside(formRef, () => setShowForm(false), { enabled: true, detectEscapeKey: true })
+  const router = useRouter()
 
-  const handleCreateBoard = async () => {
-    const response = await createNewBoardAction(new FormData(formRef.current!)) as { uuid?: string } | undefined
-    if (!response?.uuid) {
-      return
-    }
+  async function handleCreateBoard(e?: React.FormEvent<HTMLFormElement>) {
+    e?.preventDefault()
+    const formEl = formRef.current ?? (e && (e.currentTarget as HTMLFormElement))
+    if (!formEl) return
+
+    const fd = new FormData(formEl)
+    const boardName = (fd.get('boardName') as string) || ''
+    if (!boardName.trim()) return
     setShowForm(false)
-    router.refresh()
+
+    startTransition(async () => {
+      try {
+        const tempBoard = { uuid: `temp-${Date.now()}`, name: boardName, tasks: [] }
+        onOptimisticCreate?.(tempBoard)
+        const response = await createNewBoardAction(fd) as { uuid?: string } | undefined
+        if (!response?.uuid) {
+          onOptimisticCreate?.(null)
+          return
+        }
+        router.refresh()
+      } catch (err) {
+        onOptimisticCreate?.(null)
+      }
+    })
   }
 
   return (
@@ -31,11 +49,11 @@ export function CreateBoard({ workSpaceUuid }: CreateBoardProps) {
       {!showForm
         ? (
           <button className={styles.addBoardButton} onClick={() => setShowForm(true)}>
-          + Add new board
+            + Add new board
           </button>
         )
         : (
-          <form className={styles.formContainer} ref={formRef} action={handleCreateBoard}>
+          <form className={styles.formContainer} ref={formRef} onSubmit={handleCreateBoard}>
             <Input name='boardName' placeholder='Enter a board name...' size='sm' />
             <Input type='hidden' name='workSpaceUuid' value={workSpaceUuid} />
             <div className={styles.formButtonsContainer}>
