@@ -43,5 +43,5 @@ export default {
     height: '100%',
     whiteSpace: 'nowrap',
     paddingX: 10
-  }),
+  })
 }

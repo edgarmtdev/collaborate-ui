@@ -1,1 +1,1 @@
-export { CreateBoard } from "./create-board";
+export { CreateBoard } from './create-board'

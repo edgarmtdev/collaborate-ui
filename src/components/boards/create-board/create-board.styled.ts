@@ -1,8 +1,8 @@
-import { css } from "~root/styled-system/css";
+import { css } from '~root/styled-system/css'
 
 export default {
   createBoardContainer: css({
-    minW: 272,
+    minW: 272
   }),
   addBoardButton: css({
     display: 'flex',
@@ -31,11 +31,11 @@ export default {
     bgColor: 'white',
     borderRadius: 10,
     boxShadow: 'md',
-    p: 10,
+    p: 10
   }),
   formButtonsContainer: css({
     display: 'flex',
     flexDirection: 'row',
-    gap: 8,
-  }),
+    gap: 8
+  })
 }
