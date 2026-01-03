@@ -23,5 +23,5 @@ export default {
     w: '100%',
     height: '100%',
     mt: 62
-  }),
+  })
 }

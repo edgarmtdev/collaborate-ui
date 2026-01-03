@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { Board, CreateBoard } from '@/components/boards'
 import { useOptimistic } from 'react'
