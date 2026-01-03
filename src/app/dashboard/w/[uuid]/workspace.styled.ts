@@ -23,25 +23,5 @@ export default {
     w: '100%',
     height: '100%',
     mt: 62
-  }),
-  boardsContainer: css({
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    overflowX: 'auto'
-  }),
-  boardsList: css({
-    position: 'relative',
-    p: 32,
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'row'
-  }),
-  boardCard: css({
-    display: 'block',
-    alignSelf: 'flex-start',
-    height: '100%',
-    whiteSpace: 'nowrap',
-    paddingX: 10
   })
 }

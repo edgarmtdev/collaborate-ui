@@ -1,4 +1,4 @@
-import { Board, CreateBoard } from '@/components/boards'
+import { WorkspaceBoards } from '@/components/boards'
 import { validateUser } from '@/services/auth'
 import { getWorkspaceByUuid } from '@/services/workspaces'
 import { Workspace } from '@/types/workspace-types'
@@ -31,21 +31,7 @@ export default async function WorkspacePage({ params }: Props) {
       }
       <section className={styles.pageContainer}>
         <WorkspaceHeader workspace={workspace} userLogged={user} />
-        <div className={styles.boardsContainer}>
-          <ol className={styles.boardsList}>
-            {workspace.boards.map((board) => (
-              <li
-                key={board.uuid}
-                className={styles.boardCard}
-              >
-                <Board board={board} workspaceUuid={uuid} />
-              </li>
-            ))}
-            <li className={styles.boardCard}>
-              <CreateBoard workSpaceUuid={uuid} />
-            </li>
-          </ol>
-        </div>
+        <WorkspaceBoards initialBoards={workspace.boards} workspaceUuid={uuid} />
       </section>
     </>
   )
