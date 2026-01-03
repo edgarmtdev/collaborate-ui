@@ -17,11 +17,25 @@ export default {
     color: 'coolGray.950',
     cursor: 'pointer',
     fontWeight: '500',
+    fontSize: 'sm',
     _hover: {
       borderColor: 'coolGray.100',
       color: 'coolGray.600',
       backgroundColor: 'coolGray.50'
     }
   }),
-
+  formContainer: css({
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 8,
+    bgColor: 'white',
+    borderRadius: 10,
+    boxShadow: 'md',
+    p: 10,
+  }),
+  formButtonsContainer: css({
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 8,
+  }),
 }

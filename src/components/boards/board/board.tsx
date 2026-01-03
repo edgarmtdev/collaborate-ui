@@ -8,7 +8,12 @@ import styles from './styles'
 
 import { type BoardType } from '@/types/board-types'
 
-export function Board({ board, workspaceUuid }: { board: BoardType; workspaceUuid: string }) {
+interface BoardProps {
+  board: BoardType
+  workspaceUuid: string
+}
+
+export function Board({ board, workspaceUuid }: BoardProps) {
   const router = useRouter()
   const [showForm, setShowForm] = useState(false)
   const [isPending, startTransition] = useTransition()

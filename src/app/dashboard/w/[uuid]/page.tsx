@@ -42,7 +42,7 @@ export default async function WorkspacePage({ params }: Props) {
               </li>
             ))}
             <li className={styles.boardCard}>
-              <CreateBoard />
+              <CreateBoard workSpaceUuid={uuid} />
             </li>
           </ol>
         </div>
