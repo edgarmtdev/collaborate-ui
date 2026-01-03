@@ -2,8 +2,9 @@
 
 import { createTaskAction } from '@/app/actions/tasks'
 import { Button, Input } from '@/components/ui'
+import { useClickOutside } from '@/hooks'
 import { useRouter } from 'next/navigation'
-import { type FormEvent, useState, useTransition, useOptimistic } from 'react'
+import { type FormEvent, useOptimistic, useRef, useState, useTransition } from 'react'
 import styles from './styles'
 
 import { type BoardType } from '@/types/board-types'
@@ -17,6 +18,8 @@ export function Board({ board, workspaceUuid }: BoardProps) {
   const router = useRouter()
   const [showForm, setShowForm] = useState(false)
   const [isPending, startTransition] = useTransition()
+  const formRef = useRef<HTMLFormElement>(null)
+  useClickOutside(formRef, () => setShowForm(false), { enabled: showForm, detectEscapeKey: true })
 
   const [optimisticTasks, addOptimisticTask] = useOptimistic(
     board.tasks,
@@ -75,34 +78,32 @@ export function Board({ board, workspaceUuid }: BoardProps) {
               <Button variant={'monocrom'} size={'xs'} onClick={() => setShowForm(true)}>+ Add Task</Button>
             )
             : (
-              <div>
-                <form onSubmit={handleSubmit} className={styles.formContainer}>
-                  <Input
-                    type='hidden'
-                    name='boardUuid'
-                    value={board.uuid}
-                  />
-                  <Input
-                    type='hidden'
-                    name='workspaceUuid'
-                    value={workspaceUuid}
-                  />
-                  <Input
-                    type='text'
-                    placeholder='Task title'
-                    size='sm'
-                    name='taskTitle'
-                  />
-                  <div className={styles.formButtonsContainer}>
-                    <Button type='submit' variant={'primary'} size={'xs'}>
-                      {isPending ? 'Loading...' : 'Add Task'}
-                    </Button>
-                    <Button type='button' size={'xs'} variant={'dangerBorder'} onClick={() => setShowForm(false)}>
-                      Close
-                    </Button>
-                  </div>
-                </form>
-              </div>
+              <form onSubmit={handleSubmit} ref={formRef} className={styles.formContainer}>
+                <Input
+                  type='hidden'
+                  name='boardUuid'
+                  value={board.uuid}
+                />
+                <Input
+                  type='hidden'
+                  name='workspaceUuid'
+                  value={workspaceUuid}
+                />
+                <Input
+                  type='text'
+                  placeholder='Task title'
+                  size='sm'
+                  name='taskTitle'
+                />
+                <div className={styles.formButtonsContainer}>
+                  <Button type='submit' variant={'primary'} size={'xs'}>
+                    {isPending ? 'Loading...' : 'Add Task'}
+                  </Button>
+                  <Button type='button' size={'xs'} variant={'dangerBorder'} onClick={() => setShowForm(false)}>
+                    Close
+                  </Button>
+                </div>
+              </form>
             )}
         </div>
       </section>
