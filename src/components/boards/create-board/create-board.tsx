@@ -2,7 +2,8 @@
 
 import { createNewBoardAction } from "@/app/actions/boards";
 import { Button, Input } from "@/components/ui";
-import { useEffect, useRef, useState } from "react";
+import { useClickOutside } from "@/hooks";
+import { useRef, useState } from "react";
 import styles from "./create-board.styled";
 
 interface CreateBoardProps {
@@ -12,36 +13,17 @@ interface CreateBoardProps {
 export function CreateBoard({ workSpaceUuid }: CreateBoardProps) {
   const [showForm, setShowForm] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
-
-  useEffect(() => {
-    if (showForm) {
-      formRef.current?.querySelector('input')?.focus();
-    }
-    const handleClickOutside = (event: MouseEvent) => {
-      if (formRef.current && !formRef.current.contains(event.target as Node)) {
-        setShowForm(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [showForm]);
-
-  const handleShowForm = () => {
-    setShowForm(true);
-  };
+  useClickOutside(formRef, () => setShowForm(false), { enabled: true, detectEscapeKey: true });
 
   const handleCreateBoard = async () => {
     const response = await createNewBoardAction(new FormData(formRef.current!));
     console.log("Pruebas", response);
   }
+
   return (
     <div className={styles.createBoardContainer}>
       {!showForm ? (
-        <button className={styles.addBoardButton} onClick={handleShowForm}>
+        <button className={styles.addBoardButton} onClick={() => setShowForm(true)}>
           + Add new board
         </button>
       ) : (
