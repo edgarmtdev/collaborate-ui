@@ -1,13 +1,15 @@
 'use client'
 
 import { createTaskAction } from '@/app/actions/tasks'
+import { TaskListItem } from '@/components/tasks'
 import { Button, Input } from '@/components/ui'
 import { useClickOutside } from '@/hooks'
 import { useRouter } from 'next/navigation'
 import { type FormEvent, useOptimistic, useRef, useState, useTransition } from 'react'
 import styles from './styles'
 
-import { type BoardType } from '@/types/board-types'
+import type { BoardType } from '@/types/board-types'
+import type { TaskType } from '@/types/tasks-types'
 
 interface BoardProps {
   board: BoardType
@@ -25,7 +27,7 @@ export function Board({ board, workspaceUuid }: BoardProps) {
     board.tasks,
     (state, newTask: { uuid: string; title: string }) => [
       ...state,
-      newTask
+      newTask as TaskType
     ]
   )
 
@@ -58,16 +60,8 @@ export function Board({ board, workspaceUuid }: BoardProps) {
       </section>
       <section className={styles.content}>
         <div>
-          {optimisticTasks.length === 0 && (
-            <p className={styles.noTasksMessage}>No tasks yet</p>
-          )}
           {optimisticTasks.map((task) => (
-            <div
-              key={task.uuid}
-              className={`${styles.taskItem} ${task.uuid.startsWith('temp-') ? styles.taskItemPending : styles.taskItemConfirmed}`}
-            >
-              {task.title}
-            </div>
+            <TaskListItem key={task.uuid} task={task} />
           ))}
         </div>
         <div>

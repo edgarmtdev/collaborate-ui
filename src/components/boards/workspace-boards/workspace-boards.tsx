@@ -1,6 +1,7 @@
 'use client'
 
 import { Board, CreateBoard } from '@/components/boards'
+import { DndContext } from '@dnd-kit/core'
 import { useOptimistic } from 'react'
 import styles from './workspace-boards.styled'
 
@@ -23,17 +24,19 @@ export function WorkspaceBoards({ initialBoards, workspaceUuid }: Props) {
   }
 
   return (
-    <div className={styles.boardsContainer}>
-      <ol className={styles.boardsList}>
-        {optimisticBoards.map((board) => (
-          <li key={board.uuid} className={styles.boardCard}>
-            <Board board={board} workspaceUuid={workspaceUuid} />
+    <DndContext>
+      <div className={styles.boardsContainer}>
+        <ol className={styles.boardsList}>
+          {optimisticBoards.map((board) => (
+            <li key={board.uuid} className={styles.boardCard}>
+              <Board board={board} workspaceUuid={workspaceUuid} />
+            </li>
+          ))}
+          <li className={styles.boardCard}>
+            <CreateBoard workSpaceUuid={workspaceUuid} onOptimisticCreate={handleOptimisticCreate} />
           </li>
-        ))}
-        <li className={styles.boardCard}>
-          <CreateBoard workSpaceUuid={workspaceUuid} onOptimisticCreate={handleOptimisticCreate} />
-        </li>
-      </ol>
-    </div>
+        </ol>
+      </div>
+    </DndContext>
   )
 }
