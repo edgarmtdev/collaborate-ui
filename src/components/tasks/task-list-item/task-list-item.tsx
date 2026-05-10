@@ -1,4 +1,4 @@
-import { CSS } from "@dnd-kit/utilities"
+import { CSS } from '@dnd-kit/utilities'
 import styles from './task-list-item.styled'
 import { useSortable } from '@dnd-kit/sortable'
 
@@ -14,12 +14,12 @@ export function TaskListItem({ task }: TaskListItemProps) {
     attributes,
     listeners,
     transform,
-    transition,
-  } = useSortable({ id: task.uuid, })
+    transition
+  } = useSortable({ id: task.uuid })
 
   const style = {
     transform: CSS.Transform.toString(transform),
-    transition,
+    transition
   }
 
   return (

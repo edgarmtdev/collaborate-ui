@@ -1,11 +1,11 @@
-import { css } from "~root/styled-system/css";
+import { css } from '~root/styled-system/css'
 
 export default {
   taskItem: css({
     marginBottom: '16px',
     padding: '8px',
     borderRadius: '8px',
-    cursor: 'grab',
+    cursor: 'grab'
   }),
   taskItemPending: css({
     bgColor: 'coolGray.25',

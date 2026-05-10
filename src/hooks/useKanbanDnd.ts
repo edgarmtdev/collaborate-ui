@@ -1,11 +1,11 @@
-import { updateTaskPosition } from "@/services/tasks/tasks.client"
+import { updateTaskPosition } from '@/services/tasks/tasks.client'
 import {
   DragEndEvent,
   DragOverEvent,
   closestCorners
-} from "@dnd-kit/core"
-import { arrayMove } from "@dnd-kit/sortable"
-import { useRef, useState } from "react"
+} from '@dnd-kit/core'
+import { arrayMove } from '@dnd-kit/sortable'
+import { useRef, useState } from 'react'
 
 export type KanbanState = {
   columns: Record<string, { id: string; title: string; cardIds: string[] }>
@@ -66,7 +66,7 @@ export function useKanbanDnd(initial: KanbanState) {
   }
 
   async function commit(activeId: string, toColumnId: string) {
-    console.log(activeId, toColumnId);
+    console.log(activeId, toColumnId)
 
     try {
       await updateTaskPosition(activeId, toColumnId)

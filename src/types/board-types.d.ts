@@ -1,4 +1,4 @@
-import { TaskType } from "./tasks-types"
+import { TaskType } from './tasks-types'
 
 export interface BoardType {
   id: number
