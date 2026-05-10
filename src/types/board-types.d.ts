@@ -1,3 +1,5 @@
+import { TaskType } from './tasks-types'
+
 export interface BoardType {
   id: number
   uuid: string
