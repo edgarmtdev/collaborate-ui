@@ -1,13 +1,13 @@
-"use client"
+'use client'
 
-import { updateTaskPositionAction } from "@/app/actions/tasks"
+import { updateTaskPositionAction } from '@/app/actions/tasks'
 import {
   DragEndEvent,
   DragOverEvent,
   closestCorners
-} from "@dnd-kit/core"
-import { arrayMove } from "@dnd-kit/sortable"
-import { useRef, useState } from "react"
+} from '@dnd-kit/core'
+import { arrayMove } from '@dnd-kit/sortable'
+import { useRef, useState } from 'react'
 
 export type KanbanState = {
   columns: Record<string, { id: string; title: string; cardIds: string[] }>
