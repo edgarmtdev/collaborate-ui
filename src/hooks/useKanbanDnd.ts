@@ -1,4 +1,6 @@
-import { updateTaskPosition } from '@/services/tasks/tasks.client'
+'use client'
+
+import { updateTaskPositionAction } from '@/app/actions/tasks'
 import {
   DragEndEvent,
   DragOverEvent,
@@ -66,10 +68,8 @@ export function useKanbanDnd(initial: KanbanState) {
   }
 
   async function commit(activeId: string, toColumnId: string) {
-    console.log(activeId, toColumnId)
-
     try {
-      await updateTaskPosition(activeId, toColumnId)
+      await updateTaskPositionAction(activeId, toColumnId)
     } catch {
       rollback()
     }

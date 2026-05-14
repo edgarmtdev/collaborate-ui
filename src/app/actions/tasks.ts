@@ -1,6 +1,6 @@
 'use server'
 
-import { createBoardTask } from '@/services/tasks'
+import { createBoardTask, updateTaskPosition } from '@/services/tasks'
 import { revalidatePath } from 'next/cache'
 
 export async function createTaskAction(formData: FormData) {
@@ -14,5 +14,10 @@ export async function createTaskAction(formData: FormData) {
     revalidatePath(`/dashboard/w/${workspaceUuid}`)
   }
 
+  return response
+}
+
+export async function updateTaskPositionAction(taskUuid: string, boardUuid: string) {
+  const response = await updateTaskPosition(taskUuid, boardUuid)
   return response
 }

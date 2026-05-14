@@ -1,4 +1,4 @@
-import { post } from '@/api/fetch'
+import { patch, post } from '@/api/fetch'
 
 export async function createBoardTask(data: { boardUuid: string; taskTitle: string }) {
   const response = await post('/tasks', {
@@ -9,12 +9,9 @@ export async function createBoardTask(data: { boardUuid: string; taskTitle: stri
 }
 
 export async function updateTaskPosition(taskUuid: string, boardUuid: string) {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tasks/move-task`, {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ taskUuid, boardUuid })
+  const response = await patch('/tasks/move-task', {
+    taskUuid,
+    boardUuid
   })
   return response
 }
