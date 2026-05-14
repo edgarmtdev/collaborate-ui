@@ -1,13 +1,17 @@
 'use client'
 
 import { createTaskAction } from '@/app/actions/tasks'
+import { TaskListItem } from '@/components/tasks'
 import { Button, Input } from '@/components/ui'
 import { useClickOutside } from '@/hooks'
+import { useDroppable } from '@dnd-kit/core'
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { useRouter } from 'next/navigation'
-import { type FormEvent, useOptimistic, useRef, useState, useTransition } from 'react'
 import styles from './styles'
 
-import { type BoardType } from '@/types/board-types'
+import type { BoardType } from '@/types/board-types'
+import type { TaskType } from '@/types/tasks-types'
+import { type FormEvent, useOptimistic, useRef, useState, useTransition } from 'react'
 
 interface BoardProps {
   board: BoardType
@@ -22,12 +26,14 @@ export function Board({ board, workspaceUuid }: BoardProps) {
   useClickOutside(formRef, () => setShowForm(false), { enabled: showForm, detectEscapeKey: true })
 
   const [optimisticTasks, addOptimisticTask] = useOptimistic(
-    board.tasks,
+    board.tasks ?? [],
     (state, newTask: { uuid: string; title: string }) => [
       ...state,
-      newTask
+      newTask as TaskType
     ]
   )
+
+  const { setNodeRef } = useDroppable({ id: board.uuid })
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -57,18 +63,12 @@ export function Board({ board, workspaceUuid }: BoardProps) {
         <h2 className={styles.title}>{board.name}</h2>
       </section>
       <section className={styles.content}>
-        <div>
-          {optimisticTasks.length === 0 && (
-            <p className={styles.noTasksMessage}>No tasks yet</p>
-          )}
-          {optimisticTasks.map((task) => (
-            <div
-              key={task.uuid}
-              className={`${styles.taskItem} ${task.uuid.startsWith('temp-') ? styles.taskItemPending : styles.taskItemConfirmed}`}
-            >
-              {task.title}
-            </div>
-          ))}
+        <div ref={setNodeRef}>
+          <SortableContext items={optimisticTasks.map((task) => task.uuid)} strategy={verticalListSortingStrategy}>
+            {optimisticTasks.map((task) => (
+              <TaskListItem key={task.uuid} task={task} />
+            ))}
+          </SortableContext>
         </div>
         <div>
           {!showForm
